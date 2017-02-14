@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "694670992629",
+    "firebase_url": "https://watersource-ffb83.firebaseio.com",
+    "project_id": "watersource-ffb83",
+    "storage_bucket": "watersource-ffb83.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:694670992629:android:891592f01a986fa8",
+        "android_client_info": {
+          "package_name": "com.tristenallen.watersource"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "694670992629-ph00db6hrorofj5kca6e6tf8kbf1sgqt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tristenallen.watersource",
+            "certificate_hash": "F5000385D83AAC4AD5C31777C1C7B80B7187DBEA"
+          }
+        },
+        {
+          "client_id": "694670992629-kc732drfalfrobter18kjf3gslhq1b5v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8kmWJjvHm4-k1TsGqT8gsjm-dtuGOI5k"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "694670992629-kc732drfalfrobter18kjf3gslhq1b5v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

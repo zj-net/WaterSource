@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">WaterSource</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="action_logout">Logout</string>
+    <string name="action_settings">Settings</string>
+    <string name="dialog_logout">Are you sure you want to log out?</string>
+    <string name="logout">Logout</string>
+    <string name="cancel">Cancel</string>
 </resources>
