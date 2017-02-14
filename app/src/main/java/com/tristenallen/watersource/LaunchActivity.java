@@ -24,5 +24,13 @@ public class LaunchActivity extends AppCompatActivity {
                 startActivity(goToLoginScreen);
             }
         });
+//        this isn't getting implemented yet, but I don't want to type it again
+//        register = (Button) findViewById(R.layout.activity_signin);
+//        register.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent goToSignUpScreen = new Intent(LaunchActivity.this)
+//            }
+//        });
     }
 }

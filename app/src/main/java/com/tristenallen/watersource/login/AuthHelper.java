@@ -18,7 +18,7 @@ public class AuthHelper {
         passwords.put(0, "password");
     }
 
-    public AuthHelper getInstance() {
+    public static AuthHelper getInstance() {
         return instance;
     }
 
