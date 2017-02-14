@@ -17,6 +17,15 @@
         </activity>
         <activity android:name=".login.LoginActivity">
         </activity>
+        <activity
+                android:name=".MainActivity"
+                android:label="@string/title_activity_main"
+                android:parentActivityName=".login.LoginActivity"
+                android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="com.tristenallen.watersource.login.LoginActivity"/>
+        </activity>
     </application>
 
 </manifest>
