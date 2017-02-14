@@ -1,4 +1,4 @@
-package com.tristenallen.watersource;
+package com.tristenallen.watersource.main;
 
 import android.app.Dialog;
 import android.support.v4.app.DialogFragment;
@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import com.tristenallen.watersource.R;
 
 /**
  * Created by tristen on 2/14/17.
