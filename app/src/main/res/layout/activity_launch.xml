@@ -11,29 +11,44 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.tristenallen.watersource.LaunchActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Welcome to ZJ-NET WaterSource App!"
-        android:id="@+id/textView" />
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="43dp"
-        android:id="@+id/login"
-        android:text="Login!"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentStart="true" />
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Welcome to WaterSource!"
+                android:layout_centerHorizontal="true"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+                android:id="@+id/textView" />
 
-    <Button
-        android:text="Register!"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/login"
-        android:layout_alignEnd="@+id/textView"
-        android:id="@+id/register" />
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="43dp"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/textView">
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/login"
+                android:text="Login!"
+                android:layout_alignParentStart="true" />
+
+            <Button
+                android:text="Register!"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/login"
+                android:layout_toRightOf="@id/login"
+                android:layout_marginStart="10dp"
+                android:id="@+id/register" />
+        </RelativeLayout>
+    </RelativeLayout>
 
 </RelativeLayout>
