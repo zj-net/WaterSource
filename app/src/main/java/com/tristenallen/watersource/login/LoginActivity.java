@@ -45,12 +45,15 @@ public class LoginActivity extends AppCompatActivity {
                     Context context = getApplicationContext();
                     CharSequence error = "Invalid UserName!";
                     int duration = Toast.LENGTH_LONG;
+                    usrname.setText("");
+                    password.setText("");
                     Toast badPass = Toast.makeText(context, error, duration);
                     badPass.show();
                 } else if (status == AuthStatus.INVALID_PASSWORD) {
                     Context context = getApplicationContext();
                     CharSequence error = "Invalid password!";
                     int duration = Toast.LENGTH_LONG;
+                    password.setText("");
                     Toast badPass = Toast.makeText(context, error, duration);
                     badPass.show();
 
