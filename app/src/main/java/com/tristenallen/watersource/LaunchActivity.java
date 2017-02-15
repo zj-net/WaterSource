@@ -20,7 +20,7 @@ public class LaunchActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToLoginScreen = new Intent(LaunchActivity.this, LoginActivity.class);
+                Intent goToLoginScreen = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(goToLoginScreen);
             }
         });

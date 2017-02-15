@@ -63,14 +63,14 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
-        super.onBackPressed();
+        Intent goToLaunchActivity = new Intent(getApplicationContext(), LaunchActivity.class);
+        goToLaunchActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(goToLaunchActivity);
     }
 
     // launches a dialog confirming that the user wants to log out
     private void logout() {
         LogoutDialogFragment logout = new LogoutDialogFragment();
         logout.show(getSupportFragmentManager(), "LogoutDialogFragment");
-        Intent goToLaunchActivity = new Intent(MainActivity.this, LaunchActivity.class);
-        startActivity(goToLaunchActivity);
     }
 }
