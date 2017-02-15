@@ -1,5 +1,6 @@
 package com.tristenallen.watersource.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
@@ -7,7 +8,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
+import com.tristenallen.watersource.LaunchActivity;
 import com.tristenallen.watersource.R;
+import com.tristenallen.watersource.login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity implements
         LogoutDialogFragment.LogoutDialogListener {
@@ -66,5 +70,7 @@ public class MainActivity extends AppCompatActivity implements
     private void logout() {
         LogoutDialogFragment logout = new LogoutDialogFragment();
         logout.show(getSupportFragmentManager(), "LogoutDialogFragment");
+        Intent goToLaunchActivity = new Intent(MainActivity.this, LaunchActivity.class);
+        startActivity(goToLaunchActivity);
     }
 }
