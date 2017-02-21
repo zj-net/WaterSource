@@ -9,8 +9,11 @@ import android.widget.Toast;
 import com.tristenallen.watersource.R;
 import android.widget.Button;
 import com.tristenallen.watersource.main.MainActivity;
-//import com.tristenallen.watersource.login.AuthHelper;
 import android.content.Context;
+import com.tristenallen.watersource.model.AuthHelper;
+import com.tristenallen.watersource.model.AuthPackage;
+import com.tristenallen.watersource.model.AuthStatus;
+import com.tristenallen.watersource.model.Model;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -37,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String usrnameStr = usrname.getText().toString();
                 String passwordStr = password.getText().toString();
-                verifier = AuthHelper.getInstance();
+                verifier = Model.getAuthHelper();
                 AP = verifier.login(usrnameStr, passwordStr);
                 status = AP.getStatus();
 

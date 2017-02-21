@@ -1,4 +1,4 @@
-package com.tristenallen.watersource.login;
+package com.tristenallen.watersource.model;
 
 /**
  * Created by tristen on 2/13/17.
