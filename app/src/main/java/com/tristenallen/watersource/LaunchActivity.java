@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import com.tristenallen.watersource.login.LoginActivity;
+import com.tristenallen.watersource.login.RegistrationActivity;
 
 public class LaunchActivity extends AppCompatActivity {
     private Button login;
@@ -25,12 +26,14 @@ public class LaunchActivity extends AppCompatActivity {
             }
         });
 //        this isn't getting implemented yet, but I don't want to type it again
-//        register = (Button) findViewById(R.layout.activity_signin);
-//        register.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent goToSignUpScreen = new Intent(LaunchActivity.this)
-//            }
-//        });
+        register = (Button) findViewById(R.id.register);
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToSignUpScreen = new Intent(LaunchActivity.this, RegistrationActivity.class);
+                startActivity(goToSignUpScreen);
+
+            }
+        });
     }
 }
