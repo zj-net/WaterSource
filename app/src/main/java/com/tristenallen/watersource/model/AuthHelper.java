@@ -37,6 +37,7 @@ public class AuthHelper {
             User user = userHelper.getUserByID(id);
 
             if (password.equals(validPass)) {
+                Model.setCurrentUser(id);
                 return new AuthPackage(user, AuthStatus.VALID_LOGIN);
             } else {
                 return new AuthPackage(user, AuthStatus.INVALID_PASSWORD);
