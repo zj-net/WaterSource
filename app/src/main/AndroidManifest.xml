@@ -26,6 +26,8 @@
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="com.tristenallen.watersource.login.LoginActivity"/>
         </activity>
+        <activity android:name=".login.RegistrationActivity"></activity>
+        <activity android:name=".controller.EditProfileActivity"></activity>
     </application>
 
 </manifest>

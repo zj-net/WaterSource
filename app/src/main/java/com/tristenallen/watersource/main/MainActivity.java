@@ -11,6 +11,7 @@ import android.view.MenuItem;
 
 import com.tristenallen.watersource.LaunchActivity;
 import com.tristenallen.watersource.R;
+import com.tristenallen.watersource.controller.EditProfileActivity;
 import com.tristenallen.watersource.login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity implements
@@ -43,6 +44,10 @@ public class MainActivity extends AppCompatActivity implements
                 logout();
                 return true;
 
+            case R.id.action_profile:
+                showProfile();
+                return true;
+
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
@@ -72,5 +77,11 @@ public class MainActivity extends AppCompatActivity implements
     private void logout() {
         LogoutDialogFragment logout = new LogoutDialogFragment();
         logout.show(getSupportFragmentManager(), "LogoutDialogFragment");
+    }
+
+    // launches a dialog confirming that the user wants to log out
+    private void showProfile() {
+        Intent goToEditProfileActivity = new Intent(getApplicationContext(), EditProfileActivity.class);
+        startActivity(goToEditProfileActivity);
     }
 }

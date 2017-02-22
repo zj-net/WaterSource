@@ -6,7 +6,7 @@
     android:layout_height="fill_parent"
     android:background="#2055a6"
     android:orientation="vertical"
-    tools:context="com.tristenallen.watersource.login.RegistrationActivity"
+    tools:context="com.tristenallen.watersource.controller.EditProfileActivity"
     >
 
 
@@ -103,7 +103,7 @@
             android:layout_alignParentStart="true" />
 
         <TextView
-            android:text="Welcome New User"
+            android:text="User Profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
