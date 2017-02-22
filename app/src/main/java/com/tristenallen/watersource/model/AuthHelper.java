@@ -14,6 +14,7 @@ public class AuthHelper {
     private AuthHelper() {
         passwords = new HashMap<>();
         userHelper = UserHelper.getInstance();
+        addUser(-2, "password"); // add root user
     }
 
     protected static AuthHelper getInstance() {
@@ -47,13 +48,13 @@ public class AuthHelper {
 
     /**
      * Adds a new user, by ID, to the internal password database.
-     * Returns false if the ID already exists.
+     * Returns false if the ID does not exist in the user database.
      * @param id int ID of the user
      * @param password String specifying the user's password.
      * @return boolean indicating success of the operation.
      */
     protected boolean addUser(int id, String password) {
-        if (userHelper.getUserByID(id) != null) {
+        if (userHelper.getUserByID(id) == null) {
             return false;
         } else {
             passwords.put(id, password);
