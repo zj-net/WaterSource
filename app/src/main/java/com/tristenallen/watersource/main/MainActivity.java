@@ -13,6 +13,7 @@ import com.tristenallen.watersource.LaunchActivity;
 import com.tristenallen.watersource.R;
 import com.tristenallen.watersource.controller.EditProfileActivity;
 import com.tristenallen.watersource.login.LoginActivity;
+import com.tristenallen.watersource.model.Model;
 
 public class MainActivity extends AppCompatActivity implements
         LogoutDialogFragment.LogoutDialogListener {
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
+        Model.setCurrentUser(-1);
         Intent goToLaunchActivity = new Intent(getApplicationContext(), LaunchActivity.class);
         goToLaunchActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(goToLaunchActivity);
