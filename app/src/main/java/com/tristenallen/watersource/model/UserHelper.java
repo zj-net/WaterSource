@@ -19,8 +19,8 @@ public class UserHelper {
     private UserHelper() {
         userIDMap = new HashMap<>();
         emailIDMap = new HashMap<>();
+        // add root user
         User root = new User("root@root.com", AuthLevel.ADMINISTRATOR, "User", "Root");
-        AuthHelper.getInstance().addUser(-2, "password");
         userIDMap.put(-2, root);
         emailIDMap.put("root@root.com", -2);
         currentID = 0;
