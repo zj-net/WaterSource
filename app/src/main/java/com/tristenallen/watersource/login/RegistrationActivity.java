@@ -53,6 +53,10 @@ public class RegistrationActivity extends AppCompatActivity {
 
         submitButton = (Button) findViewById(R.id.submitButton);
         submitButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * This method verifies input data once the Submit button is pressed.
+             * @param v the View for the activity
+             */
             @Override
             public void onClick(View v) {
                 //doing stuff with the text
