@@ -21,16 +21,46 @@
 
         <EditText android:layout_width="fill_parent"
             android:layout_height="40dp"
-            android:hint="First Name"
+            android:hint="Email"
             android:background="#f3f3f3"
             android:paddingLeft="5dp"
-            android:id="@+id/fnameTXT"
+            android:id="@+id/emailTXT"
+            android:layout_above="@+id/PasswordTXT"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="15dp" />
+
+        <EditText android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:hint="Password"
+            android:background="#f3f3f3"
+            android:paddingLeft="5dp"
+            android:id="@+id/PasswordTXT"
+            android:layout_marginBottom="14dp"
+            android:layout_above="@+id/confirmPassTXT"
+            android:layout_alignParentStart="true" />
+
+        <EditText android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:hint="Address"
+            android:background="#f3f3f3"
+            android:paddingLeft="5dp"
+            android:id="@+id/addressTXT"
+            android:layout_marginTop="18dp"
+            android:layout_below="@+id/firstNameTXT"
+            android:layout_alignParentStart="true" />
+
+        <EditText android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:hint="Name"
+            android:background="#f3f3f3"
+            android:paddingLeft="5dp"
+            android:id="@+id/firstNameTXT"
             android:layout_below="@+id/personalTXT"
             android:layout_alignParentStart="true"
             android:layout_marginTop="10dp" />
 
         <TextView
-            android:text="Edit your information below"
+            android:text="Please fill out your information below"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -41,7 +71,39 @@
             android:layout_marginTop="11dp" />
 
         <TextView
-            android:text="Edit Profile"
+            android:text="Account Registration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/accRegisterTXT"
+            android:textAppearance="@style/TextAppearance.AppCompat.Inverse"
+            android:layout_marginBottom="14dp"
+            android:layout_above="@+id/emailTXT"
+            android:layout_alignEnd="@+id/personalTXT" />
+
+        <Button android:layout_width="190dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center_horizontal"
+            android:background="#f3f3f3"
+            android:text="submit"
+            android:visibility="visible"
+            style="@style/Widget.AppCompat.Light.ActionButton"
+            android:id="@+id/submitButton"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp" />
+
+        <EditText android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:hint="Confirm Password"
+            android:background="#f3f3f3"
+            android:paddingLeft="5dp"
+            android:id="@+id/confirmPassTXT"
+            android:layout_marginBottom="35dp"
+            android:layout_above="@+id/submitButton"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:text="User Profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -61,73 +123,7 @@
             android:layout_below="@+id/PleaseTXT"
             android:layout_alignParentStart="true" />
 
-
-        <Button
-            android:text="back"
-            android:layout_width="100dp"
-            android:layout_height="38dp"
-            android:layout_gravity="center_horizontal"
-            style="@style/Widget.AppCompat.Light.ActionButton"
-            android:background="#f3f3f3"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="38dp"
-            android:id="@+id/goBack" />
-
-        <Button android:layout_width="100dp"
-            android:layout_height="38dp"
-            android:layout_gravity="center_horizontal"
-            android:background="#f3f3f3"
-            android:text="submit"
-            android:visibility="visible"
-            style="@style/Widget.AppCompat.Light.ActionButton"
-            android:id="@+id/submitButton"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="51dp" />
-
-        <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="40dp"
-            android:background="#f3f3f3"
-            android:inputType="textPersonName"
-            android:paddingLeft="5dp"
-            android:hint="Last Name"
-            android:id="@+id/lnameTXT"
-            android:layout_below="@+id/fnameTXT"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="16dp" />
-
-        <EditText android:layout_width="fill_parent"
-            android:layout_height="40dp"
-            android:hint="Address"
-            android:background="#f3f3f3"
-            android:paddingLeft="5dp"
-            android:id="@+id/addressTXT"
-            android:layout_marginTop="60dp"
-            android:layout_alignTop="@+id/titleTXT"
-            android:layout_alignParentStart="true" />
-
-        <EditText android:layout_width="fill_parent"
-            android:layout_height="40dp"
-            android:hint="Title"
-            android:background="#f3f3f3"
-            android:paddingLeft="5dp"
-            android:id="@+id/titleTXT"
-            android:layout_centerVertical="true"
-            android:layout_alignParentStart="true" />
-
     </RelativeLayout>
-
-    <EditText android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:hint="Password"
-        android:background="#f3f3f3"
-        android:paddingLeft="5dp"
-        android:id="@+id/PasswordTXT"
-        android:layout_marginBottom="14dp"
-        android:layout_above="@+id/confirmPassTXT"
-        android:layout_alignParentStart="true" />
 
     <LinearLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content"
