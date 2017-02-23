@@ -88,11 +88,23 @@ public class RegistrationActivity extends AppCompatActivity {
 
                     //last part, after checks are passed
                     user = new User(emailString, (AuthLevel) authSpinner.getSelectedItem(), lastNameString, firstNameString);
-                    Model.getUserHelper().addUser(user, emailString, passwordString);
+                    if (!Model.getUserHelper().addUser(user, emailString, passwordString)) {
+                        Context context = getApplicationContext();
+                        CharSequence error = "That email has already been used!";
+                        int duration = Toast.LENGTH_LONG;
+                        emailField.setText("");
+                        Toast badPass = Toast.makeText(context, error, duration);
+                        badPass.show();
+                    }
+
+                    Context context = getApplicationContext();
+                    CharSequence msg = "Registration complete! Please login.";
+                    int duration = Toast.LENGTH_LONG;
+                    Toast badPass = Toast.makeText(context, msg, duration);
+                    badPass.show();
 
                     //movement part
-                    Intent goToMainScreen = new Intent(RegistrationActivity.this, MainActivity.class);
-                    startActivity(goToMainScreen);
+                    onBackPressed();
                 }
             }
         });
