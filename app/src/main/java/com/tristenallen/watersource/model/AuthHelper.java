@@ -14,7 +14,6 @@ public class AuthHelper {
     private AuthHelper() {
         passwords = new HashMap<>();
         userHelper = UserHelper.getInstance();
-        addUser(-2, "password"); // add root user
     }
 
     protected static AuthHelper getInstance() {
