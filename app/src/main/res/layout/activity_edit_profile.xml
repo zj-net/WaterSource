@@ -21,20 +21,10 @@
 
         <EditText android:layout_width="fill_parent"
             android:layout_height="40dp"
-            android:hint="Address"
+            android:hint="First Name"
             android:background="#f3f3f3"
             android:paddingLeft="5dp"
-            android:id="@+id/addressTXT"
-            android:layout_marginTop="18dp"
-            android:layout_below="@+id/nameTXT"
-            android:layout_alignParentStart="true" />
-
-        <EditText android:layout_width="fill_parent"
-            android:layout_height="40dp"
-            android:hint="Name"
-            android:background="#f3f3f3"
-            android:paddingLeft="5dp"
-            android:id="@+id/nameTXT"
+            android:id="@+id/fnameTXT"
             android:layout_below="@+id/personalTXT"
             android:layout_alignParentStart="true"
             android:layout_marginTop="10dp" />
@@ -71,38 +61,6 @@
             android:layout_below="@+id/PleaseTXT"
             android:layout_alignParentStart="true" />
 
-        <TextView
-            android:text="Account Registration"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/accRegisterTXT"
-            android:textAppearance="@style/TextAppearance.AppCompat.Inverse"
-            android:layout_marginTop="55dp"
-            android:layout_below="@+id/addressTXT"
-            android:layout_alignParentStart="true" />
-
-
-        <EditText android:layout_width="fill_parent"
-            android:layout_height="40dp"
-            android:hint="Confirm Password"
-            android:background="#f3f3f3"
-            android:paddingLeft="5dp"
-            android:id="@+id/confirmPassTXT"
-            android:layout_marginBottom="58dp"
-            android:layout_above="@+id/submitButton"
-            android:layout_alignParentStart="true" />
-
-        <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="40dp"
-            android:background="#f3f3f3"
-            android:inputType="textPersonName"
-            android:paddingLeft="5dp"
-            android:hint="Edit Password"
-            android:layout_above="@+id/confirmPassTXT"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="11dp"
-            android:id="@+id/editText3" />
 
         <Button
             android:text="back"
@@ -127,6 +85,37 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
             android:layout_marginStart="51dp" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:background="#f3f3f3"
+            android:inputType="textPersonName"
+            android:paddingLeft="5dp"
+            android:hint="Last Name"
+            android:id="@+id/lnameTXT"
+            android:layout_below="@+id/fnameTXT"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="16dp" />
+
+        <EditText android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:hint="Address"
+            android:background="#f3f3f3"
+            android:paddingLeft="5dp"
+            android:id="@+id/addressTXT"
+            android:layout_marginTop="60dp"
+            android:layout_alignTop="@+id/titleTXT"
+            android:layout_alignParentStart="true" />
+
+        <EditText android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:hint="Title"
+            android:background="#f3f3f3"
+            android:paddingLeft="5dp"
+            android:id="@+id/titleTXT"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true" />
 
     </RelativeLayout>
 
