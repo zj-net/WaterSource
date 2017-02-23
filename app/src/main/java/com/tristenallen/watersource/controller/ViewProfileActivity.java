@@ -33,7 +33,7 @@ public class ViewProfileActivity extends AppCompatActivity {
 
         user = Model.getCurrentUser();
 
-        nameField.setText(user.getFirstName()+ " " + user.getLastName());
+        nameField.setText(user.getTitle() +" " + user.getFirstName()+ " " + user.getLastName());
         addressField.setText(user.getAddress());
         emailField.setText(user.getEmail());
     }

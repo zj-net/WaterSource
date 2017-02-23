@@ -1,9 +1,10 @@
 package com.tristenallen.watersource.controller;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.tristenallen.watersource.R;
 import com.tristenallen.watersource.model.Model;
@@ -14,7 +15,9 @@ import com.tristenallen.watersource.model.User;
  */
 
 public class EditProfileActivity extends AppCompatActivity {
-    private EditText nameField;
+    private EditText firstNameField;
+    private EditText lastNameField;
+    private EditText titleField;
     private EditText addressField;
 
     private User user;
@@ -24,12 +27,31 @@ public class EditProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
-        nameField = (EditText) findViewById(R.id.nameTXT);
+        firstNameField = (EditText) findViewById(R.id.fnameTXT);
+        lastNameField = (EditText) findViewById(R.id.lnameTXT);
+        titleField = (EditText) findViewById(R.id.titleTXT);
         addressField = (EditText) findViewById(R.id.addressTXT);
 
         user = Model.getCurrentUser();
 
-        nameField.setText(user.getFirstName()+ " " + user.getLastName());
+        firstNameField.setText(user.getFirstName());
+        lastNameField.setText(user.getLastName());
+        titleField.setText(user.getTitle());
         addressField.setText(user.getAddress());
+    }
+
+    protected void onSubmitPressed(View view) {
+        user.setFirstName(firstNameField.getText().toString());
+        user.setLastName(lastNameField.getText().toString());
+        user.setTitle(titleField.getText().toString());
+        user.setAddress(addressField.getText().toString());
+
+        finish();
+    }
+
+    protected void onBackPressed(View view) {
+        Intent goToViewProfileActivity = new Intent(getApplicationContext(), ViewProfileActivity.class);
+        startActivity(goToViewProfileActivity);
+        finish();
     }
 }
