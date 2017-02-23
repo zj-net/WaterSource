@@ -76,26 +76,6 @@
             android:layout_alignParentStart="true" />
 
         <TextView
-            android:text="Password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Inverse"
-            android:id="@+id/passwordTXT"
-            android:textSize="12sp"
-            android:layout_marginBottom="41dp"
-            android:layout_above="@+id/accInfoTXT"
-            android:layout_alignParentStart="true" />
-
-        <TextView
-            android:text="passwordtxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/passwordTXT"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="24dp"
-            android:id="@+id/showpasswordTXT" />
-
-        <TextView
             android:text="addresstxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -109,7 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/shownameTXT"
-            android:layout_above="@+id/passwordTXT"
+            android:layout_above="@+id/accInfoTXT"
             android:layout_alignParentStart="true"
             android:layout_marginBottom="19dp" />
 
@@ -144,6 +124,26 @@
             android:layout_below="@+id/accInfoTXT"
             android:layout_alignParentStart="true"
             android:layout_marginTop="17dp" />
+
+        <TextView
+            android:text="Email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Inverse"
+            android:id="@+id/emailTXT"
+            android:textSize="12sp"
+            android:layout_below="@+id/showaddressTXT"
+            android:layout_alignEnd="@+id/nameTXT"
+            android:layout_marginTop="15dp" />
+
+        <TextView
+            android:text="emailtxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:id="@+id/showemailTXT"
+            android:layout_below="@+id/emailTXT"
+            android:layout_alignStart="@+id/emailTXT" />
 
 
     </RelativeLayout>
