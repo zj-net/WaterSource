@@ -100,7 +100,7 @@ public class User {
      * @param lastName String specifying the last name of the user.
      * @param firstName String specifying the first name of the user.
      */
-    protected User(String email, AuthLevel role, String lastName, String firstName) {
+    public User(String email, AuthLevel role, String lastName, String firstName) {
         this.email = email;
         this.role = role;
         this.lastName = lastName;

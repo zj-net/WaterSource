@@ -25,7 +25,7 @@ public class LaunchActivity extends AppCompatActivity {
                 startActivity(goToLoginScreen);
             }
         });
-//        this isn't getting implemented yet, but I don't want to type it again
+
         register = (Button) findViewById(R.id.register);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
