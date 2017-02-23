@@ -20,25 +20,25 @@ import com.tristenallen.watersource.model.User;
  */
 
 public class EditProfileActivity extends AppCompatActivity {
-    private EditText nameField;
-    private EditText addressField;
-    private EditText emailField;
+    private TextView nameField;
+    private TextView addressField;
+    private TextView emailField;
 
     private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_profile);
+        setContentView(R.layout.activity_viewprofile);
 
-        nameField = (EditText) findViewById(R.id.nameTXT);
-        addressField = (EditText) findViewById(R.id.addressTXT);
-        emailField = (EditText) findViewById(R.id.emailTXT);
+        nameField = (TextView) findViewById(R.id.shownameTXT);
+        addressField = (TextView) findViewById(R.id.showaddressTXT);
+        emailField = (TextView) findViewById(R.id.showemailTXT);
 
 
         user = Model.getCurrentUser();
 
-        nameField.setText(user.getFirstName()+user.getLastName());
+        nameField.setText(user.getFirstName()+ " " + user.getLastName());
         addressField.setText(user.getAddress());
         emailField.setText(user.getEmail());
     }
