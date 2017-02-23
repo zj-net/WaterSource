@@ -11,9 +11,8 @@ import android.view.MenuItem;
 
 import com.tristenallen.watersource.LaunchActivity;
 import com.tristenallen.watersource.R;
-import com.tristenallen.watersource.controller.EditProfileActivity;
-import com.tristenallen.watersource.login.LoginActivity;
 import com.tristenallen.watersource.model.Model;
+import com.tristenallen.watersource.controller.ViewProfileActivity;
 
 public class MainActivity extends AppCompatActivity implements
         LogoutDialogFragment.LogoutDialogListener {
@@ -83,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements
 
     // launches a dialog confirming that the user wants to log out
     private void showProfile() {
-        Intent goToEditProfileActivity = new Intent(getApplicationContext(), EditProfileActivity.class);
+        Intent goToEditProfileActivity = new Intent(getApplicationContext(), ViewProfileActivity.class);
         startActivity(goToEditProfileActivity);
     }
 }

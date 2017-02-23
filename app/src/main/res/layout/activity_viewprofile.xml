@@ -51,7 +51,8 @@
             android:id="@+id/editButton"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="46dp" />
+            android:layout_marginStart="46dp"
+            android:onClick="onEditPressed" />
 
         <Button
             android:text="Back"
@@ -64,7 +65,8 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="46dp"
-            android:id="@+id/backButton" />
+            android:id="@+id/backButton"
+            android:onClick="onBackPressed" />
 
         <TextView
             android:text="Account Information"
