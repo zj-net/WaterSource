@@ -42,8 +42,8 @@ public class UserHelper {
             return false;
         } else {
             emailIDMap.put(email, currentID);
-            AuthHelper.getInstance().addUser(currentID, password);
             userIDMap.put(currentID, user);
+            AuthHelper.getInstance().addUser(currentID, password);
             currentID++;
             return true;
         }

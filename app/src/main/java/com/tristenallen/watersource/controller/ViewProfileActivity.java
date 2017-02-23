@@ -41,10 +41,9 @@ public class ViewProfileActivity extends AppCompatActivity {
     protected void onEditPressed(View view) {
         Intent goToEditProfileActivity = new Intent(getApplicationContext(), EditProfileActivity.class);
         startActivity(goToEditProfileActivity);
-        finish();
     }
 
     protected void onBackPressed(View view) {
-        finish();
+        onBackPressed();
     }
 }

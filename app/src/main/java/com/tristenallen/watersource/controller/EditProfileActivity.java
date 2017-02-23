@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.tristenallen.watersource.R;
+import com.tristenallen.watersource.main.MainActivity;
 import com.tristenallen.watersource.model.Model;
 import com.tristenallen.watersource.model.User;
 
@@ -46,12 +47,12 @@ public class EditProfileActivity extends AppCompatActivity {
         user.setTitle(titleField.getText().toString());
         user.setAddress(addressField.getText().toString());
 
-        finish();
+        Intent goToMainActivity = new Intent(getApplicationContext(), MainActivity.class);
+        goToMainActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(goToMainActivity);
     }
 
     protected void onBackPressed(View view) {
-        Intent goToViewProfileActivity = new Intent(getApplicationContext(), ViewProfileActivity.class);
-        startActivity(goToViewProfileActivity);
-        finish();
+        onBackPressed();
     }
 }
