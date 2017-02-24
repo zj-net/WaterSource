@@ -1,0 +1,144 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#2055a6"
+    android:orientation="vertical"
+    tools:context="com.tristenallen.watersource.controller.EditProfileActivity"
+    >
+
+
+    <RelativeLayout android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="30dp"
+        android:orientation="vertical"
+        >
+
+        <EditText android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:hint="First Name"
+            android:background="#f3f3f3"
+            android:paddingLeft="5dp"
+            android:id="@+id/fnameTXT"
+            android:layout_below="@+id/personalTXT"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:text="Edit your information below"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/PleaseTXT"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
+            android:layout_below="@+id/WelcomeTXT"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="11dp" />
+
+        <TextView
+            android:text="Edit Profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/WelcomeTXT"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="14dp" />
+
+        <TextView
+            android:text="Personal Information"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:id="@+id/personalTXT"
+            android:textAppearance="@style/TextAppearance.AppCompat.Inverse"
+            android:layout_below="@+id/PleaseTXT"
+            android:layout_alignParentStart="true" />
+
+
+        <Button
+            android:text="back"
+            android:layout_width="100dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center_horizontal"
+            style="@style/Widget.AppCompat.Light.ActionButton"
+            android:background="#f3f3f3"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="38dp"
+            android:id="@+id/goBack"
+            android:onClick="onBackPressed" />
+
+        <Button android:layout_width="100dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center_horizontal"
+            android:background="#f3f3f3"
+            android:text="submit"
+            android:visibility="visible"
+            style="@style/Widget.AppCompat.Light.ActionButton"
+            android:id="@+id/submitButton"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="51dp"
+            android:onClick="onSubmitPressed" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:background="#f3f3f3"
+            android:inputType="textPersonName"
+            android:paddingLeft="5dp"
+            android:hint="Last Name"
+            android:id="@+id/lnameTXT"
+            android:layout_below="@+id/fnameTXT"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="16dp" />
+
+        <EditText android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:hint="Address"
+            android:background="#f3f3f3"
+            android:paddingLeft="5dp"
+            android:id="@+id/addressTXT"
+            android:layout_marginTop="60dp"
+            android:layout_alignTop="@+id/titleTXT"
+            android:layout_alignParentStart="true" />
+
+        <EditText android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:hint="Title"
+            android:background="#f3f3f3"
+            android:paddingLeft="5dp"
+            android:id="@+id/titleTXT"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:onClick="onBackPressed" />
+
+    </RelativeLayout>
+
+    <EditText android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="Password"
+        android:background="#f3f3f3"
+        android:paddingLeft="5dp"
+        android:id="@+id/PasswordTXT"
+        android:layout_marginBottom="14dp"
+        android:layout_above="@+id/confirmPassTXT"
+        android:layout_alignParentStart="true" />
+
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        >
+
+    </LinearLayout>
+
+
+</LinearLayout>

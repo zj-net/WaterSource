@@ -1,4 +1,4 @@
-package com.tristenallen.watersource.login;
+package com.tristenallen.watersource.model;
 
 /**
  * Created by tristen on 2/13/17.
@@ -6,29 +6,22 @@ package com.tristenallen.watersource.login;
  * if valid.
  */
 public class AuthPackage {
-    private final int id;
-    private final String username;
+    private final User user;
     private final AuthStatus status;
 
     /**
      * Constructs a new AuthPackage with the specified information.
      * Class is immutable.
-     * @param id int specifying user ID. -1 if username is invalid.
-     * @param username String specifying attempted username.
+     * @param user User object that was attempted to be logged in. null if username is invalid.
      * @param status AuthStatus specifying the failure point (or lack thereof) of the login.
      */
-    public AuthPackage(int id, String username, AuthStatus status) {
-        this.id = id;
-        this.username = username;
+    public AuthPackage(User user, AuthStatus status) {
+        this.user = user;
         this.status = status;
     }
 
-    public int getID() {
-        return id;
-    }
-
-    public String getUsername() {
-        return username;
+    public User getUser() {
+        return user;
     }
 
     public AuthStatus getStatus() {

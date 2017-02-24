@@ -1,0 +1,145 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#2055a6"
+    android:orientation="vertical"
+    tools:context="com.tristenallen.watersource.login.RegistrationActivity"
+    >
+
+
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        >
+
+    </LinearLayout>
+
+    <RelativeLayout android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="30dp"
+        android:orientation="vertical"
+        >
+
+        <EditText android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:hint="First Name"
+            android:background="#f3f3f3"
+            android:paddingLeft="5dp"
+            android:id="@+id/firstNameTXT"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/personalTXT"
+            android:layout_alignParentStart="true" />
+
+        <EditText android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:hint="Last Name"
+            android:background="#f3f3f3"
+            android:paddingLeft="18dp"
+            android:id="@+id/lastNameTXT"
+            android:layout_below="@+id/firstNameTXT"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp" />
+
+        <EditText android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:hint="Password"
+                  android:inputType="textPassword"
+            android:background="#f3f3f3"
+            android:paddingLeft="5dp"
+            android:id="@+id/PasswordTXT"
+            android:layout_below="@+id/emailTXT"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="20dp"/>
+
+        <EditText android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:hint="Confirm Password"
+                  android:inputType="textPassword"
+            android:background="#f3f3f3"
+            android:paddingLeft="5dp"
+            android:id="@+id/confirmPassTXT"
+            android:layout_below="@+id/PasswordTXT"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="19dp" />
+
+        <TextView
+            android:text="Please fill out your information below"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/PleaseTXT"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
+            android:layout_below="@+id/WelcomeTXT"
+            android:layout_alignParentStart="true" />
+
+        <EditText android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:hint="Email"
+            android:background="#f3f3f3"
+            android:paddingLeft="5dp"
+            android:id="@+id/emailTXT"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:id="@+id/authLVL"
+            android:background="#f3f3f3"
+            android:layout_marginTop="20dp"
+            android:spinnerMode="dropdown"
+            android:layout_height="35dp"
+            android:layout_below="@+id/confirmPassTXT"
+            android:layout_alignStart="@+id/accRegisterTXT" />
+
+        <TextView
+            android:text="Personal Information"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:id="@+id/personalTXT"
+            android:textAppearance="@style/TextAppearance.AppCompat.Inverse"
+            android:layout_below="@+id/PleaseTXT"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:text="Welcome New User"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/WelcomeTXT"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+        <Button android:layout_width="190dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center_horizontal"
+            android:background="#f3f3f3"
+            android:text="Submit"
+            android:visibility="visible"
+            style="@style/Widget.AppCompat.Light.ActionButton"
+            android:id="@+id/submitButton"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:text="Account Registration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/accRegisterTXT"
+            android:textAppearance="@style/TextAppearance.AppCompat.Inverse"
+            android:layout_marginBottom="11dp"
+            android:layout_above="@+id/emailTXT"
+            android:layout_alignEnd="@+id/personalTXT" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>
