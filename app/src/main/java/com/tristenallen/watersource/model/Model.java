@@ -8,6 +8,7 @@ package com.tristenallen.watersource.model;
 public class Model {
     private static final AuthHelper AUTH_HELPER = AuthHelper.getInstance();
     private static final UserHelper USER_HELPER = UserHelper.getInstance();
+    private static final ReportHelper REPORT_HELPER = ReportHelper.getInstance();
     private static int currentUserID = -1;
     private static User currentUser = null;
 
@@ -29,6 +30,14 @@ public class Model {
      */
     public static UserHelper getUserHelper() {
         return USER_HELPER;
+    }
+
+    /**
+     * Returns the model's ReportHelper.
+     * @return ReportHelper object to be used for managing reports.
+     */
+    public static ReportHelper getReportHelper() {
+        return REPORT_HELPER;
     }
 
     /**
