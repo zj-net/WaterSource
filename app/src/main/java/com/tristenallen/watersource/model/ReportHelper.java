@@ -80,7 +80,7 @@ public class ReportHelper {
      * reports are created.
      *
      * By convention, only the active user should be the author of new reports,
-     * but this is not enforced in case of the need for adminsitrative tasks.
+     * but this is not enforced in case of the need for administrative tasks.
      *
      * @param user int of the user who is authoring this report.
      * @param location Location of the water in this report.
