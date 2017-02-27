@@ -1,0 +1,153 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#2055a6"
+    android:orientation="vertical"
+    tools:context="com.tristenallen.watersource.controller.EditProfileActivity"
+    >
+
+
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        >
+
+    </LinearLayout>
+
+    <RelativeLayout android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="30dp"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:text="Enter your information below"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/enterTXT"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small.Inverse"
+            android:layout_below="@+id/WaterTXT"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="11dp" />
+
+        <TextView
+            android:text="Water Source Report Submission"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/WaterTXT"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="14dp" />
+
+        <TextView
+            android:text="Location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:id="@+id/locationTXT"
+            android:textAppearance="@style/TextAppearance.AppCompat.Inverse"
+            android:layout_below="@+id/enterTXT"
+            android:layout_alignParentStart="true" />
+
+
+        <TextView
+            android:text="Water Condition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:id="@+id/waterConditionTXT"
+            android:textAppearance="@style/TextAppearance.AppCompat.Inverse"
+            android:layout_below="@+id/waterType"
+            android:layout_alignParentStart="true" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:id="@+id/waterCondition"
+            android:background="#f3f3f3"
+            android:layout_marginTop="13dp"
+            android:layout_below="@+id/waterConditionTXT"
+            android:layout_alignParentStart="true" />
+
+        <EditText android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:hint="Latitude"
+            android:background="#f3f3f3"
+            android:paddingLeft="5dp"
+            android:id="@+id/latitudeTXT"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/locationTXT"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:text="Water Type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/longitudeTXT"
+            android:textAppearance="@style/TextAppearance.AppCompat.Inverse"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="31dp"
+            android:id="@+id/waterTypeTXT" />
+
+        <Button
+            android:text="back"
+            android:layout_width="100dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center_horizontal"
+            style="@style/Widget.AppCompat.Light.ActionButton"
+            android:background="#f3f3f3"
+            android:layout_marginEnd="48dp"
+            android:id="@+id/goBack"
+            android:onClick="onBackPressed"
+            android:layout_marginBottom="53dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true" />
+
+        <Button android:layout_width="100dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center_horizontal"
+            android:background="#f3f3f3"
+            android:text="submit"
+            android:visibility="visible"
+            style="@style/Widget.AppCompat.Light.ActionButton"
+            android:id="@+id/submitButton"
+            android:onClick="onSubmitPressed"
+            android:layout_alignBottom="@+id/goBack"
+            android:layout_toEndOf="@+id/locationTXT"
+            android:layout_alignTop="@+id/goBack" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:id="@+id/waterType"
+            android:background="#f3f3f3"
+            android:layout_marginTop="12dp"
+            android:layout_below="@+id/waterTypeTXT"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:background="#f3f3f3"
+            android:inputType="textPersonName"
+            android:paddingLeft="5dp"
+            android:hint="Longitude"
+            android:id="@+id/longitudeTXT"
+            android:layout_marginTop="24dp"
+            android:layout_below="@+id/latitudeTXT"
+            android:layout_alignParentStart="true" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>
