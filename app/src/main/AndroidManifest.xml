@@ -29,6 +29,7 @@
         <activity android:name=".login.RegistrationActivity"></activity>
         <activity android:name=".controller.EditProfileActivity"></activity>
         <activity android:name=".controller.ViewProfileActivity"></activity>
+        <activity android:name=".reports.submitH20SourceReportActivity"></activity>
     </application>
 
 </manifest>

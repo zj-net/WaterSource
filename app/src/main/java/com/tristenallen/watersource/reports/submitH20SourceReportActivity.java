@@ -15,9 +15,12 @@ import com.tristenallen.watersource.R;
 import android.widget.Button;
 import com.tristenallen.watersource.main.MainActivity;
 import android.content.Context;
-import com.tristenallen.watersource.model.*;
 import android.widget.ArrayAdapter;
 import android.location.Location;
+import com.tristenallen.watersource.model.Model;
+import com.tristenallen.watersource.model.ReportHelper;
+import com.tristenallen.watersource.model.WaterQuality;
+import com.tristenallen.watersource.model.WaterType;
 
 public class submitH20SourceReportActivity extends AppCompatActivity {
     private EditText latField;
