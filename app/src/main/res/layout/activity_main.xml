@@ -8,6 +8,16 @@
         android:fitsSystemWindows="true"
         tools:context="com.tristenallen.watersource.main.MainActivity">
 
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="demo.cs2340.gatech.edu.mapdemo.controllers.MapsActivity"
+        tools:layout="@android:layout/browser_link_context_header" />
+
     <android.support.design.widget.AppBarLayout
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
@@ -22,6 +32,13 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main"/>
+    <include layout="@layout/content_main"
+        android:id="@+id/include" />
+
+    <Button
+        android:text="View Reports"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button2" />
 
 </android.support.design.widget.CoordinatorLayout>
