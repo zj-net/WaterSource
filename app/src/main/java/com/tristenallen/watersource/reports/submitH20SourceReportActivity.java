@@ -29,7 +29,6 @@ public class submitH20SourceReportActivity extends AppCompatActivity {
     private double latDouble;
     private double lngDouble;
     private Location h20Loc = new Location("Water Report Location");
-    private UserHelper userHelper = Model.getUserHelper();
     private ReportHelper reportHelper = Model.getReportHelper();
 
     @Override
