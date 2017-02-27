@@ -107,7 +107,7 @@ public class submitH20SourceReportActivity extends AppCompatActivity {
                     h20Loc.setLongitude(lngDouble);
                     reportHelper.addSourceReport(Model.getCurrentUserID(), h20Loc, waterQualityData, waterTypeData);
                     Context context = getApplicationContext();
-                    CharSequence msg = "Report submitted successfullly!";
+                    CharSequence msg = "Report submitted successfully!";
                     int duration = Toast.LENGTH_LONG;
                     Toast completedMsg = Toast.makeText(context, msg, duration);
                     completedMsg.show();
