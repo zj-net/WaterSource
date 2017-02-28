@@ -5,17 +5,26 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.tristenallen.watersource.LaunchActivity;
 import com.tristenallen.watersource.R;
 import com.tristenallen.watersource.model.Model;
 import com.tristenallen.watersource.controller.ViewProfileActivity;
 
 public class MainActivity extends AppCompatActivity implements
-        LogoutDialogFragment.LogoutDialogListener {
+        LogoutDialogFragment.LogoutDialogListener,OnMapReadyCallback {
+
+    private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +32,16 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater infalter = getMenuInflater();
-        getMenuInflater().inflate(R.menu.toolbar, menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.toolbar, menu);
         return true;
     }
 
@@ -85,4 +98,44 @@ public class MainActivity extends AppCompatActivity implements
         Intent goToEditProfileActivity = new Intent(getApplicationContext(), ViewProfileActivity.class);
         startActivity(goToEditProfileActivity);
     }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+        // Setting a click event handler for the map
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+
+            @Override
+            public void onMapClick(LatLng latLng) {
+
+
+
+                // Creating a marker
+                MarkerOptions markerOptions = new MarkerOptions();
+
+                // Setting the position for the marker
+                markerOptions.position(latLng);
+
+                Log.d("map",latLng.toString());
+
+                // Setting the title for the marker.
+                // This will be displayed on taping the marker
+                markerOptions.title("this is title");
+                markerOptions.snippet("this is description");
+
+                // Animating to the touched position
+                mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+
+                // Placing a marker on the touched position
+                mMap.addMarker(markerOptions);
+            }
+        });
+
+
+    }
+
+
+
 }
+
+
