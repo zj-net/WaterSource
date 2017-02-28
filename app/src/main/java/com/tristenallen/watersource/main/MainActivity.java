@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements
                 loc.setLatitude(latLng.latitude);
                 loc.setLongitude(latLng.longitude);
 
-                reportHelper.addSourceReport(Model.getCurrentUserID(),loc, WaterQuality.CLEAR, WaterType.BOTTLE);
+                reportHelper.addSourceReport(Model.getCurrentUserID(),loc, WaterQuality.UNKNOWN, WaterType.UNKNOWN);
 
                 //Intent goToMainActivity = new Intent(getApplicationContext(), MainActivity.class);
                 //startActivity(goToMainActivity);
@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements
 
             TextView tvTitle = ((TextView)myContentsView.findViewById(R.id.title));
             tvTitle.setText(marker.getTitle());
-            TextView tvSnippet = ((TextView)myContentsView.findViewById(R.id.snipped));
+            TextView tvSnippet = ((TextView)myContentsView.findViewById(R.id.snippet));
             tvSnippet.setText(marker.getSnippet());
 
             return myContentsView;
