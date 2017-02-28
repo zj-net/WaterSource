@@ -1,6 +1,7 @@
 package com.tristenallen.watersource.main;
 
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
@@ -9,22 +10,32 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.tristenallen.watersource.LaunchActivity;
 import com.tristenallen.watersource.R;
 import com.tristenallen.watersource.model.Model;
 import com.tristenallen.watersource.controller.ViewProfileActivity;
+import com.tristenallen.watersource.model.ReportHelper;
+import com.tristenallen.watersource.model.SourceReport;
+import com.tristenallen.watersource.model.WaterQuality;
+import com.tristenallen.watersource.model.WaterType;
+
+import java.util.Collection;
 
 public class MainActivity extends AppCompatActivity implements
         LogoutDialogFragment.LogoutDialogListener,OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private ReportHelper reportHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +47,9 @@ public class MainActivity extends AppCompatActivity implements
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        reportHelper = Model.getReportHelper();
+
     }
 
     @Override
@@ -116,12 +130,23 @@ public class MainActivity extends AppCompatActivity implements
                 // Setting the position for the marker
                 markerOptions.position(latLng);
 
-                Log.d("map",latLng.toString());
+                Location loc = new Location("Water Report Location");
+                loc.setLatitude(latLng.latitude);
+                loc.setLongitude(latLng.longitude);
+
+                reportHelper.addSourceReport(Model.getCurrentUserID(),loc, WaterQuality.CLEAR, WaterType.BOTTLE);
+
+                //Intent goToMainActivity = new Intent(getApplicationContext(), MainActivity.class);
+                //startActivity(goToMainActivity);
+
+                //Log.d("map",latLng.toString());
+                int lastReportID = reportHelper.getSourceReports().size();
+                SourceReport lastReport = reportHelper.getSourceReport(lastReportID);
 
                 // Setting the title for the marker.
                 // This will be displayed on taping the marker
-                markerOptions.title("this is title");
-                markerOptions.snippet("this is description");
+                markerOptions.title("Water Type: " + lastReport.getType());
+                markerOptions.snippet("Water Quality: " + lastReport.getQuality());
 
                 // Animating to the touched position
                 mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
@@ -131,11 +156,47 @@ public class MainActivity extends AppCompatActivity implements
             }
         });
 
+        Collection<SourceReport> reportList = reportHelper.getSourceReports();
+        for (SourceReport r : reportList) {
+            LatLng loc = new LatLng(r.getLocation().getLatitude(), r.getLocation().getLongitude());
+            mMap.addMarker(new MarkerOptions().position(loc).title(r.getType().toString()).snippet(r.getQuality().toString()));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
+        }
+
+
+        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
+
 
     }
 
+    class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
+        private final View myContentsView;
+
+        CustomInfoWindowAdapter(){
+            myContentsView = getLayoutInflater().inflate(R.layout.marker_info_content, null);
+        }
+
+        @Override
+        public View getInfoContents(Marker marker) {
+
+            TextView tvTitle = ((TextView)myContentsView.findViewById(R.id.title));
+            tvTitle.setText(marker.getTitle());
+            TextView tvSnippet = ((TextView)myContentsView.findViewById(R.id.snipped));
+            tvSnippet.setText(marker.getSnippet());
+
+            return myContentsView;
+        }
+
+        @Override
+        public View getInfoWindow(Marker marker) {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
+    }
 
 }
+
 
 
