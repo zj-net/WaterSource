@@ -30,6 +30,7 @@
         <activity android:name=".controller.EditProfileActivity"></activity>
         <activity android:name=".controller.ViewProfileActivity"></activity>
         <activity android:name=".reports.submitH20SourceReportActivity"></activity>
+        <activity android:name=".controller.viewReportsActivity"></activity>
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAfiCQXt7MlOL5B7YbV6rFIfRDM5X8-Kok"/>

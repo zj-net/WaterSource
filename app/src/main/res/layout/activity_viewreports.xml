@@ -17,7 +17,7 @@
         android:textSize="30sp"
         android:textStyle="normal|bold" />
 
-    <ListView android:id="@android:id/list"
+    <ListView android:id="@+id/sourceReportListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#2055a6"

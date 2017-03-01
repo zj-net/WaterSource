@@ -85,4 +85,10 @@ public class SourceReport {
     public User getAuthor() {
         return UserHelper.getInstance().getUserByID(userID);
     }
+
+    //TODO: implement this toString so the listView can use it
+    @Override
+    public String toString() {
+        return "";
+    }
 }

@@ -24,7 +24,7 @@
                 android:text="View Reports"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/button2"
+                android:id="@+id/viewReports"
                 />
 
         </android.support.v7.widget.Toolbar>

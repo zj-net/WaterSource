@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -22,6 +23,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.tristenallen.watersource.LaunchActivity;
 import com.tristenallen.watersource.R;
+import com.tristenallen.watersource.controller.viewReportsActivity;
 import com.tristenallen.watersource.model.Model;
 import com.tristenallen.watersource.controller.ViewProfileActivity;
 import com.tristenallen.watersource.model.ReportHelper;
@@ -37,10 +39,23 @@ public class MainActivity extends AppCompatActivity implements
     private ReportHelper reportHelper;
     public static final String ARG_latLng = "latLng";
 
+    //getting list view button
+    private Button viewReportList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        viewReportList = (Button) findViewById(R.id.viewReports);
+
+        viewReportList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToReportList = new Intent(getApplicationContext(), viewReportsActivity.class);
+                startActivity(goToReportList);
+            }
+        });
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
