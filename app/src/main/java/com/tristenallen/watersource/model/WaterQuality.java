@@ -7,7 +7,7 @@ package com.tristenallen.watersource.model;
  */
 public enum WaterQuality {
     WASTE("Waste"), MUDDY("Treatable, Muddy"), CLEAR("Treatable, Clear"),
-    POTABLE("Potable"), UNKNOWN("Unknown");
+    POTABLE("Potable");
 
     String name;
 

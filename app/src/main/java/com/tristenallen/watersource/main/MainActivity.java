@@ -26,8 +26,6 @@ import com.tristenallen.watersource.model.Model;
 import com.tristenallen.watersource.controller.ViewProfileActivity;
 import com.tristenallen.watersource.model.ReportHelper;
 import com.tristenallen.watersource.model.SourceReport;
-import com.tristenallen.watersource.model.WaterQuality;
-import com.tristenallen.watersource.model.WaterType;
 import com.tristenallen.watersource.reports.submitH20SourceReportActivity;
 
 import java.util.Collection;
@@ -130,20 +128,9 @@ public class MainActivity extends AppCompatActivity implements
                 // Setting the position for the marker
                 markerOptions.position(latLng);
 
-                Location loc = new Location("Water Report Location");
-                loc.setLatitude(latLng.latitude);
-                loc.setLongitude(latLng.longitude);
-
-                reportHelper.addSourceReport(Model.getCurrentUserID(),loc, WaterQuality.UNKNOWN, WaterType.UNKNOWN);
-
-                //Log.d("map",latLng.toString());
-                int lastReportID = reportHelper.getSourceReports().size();
-                SourceReport lastReport = reportHelper.getSourceReport(lastReportID);
-
                 // Setting the title for the marker.
                 // This will be displayed on taping the marker
                 markerOptions.title("Water Source");
-                markerOptions.snippet("Quality: " + lastReport.getQuality() + "\n" + "Type: " + lastReport.getType());
                 markerOptions.draggable(true);
                 markerOptions.alpha(0.5f);
 

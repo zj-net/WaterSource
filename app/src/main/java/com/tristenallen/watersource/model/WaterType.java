@@ -7,7 +7,7 @@ package com.tristenallen.watersource.model;
  */
 public enum WaterType {
     BOTTLE("Bottled"), WELL("Well"), STREAM("Stream"),
-    LAKE("Lake"), SPRING("Spring"), OTHER("Other"), UNKNOWN("Unknown");
+    LAKE("Lake"), SPRING("Spring"), OTHER("Other");
 
     String name;
 
