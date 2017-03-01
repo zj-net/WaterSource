@@ -86,9 +86,10 @@ public class SourceReport {
         return UserHelper.getInstance().getUserByID(userID);
     }
 
-    //TODO: implement this toString so the listView can use it
     @Override
     public String toString() {
-        return "";
+        return "Report Number: " + reportNumber + "\n" + "Location: " + location.getLatitude() + ", " + location.getLongitude() + "\n"
+                + "Water type: " + type.toString() + "\n" + "Water quality: " + quality.toString()
+                + "\n" + "Created: " + timestamp;
     }
 }

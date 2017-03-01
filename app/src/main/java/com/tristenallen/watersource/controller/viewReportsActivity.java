@@ -30,7 +30,11 @@ public class viewReportsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_viewreports);
         listView = (ListView) findViewById(R.id.sourceReportListView);
         List<SourceReport> sourceReports = new ArrayList<>(reportHelper.getSourceReports());
-        listView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, sourceReports));
+        List<String> sourceReportStrings = new ArrayList<>();
+        for (SourceReport s : sourceReports) {
+            sourceReportStrings.add(s.toString());
+        }
+        listView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, sourceReportStrings));
 
 
     }
