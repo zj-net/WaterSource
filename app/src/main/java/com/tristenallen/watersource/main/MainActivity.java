@@ -28,6 +28,7 @@ import com.tristenallen.watersource.model.ReportHelper;
 import com.tristenallen.watersource.model.SourceReport;
 import com.tristenallen.watersource.model.WaterQuality;
 import com.tristenallen.watersource.model.WaterType;
+import com.tristenallen.watersource.reports.submitH20SourceReportActivity;
 
 import java.util.Collection;
 
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private GoogleMap mMap;
     private ReportHelper reportHelper;
+    public static final String ARG_latLng = "latLng";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,8 +124,6 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void onMapClick(LatLng latLng) {
 
-
-
                 // Creating a marker
                 MarkerOptions markerOptions = new MarkerOptions();
 
@@ -136,17 +136,16 @@ public class MainActivity extends AppCompatActivity implements
 
                 reportHelper.addSourceReport(Model.getCurrentUserID(),loc, WaterQuality.UNKNOWN, WaterType.UNKNOWN);
 
-                //Intent goToMainActivity = new Intent(getApplicationContext(), MainActivity.class);
-                //startActivity(goToMainActivity);
-
                 //Log.d("map",latLng.toString());
                 int lastReportID = reportHelper.getSourceReports().size();
                 SourceReport lastReport = reportHelper.getSourceReport(lastReportID);
 
                 // Setting the title for the marker.
                 // This will be displayed on taping the marker
-                markerOptions.title("Water Type: " + lastReport.getType());
-                markerOptions.snippet("Water Quality: " + lastReport.getQuality());
+                markerOptions.title("Water Source");
+                markerOptions.snippet("Quality: " + lastReport.getQuality() + "\n" + "Type: " + lastReport.getType());
+                markerOptions.draggable(true);
+                markerOptions.alpha(0.5f);
 
                 // Animating to the touched position
                 mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
@@ -156,10 +155,28 @@ public class MainActivity extends AppCompatActivity implements
             }
         });
 
+        googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener(){
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                //if the marker is newly added show submit report screen
+                if (marker.getAlpha() == .5f) {
+                    Intent goToSubmitActivity = new Intent(getApplicationContext(), submitH20SourceReportActivity.class);
+                    goToSubmitActivity.putExtra(MainActivity.ARG_latLng,marker.getPosition());
+                    startActivity(goToSubmitActivity);
+
+                    return true;
+                }
+                // if the marker is not newly added, show info window
+                return false;
+
+            }
+
+        });
+
         Collection<SourceReport> reportList = reportHelper.getSourceReports();
         for (SourceReport r : reportList) {
             LatLng loc = new LatLng(r.getLocation().getLatitude(), r.getLocation().getLongitude());
-            mMap.addMarker(new MarkerOptions().position(loc).title(r.getType().toString()).snippet(r.getQuality().toString()));
+            mMap.addMarker(new MarkerOptions().position(loc).title("Water Source").snippet("Type: "+ r.getType() + "\n" + "Quality: " + r.getQuality()));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
         }
 

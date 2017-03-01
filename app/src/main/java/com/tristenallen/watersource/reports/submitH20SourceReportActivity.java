@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.google.android.gms.maps.model.LatLng;
 import com.tristenallen.watersource.R;
 import android.widget.Button;
 import com.tristenallen.watersource.main.MainActivity;
@@ -33,6 +35,7 @@ public class submitH20SourceReportActivity extends AppCompatActivity {
     private double lngDouble;
     private Location h20Loc = new Location("Water Report Location");
     private ReportHelper reportHelper = Model.getReportHelper();
+    private LatLng latLng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,79 +53,83 @@ public class submitH20SourceReportActivity extends AppCompatActivity {
         waterTypeSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, WaterType.values()));
         waterQualSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, WaterQuality.values()));
 
+        // if latLng of a newly added marker is passed in, set latLng to it.
+        if (getIntent().hasExtra(MainActivity.ARG_latLng)) {
+            latLng = getIntent().getParcelableExtra(MainActivity.ARG_latLng);
+            latField.setText(Double.toString(latLng.latitude));
+            lngField.setText(Double.toString(latLng.longitude));
+        }
+
         //back button handling
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //------------------get all the data out------------------------
-                WaterType waterTypeData = (WaterType) waterTypeSpinner.getSelectedItem();
-                WaterQuality waterQualityData = (WaterQuality) waterQualSpinner.getSelectedItem();
-                try {
-                    latDouble = Double.parseDouble(latField.getText().toString());
-                }
-                catch (NumberFormatException n) {
-                    Context context = getApplicationContext();
-                    CharSequence error = "Please enter a number!";
-                    int duration = Toast.LENGTH_LONG;
-                    latField.setText("");
-                    Toast badLatitude = Toast.makeText(context, error, duration);
-                    badLatitude.show();
-                }
-                try {
-                    lngDouble = Double.parseDouble(lngField.getText().toString());
-                }
-                catch (NumberFormatException n) {
-                    Context context = getApplicationContext();
-                    CharSequence error = "Please enter a number";
-                    int duration = Toast.LENGTH_LONG;
-                    lngField.setText("");
-                    Toast badLng = Toast.makeText(context, error, duration);
-                    badLng.show();
-                }
-                //--------------------------------------------------------------
-
-                //--------------additional checks on lat and long---------------
-                if (latDouble > 180.0 || latDouble < -180.0) {
-                    //throw a fit!
-                    Context context = getApplicationContext();
-                    CharSequence error = "Please enter a number!";
-                    int duration = Toast.LENGTH_LONG;
-                    latField.setText("");
-                    Toast badLatitude = Toast.makeText(context, error, duration);
-                    badLatitude.show();
-                } else if (lngDouble > 90.0 || lngDouble < -90.0) {
-                    //throw a fit!
-                    Context context = getApplicationContext();
-                    CharSequence error = "Please enter a number";
-                    int duration = Toast.LENGTH_LONG;
-                    lngField.setText("");
-                    Toast badLng = Toast.makeText(context, error, duration);
-                    badLng.show();
-                } else {
-                    h20Loc.setLatitude(latDouble);
-                    h20Loc.setLongitude(lngDouble);
-                    reportHelper.addSourceReport(Model.getCurrentUserID(), h20Loc, waterQualityData, waterTypeData);
-                    Context context = getApplicationContext();
-                    CharSequence msg = "Report submitted successfully!";
-                    int duration = Toast.LENGTH_LONG;
-                    Toast completedMsg = Toast.makeText(context, msg, duration);
-                    completedMsg.show();
-                    Intent goToMainScreen = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(goToMainScreen);
-                }
-                //--------------------------------------------------------------
-            }
-        });
-
-
-
+//        backButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onBackPressed();
+//            }
+//        });
+//
+//        submitButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //------------------get all the data out------------------------
+//                WaterType waterTypeData = (WaterType) waterTypeSpinner.getSelectedItem();
+//                WaterQuality waterQualityData = (WaterQuality) waterQualSpinner.getSelectedItem();
+//                try {
+//                    latDouble = Double.parseDouble(latField.getText().toString());
+//                }
+//                catch (NumberFormatException n) {
+//                    Context context = getApplicationContext();
+//                    CharSequence error = "Please enter a number!";
+//                    int duration = Toast.LENGTH_LONG;
+//                    latField.setText("");
+//                    Toast badLatitude = Toast.makeText(context, error, duration);
+//                    badLatitude.show();
+//                }
+//                try {
+//                    lngDouble = Double.parseDouble(lngField.getText().toString());
+//                }
+//                catch (NumberFormatException n) {
+//                    Context context = getApplicationContext();
+//                    CharSequence error = "Please enter a number";
+//                    int duration = Toast.LENGTH_LONG;
+//                    lngField.setText("");
+//                    Toast badLng = Toast.makeText(context, error, duration);
+//                    badLng.show();
+//                }
+//                //--------------------------------------------------------------
+//
+//                //--------------additional checks on lat and long---------------
+//                if (latDouble > 180.0 || latDouble < -180.0) {
+//                    //throw a fit!
+//                    Context context = getApplicationContext();
+//                    CharSequence error = "Please enter a number!";
+//                    int duration = Toast.LENGTH_LONG;
+//                    latField.setText("");
+//                    Toast badLatitude = Toast.makeText(context, error, duration);
+//                    badLatitude.show();
+//                } else if (lngDouble > 90.0 || lngDouble < -90.0) {
+//                    //throw a fit!
+//                    Context context = getApplicationContext();
+//                    CharSequence error = "Please enter a number";
+//                    int duration = Toast.LENGTH_LONG;
+//                    lngField.setText("");
+//                    Toast badLng = Toast.makeText(context, error, duration);
+//                    badLng.show();
+//                } else {
+//                    h20Loc.setLatitude(latDouble);
+//                    h20Loc.setLongitude(lngDouble);
+//                    reportHelper.addSourceReport(Model.getCurrentUserID(), h20Loc, waterQualityData, waterTypeData);
+//                    Context context = getApplicationContext();
+//                    CharSequence msg = "Report submitted successfully!";
+//                    int duration = Toast.LENGTH_LONG;
+//                    Toast completedMsg = Toast.makeText(context, msg, duration);
+//                    completedMsg.show();
+//                    Intent goToMainScreen = new Intent(getApplicationContext(), MainActivity.class);
+//                    startActivity(goToMainScreen);
+//                }
+//                //--------------------------------------------------------------
+//            }
+//        });
     }
 
 }
