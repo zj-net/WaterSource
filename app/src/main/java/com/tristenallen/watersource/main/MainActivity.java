@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements
     private GoogleMap mMap;
     private ReportHelper reportHelper;
     public static final String ARG_latLng = "latLng";
+    private Toolbar toolbar;
 
     //getting list view button
     private Button viewReportList;
@@ -46,6 +47,10 @@ public class MainActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("WaterSource");
+
         viewReportList = (Button) findViewById(R.id.viewReports);
 
         viewReportList.setOnClickListener(new View.OnClickListener() {
