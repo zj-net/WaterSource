@@ -20,17 +20,6 @@ android:orientation="horizontal">
             android:layout_height="wrap_content"
             android:textSize="10dp"/>
 
-        <Button
-            android:text="edit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/edit" />
-
-        <Button
-            android:text="delete"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/delete" />
     </LinearLayout>
 
 </LinearLayout>
