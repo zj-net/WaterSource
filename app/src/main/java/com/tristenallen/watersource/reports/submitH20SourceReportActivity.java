@@ -119,6 +119,7 @@ public class submitH20SourceReportActivity extends AppCompatActivity {
                     Toast completedMsg = Toast.makeText(context, msg, duration);
                     completedMsg.show();
                     Intent goToMainScreen = new Intent(getApplicationContext(), MainActivity.class);
+                    goToMainScreen.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(goToMainScreen);
                 }
                 //--------------------------------------------------------------
