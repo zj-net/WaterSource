@@ -88,7 +88,8 @@ public class SourceReport {
 
     @Override
     public String toString() {
-        return "Report Number: " + reportNumber + "\n" + "Location: " + location.getLatitude() + ", " + location.getLongitude() + "\n"
+        return "Report Number: " + reportNumber + "\n" + "Author: " + getAuthor().toString() + "\n" + "Location: "
+                + location.getLatitude() + ", " + location.getLongitude() + "\n"
                 + "Water type: " + type.toString() + "\n" + "Water quality: " + quality.toString()
                 + "\n" + "Created: " + timestamp;
     }
