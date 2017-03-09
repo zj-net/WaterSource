@@ -108,4 +108,9 @@ public class User {
         address = "";
         title = "";
     }
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName;
+    }
 }
