@@ -21,13 +21,18 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.tristenallen.watersource.LaunchActivity;
 import com.tristenallen.watersource.R;
+import com.tristenallen.watersource.controller.SubmitPurityReportActivity;
 import com.tristenallen.watersource.controller.viewReportsActivity;
+import com.tristenallen.watersource.model.AuthLevel;
 import com.tristenallen.watersource.model.Model;
 import com.tristenallen.watersource.controller.ViewProfileActivity;
+import com.tristenallen.watersource.model.PurityReport;
 import com.tristenallen.watersource.model.ReportHelper;
 import com.tristenallen.watersource.model.SourceReport;
+import com.tristenallen.watersource.model.User;
 import com.tristenallen.watersource.reports.submitH20SourceReportActivity;
 
 import java.util.Collection;
@@ -42,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements
 
     //getting list view button
     private Button viewReportList;
+
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements
 
         reportHelper = Model.getReportHelper();
 
+        user = Model.getCurrentUser();
     }
 
     @Override
@@ -167,10 +175,15 @@ public class MainActivity extends AppCompatActivity implements
             public boolean onMarkerClick(Marker marker) {
                 //if the marker is newly added show submit report screen
                 if (marker.getAlpha() == .5f) {
-                    Intent goToSubmitActivity = new Intent(getApplicationContext(), submitH20SourceReportActivity.class);
-                    goToSubmitActivity.putExtra(MainActivity.ARG_latLng,marker.getPosition());
-                    startActivity(goToSubmitActivity);
-
+                    if (user.getRole() == AuthLevel.USER){
+                        Intent goToSubmitSourceActivity = new Intent(getApplicationContext(), submitH20SourceReportActivity.class);
+                        goToSubmitSourceActivity.putExtra(MainActivity.ARG_latLng,marker.getPosition());
+                        startActivity(goToSubmitSourceActivity);
+                    } else {
+                        Intent goToSubmitPurityActivity = new Intent(getApplicationContext(), SubmitPurityReportActivity.class);
+                        goToSubmitPurityActivity.putExtra(MainActivity.ARG_latLng,marker.getPosition());
+                        startActivity(goToSubmitPurityActivity);
+                    }
                     return true;
                 }
                 // if the marker is not newly added, show info window
@@ -187,8 +200,18 @@ public class MainActivity extends AppCompatActivity implements
             mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
         }
 
+        if (user.getRole()!=AuthLevel.USER) {
+            Collection<PurityReport> purityReportList = reportHelper.getPurityReports();
+            for (PurityReport r : purityReportList) {
+                LatLng loc = new LatLng(r.getLocation().getLatitude(), r.getLocation().getLongitude());
+                String s = "Condition: " + r.getPurity() + "\n" + "VirusPPM: " + r.getVirusPPM() + "\n" + "ContaminantPPM: " + r.getContaminantPPM();
+                mMap.addMarker(new MarkerOptions().position(loc).title("Water Purity").snippet(s).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
+            }
+        }
 
         mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
+
 
 
     }

@@ -52,27 +52,6 @@
             android:layout_below="@+id/enterTXT"
             android:layout_alignParentStart="true" />
 
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:id="@+id/waterType"
-            android:background="#f3f3f3"
-            android:layout_marginTop="11dp"
-            android:layout_below="@+id/virusPPMTXT"
-            android:layout_alignParentStart="true" />
-
-        <Button android:layout_width="100dp"
-            android:layout_height="38dp"
-            android:layout_gravity="center_horizontal"
-            android:background="#f3f3f3"
-            android:text="submit"
-            android:visibility="visible"
-            style="@style/Widget.AppCompat.Light.ActionButton"
-            android:id="@+id/submitButton"
-            android:onClick="onSubmitPressed"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
-
         <TextView
             android:text="Virus PPM"
             android:layout_width="wrap_content"
@@ -82,24 +61,6 @@
             android:layout_below="@+id/longitudeTXT"
             android:layout_alignParentStart="true"
             android:layout_marginTop="14dp" />
-
-        <TextView
-            android:text="Contaminant PPM"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Inverse"
-            android:id="@+id/contaminantPPMTXT"
-            android:layout_marginTop="14dp"
-            android:layout_below="@+id/waterType"
-            android:layout_alignParentStart="true" />
-
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="#f3f3f3"
-            android:id="@+id/contaminantPPM"
-            android:layout_below="@+id/contaminantPPMTXT"
-            android:layout_alignParentStart="true" />
 
         <EditText android:layout_width="fill_parent"
             android:layout_height="40dp"
@@ -123,16 +84,6 @@
             android:layout_below="@+id/latitudeTXT"
             android:layout_alignParentStart="true" />
 
-        <TextView
-            android:text="Water Condition"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/waterConditionTXT"
-            android:textAppearance="@style/TextAppearance.AppCompat.Inverse"
-            android:layout_marginBottom="17dp"
-            android:layout_above="@+id/waterCondition"
-            android:layout_alignParentStart="true" />
-
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="45dp"
@@ -140,6 +91,76 @@
             android:background="#f3f3f3"
             android:layout_marginBottom="21dp"
             android:layout_above="@+id/submitButton"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center_horizontal"
+            android:background="#f3f3f3"
+            android:text="source"
+            android:visibility="visible"
+            style="@style/Widget.AppCompat.Light.ActionButton"
+            android:id="@+id/sourceReportButton"
+            android:onClick="onSourcePressed"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="12dp" />
+
+        <Button android:layout_width="100dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center_horizontal"
+            android:background="#f3f3f3"
+            android:text="submit"
+            android:visibility="visible"
+            style="@style/Widget.AppCompat.Light.ActionButton"
+            android:id="@+id/submitButton"
+            android:onClick="onSubmitPressed"
+            android:layout_alignParentBottom="true"
+            android:layout_alignEnd="@+id/contaminantPPMTXT" />
+
+        <TextView
+            android:text="Contaminant PPM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Inverse"
+            android:id="@+id/contaminantPPMTXT"
+            android:layout_marginTop="16dp"
+            android:layout_below="@+id/virusPPM"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#f3f3f3"
+            android:inputType="textPersonName"
+            android:paddingLeft="5dp"
+            android:hint="Contaminant PPM"
+            android:id="@+id/contaminantPPM"
+            android:layout_above="@+id/waterConditionTXT"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:text="Water Condition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/waterConditionTXT"
+            android:textAppearance="@style/TextAppearance.AppCompat.Inverse"
+            android:layout_marginBottom="11dp"
+            android:layout_above="@+id/waterCondition"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#f3f3f3"
+            android:inputType="textPersonName"
+            android:paddingLeft="5dp"
+            android:hint="Virus PPM"
+            android:id="@+id/virusPPM"
+            android:layout_marginTop="16dp"
+            android:layout_below="@+id/virusPPMTXT"
             android:layout_alignParentStart="true" />
 
     </RelativeLayout>
