@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements
     private GoogleMap mMap;
     private ReportHelper reportHelper;
     public static final String ARG_latLng = "latLng";
+    private Marker selectionMarker;
     private Toolbar toolbar;
 
     //getting list view button
@@ -150,6 +151,10 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void onMapClick(LatLng latLng) {
 
+                if (null != selectionMarker) {
+                    selectionMarker.remove();
+                }
+
                 // Creating a marker
                 MarkerOptions markerOptions = new MarkerOptions();
 
@@ -166,7 +171,7 @@ public class MainActivity extends AppCompatActivity implements
                 mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
 
                 // Placing a marker on the touched position
-                mMap.addMarker(markerOptions);
+                selectionMarker = mMap.addMarker(markerOptions);
             }
         });
 
