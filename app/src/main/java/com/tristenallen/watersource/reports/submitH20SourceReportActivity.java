@@ -96,7 +96,7 @@ public class submitH20SourceReportActivity extends AppCompatActivity {
                 } else if (latDouble > 90.0 || latDouble < -90.0 || badLat) {
                     //throw a fit!
                     Context context = getApplicationContext();
-                    CharSequence error = "Please enter a number between +/- 180!";
+                    CharSequence error = "Please enter a number between +/- 90!";
                     int duration = Toast.LENGTH_LONG;
                     latField.setText("");
                     Toast badLatitude = Toast.makeText(context, error, duration);
@@ -104,7 +104,7 @@ public class submitH20SourceReportActivity extends AppCompatActivity {
                 } else if (lngDouble > 180.0 || lngDouble < -180.0 || badLng) {
                     //throw a fit!
                     Context context = getApplicationContext();
-                    CharSequence error = "Please enter a number between +/- 90!";
+                    CharSequence error = "Please enter a number between +/- 180!";
                     int duration = Toast.LENGTH_LONG;
                     lngField.setText("");
                     Toast badLng = Toast.makeText(context, error, duration);

@@ -200,7 +200,7 @@ public class MainActivity extends AppCompatActivity implements
             mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
         }
 
-        if (user.getRole()!=AuthLevel.USER) {
+        if (user.getRole().compareTo(AuthLevel.USER) > 0) {
             Collection<PurityReport> purityReportList = reportHelper.getPurityReports();
             for (PurityReport r : purityReportList) {
                 LatLng loc = new LatLng(r.getLocation().getLatitude(), r.getLocation().getLongitude());

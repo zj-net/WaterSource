@@ -131,18 +131,18 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
                     Toast badLng = Toast.makeText(context, error, duration);
                     badLng.show();
 
-                } else if (latDouble > 180.0 || latDouble < -180.0 || badLat) {
+                } else if (latDouble > 90.0 || latDouble < -90.0|| badLat) {
                     //throw a fit!
                     Context context = getApplicationContext();
-                    CharSequence error = "Please enter a number between +/- 180!";
+                    CharSequence error = "Please enter a number between +/- 90!";
                     int duration = Toast.LENGTH_LONG;
                     latField.setText("");
                     Toast badLatitude = Toast.makeText(context, error, duration);
                     badLatitude.show();
-                } else if (lngDouble > 90.0 || lngDouble < -90.0 || badLng) {
+                } else if (lngDouble > 180.0 || lngDouble < -180.0 || badLng) {
                     //throw a fit!
                     Context context = getApplicationContext();
-                    CharSequence error = "Please enter a number between +/- 90!";
+                    CharSequence error = "Please enter a number between +/- 180!";
                     int duration = Toast.LENGTH_LONG;
                     lngField.setText("");
                     Toast badLng = Toast.makeText(context, error, duration);
