@@ -22,19 +22,18 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.tristenallen.watersource.LaunchActivity;
 import com.tristenallen.watersource.R;
-import com.tristenallen.watersource.controller.SubmitPurityReportActivity;
-import com.tristenallen.watersource.controller.ViewPurityReportsActivity;
-import com.tristenallen.watersource.controller.ViewReportsActivity;
+import com.tristenallen.watersource.controller.*;
 import com.tristenallen.watersource.model.AuthLevel;
 import com.tristenallen.watersource.model.Model;
-import com.tristenallen.watersource.controller.ViewProfileActivity;
 import com.tristenallen.watersource.model.PurityReport;
 import com.tristenallen.watersource.model.ReportHelper;
 import com.tristenallen.watersource.model.SourceReport;
 import com.tristenallen.watersource.model.User;
 import com.tristenallen.watersource.reports.SubmitH20SourceReportActivity;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements
         LogoutDialogFragment.LogoutDialogListener,OnMapReadyCallback {
@@ -44,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements
     public static final String ARG_latLng = "latLng";
     private Marker selectionMarker;
     private Toolbar toolbar;
+    private List<Marker> purityMarkers = new ArrayList<>();
 
 
     //getting list view button
@@ -229,15 +229,36 @@ public class MainActivity extends AppCompatActivity implements
             for (PurityReport r : purityReportList) {
                 LatLng loc = new LatLng(r.getLocation().getLatitude(), r.getLocation().getLongitude());
                 String s = "Condition: " + r.getPurity() + "\n" + "VirusPPM: " + r.getVirusPPM() + "\n" + "ContaminantPPM: " + r.getContaminantPPM();
-                mMap.addMarker(new MarkerOptions().position(loc).title("Water Purity").snippet(s).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+                Marker newMarker = mMap.addMarker(new MarkerOptions().position(loc).title("Water Purity").snippet(s).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
+                purityMarkers.add(newMarker);
             }
         }
 
         mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
 
+        if (user.getRole().compareTo(AuthLevel.MANAGER) > 0) {
+            mMap.setOnInfoWindowLongClickListener(new GoogleMap.OnInfoWindowLongClickListener() {
+                @Override
+                public void onInfoWindowLongClick(Marker marker) {
+                    if (purityMarkers.contains(marker)) {
+                        onInfoWindowClick(marker);
+                    }
+                }
+            });
+        }
 
 
+
+    }
+
+    public void onInfoWindowClick(Marker marker) {
+        //TODO: implement once this window is ready
+        Intent goToPRList = new Intent(getApplicationContext(), ViewLocationPurityReportsActivity.class);
+        LatLng position = marker.getPosition();
+        double[] latlng = {position.latitude, position.longitude};
+        goToPRList.putExtra("Location", latlng);
+        startActivity(goToPRList);
     }
 
     class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
