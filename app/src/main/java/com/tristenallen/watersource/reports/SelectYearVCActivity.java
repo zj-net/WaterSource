@@ -6,20 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 
-import com.google.android.gms.maps.model.LatLng;
 import com.tristenallen.watersource.R;
-import com.tristenallen.watersource.main.MainActivity;
-import android.content.Context;
-import android.location.Location;
-import com.tristenallen.watersource.model.Model;
-import com.tristenallen.watersource.model.ReportHelper;
-import com.tristenallen.watersource.model.WaterQuality;
-import com.tristenallen.watersource.model.WaterType;
 
 /**
  * Created by jahziel on 3/27/17.
  */
-public class SelectYearVC extends AppCompatActivity {
+public class SelectYearVCActivity extends AppCompatActivity {
     Button submitGraphDetailsButton;
     Spinner yearSpinner;
     RadioButton virus;
@@ -37,7 +29,7 @@ public class SelectYearVC extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO: get data from the spinner and RBs and send it to the graph
-                Intent goToGraph = new Intent(getApplicationContext(), Histograph.class);
+                Intent goToGraph = new Intent(getApplicationContext(), HistographActivity.class);
                 startActivity(goToGraph);
             }
         });

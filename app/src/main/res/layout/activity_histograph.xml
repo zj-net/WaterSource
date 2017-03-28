@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.tristenallen.watersource.reports.Histograph">
+    tools:context="com.tristenallen.watersource.reports.HistographActivity">
     <!-- ^^ replace com.ssaurel.testgraphview.MainActivity with
     file that will be used to retrieve data for the graph -->
 
