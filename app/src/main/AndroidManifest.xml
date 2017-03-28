@@ -32,6 +32,9 @@
         <activity android:name=".reports.SubmitH20SourceReportActivity"></activity>
         <activity android:name=".controller.ViewReportsActivity"></activity>
         <activity android:name=".controller.SubmitPurityReportActivity"></activity>
+        <activity android:name=".reports.HistographActivity"></activity>
+        <activity android:name=".reports.SelectYearVCActivity"></activity>
+        <activity android:name=".controller.ViewPurityReportsActivity"></activity>
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAfiCQXt7MlOL5B7YbV6rFIfRDM5X8-Kok"/>

@@ -23,6 +23,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.tristenallen.watersource.LaunchActivity;
 import com.tristenallen.watersource.R;
 import com.tristenallen.watersource.controller.SubmitPurityReportActivity;
+import com.tristenallen.watersource.controller.ViewPurityReportsActivity;
 import com.tristenallen.watersource.controller.ViewReportsActivity;
 import com.tristenallen.watersource.model.AuthLevel;
 import com.tristenallen.watersource.model.Model;
@@ -44,8 +45,11 @@ public class MainActivity extends AppCompatActivity implements
     private Marker selectionMarker;
     private Toolbar toolbar;
 
+
     //getting list view button
     private Button viewReportList;
+    //purity report button. jve
+    private Button viewPurityReportButton;
 
     private User user;
 
@@ -55,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         getSupportActionBar().setTitle("WaterSource");
 
         viewReportList = (Button) findViewById(R.id.viewReports);
@@ -77,6 +82,22 @@ public class MainActivity extends AppCompatActivity implements
         reportHelper = Model.getReportHelper();
 
         user = Model.getCurrentUser();
+
+        //jve.
+        viewPurityReportButton = (Button) findViewById(R.id.viewPurityReportsButton);
+        if (user.getRole() == AuthLevel.MANAGER || user.getRole() == AuthLevel.ADMINISTRATOR) {
+            viewPurityReportButton.setVisibility(View.VISIBLE);
+            viewPurityReportButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent goToPurityReportList = new Intent(getApplicationContext(), ViewPurityReportsActivity.class);
+                    startActivity(goToPurityReportList);
+                }
+            });
+        } else {
+            viewPurityReportButton.setVisibility(View.INVISIBLE);
+        }
+
     }
 
     @Override
