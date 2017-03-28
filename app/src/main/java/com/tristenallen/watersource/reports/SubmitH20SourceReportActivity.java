@@ -24,7 +24,7 @@ import com.tristenallen.watersource.model.ReportHelper;
 import com.tristenallen.watersource.model.WaterQuality;
 import com.tristenallen.watersource.model.WaterType;
 
-public class submitH20SourceReportActivity extends AppCompatActivity {
+public class SubmitH20SourceReportActivity extends AppCompatActivity {
     private EditText latField;
     private EditText lngField;
     private Spinner waterTypeSpinner;
