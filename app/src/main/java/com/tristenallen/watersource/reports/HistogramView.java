@@ -1,11 +1,6 @@
 package com.tristenallen.watersource.reports;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -20,16 +15,14 @@ import com.tristenallen.watersource.model.ReportHelper;
 import com.tristenallen.watersource.model.WaterQuality;
 import com.tristenallen.watersource.model.WaterType;
 
+//imports from that one website
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.Viewport;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
+
 /**
  * Created by jahziel on 3/27/17.
  */
-public class SelectYearVC extends AppCompatActivity {
-    Button submitGraphDetailsButton;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_selectyearvc);
-    }
-
-
+public class HistogramView extends AppCompatActivity {
 }

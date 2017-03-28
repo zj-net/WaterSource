@@ -64,6 +64,13 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true" />
+        <Button
+                android:text="Create Graph"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="59dp" android:id="@+id/submitGraphDetailsButton"/>
 
     </RelativeLayout>
 </LinearLayout>
