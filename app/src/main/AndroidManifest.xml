@@ -29,8 +29,8 @@
         <activity android:name=".login.RegistrationActivity"></activity>
         <activity android:name=".controller.EditProfileActivity"></activity>
         <activity android:name=".controller.ViewProfileActivity"></activity>
-        <activity android:name=".reports.submitH20SourceReportActivity"></activity>
-        <activity android:name=".controller.viewReportsActivity"></activity>
+        <activity android:name=".reports.SubmitH20SourceReportActivity"></activity>
+        <activity android:name=".controller.ViewReportsActivity"></activity>
         <activity android:name=".controller.SubmitPurityReportActivity"></activity>
         <meta-data
             android:name="com.google.android.geo.API_KEY"

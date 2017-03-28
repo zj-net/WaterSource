@@ -17,9 +17,8 @@ import com.tristenallen.watersource.R;
 import com.tristenallen.watersource.main.MainActivity;
 import com.tristenallen.watersource.model.Model;
 import com.tristenallen.watersource.model.ReportHelper;
-import com.tristenallen.watersource.model.User;
 import com.tristenallen.watersource.model.WaterPurity;
-import com.tristenallen.watersource.reports.submitH20SourceReportActivity;
+import com.tristenallen.watersource.reports.SubmitH20SourceReportActivity;
 
 /**
  * Created by David on 3/14/17.
@@ -80,7 +79,7 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
         reportSourceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToSubmitSourceActivity = new Intent(getApplicationContext(), submitH20SourceReportActivity.class);
+                Intent goToSubmitSourceActivity = new Intent(getApplicationContext(), SubmitH20SourceReportActivity.class);
                 goToSubmitSourceActivity.putExtra(MainActivity.ARG_latLng,latLng);
                 startActivity(goToSubmitSourceActivity);
             }

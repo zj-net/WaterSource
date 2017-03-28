@@ -1,12 +1,10 @@
 package com.tristenallen.watersource.main;
 
 import android.content.Intent;
-import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -25,7 +23,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.tristenallen.watersource.LaunchActivity;
 import com.tristenallen.watersource.R;
 import com.tristenallen.watersource.controller.SubmitPurityReportActivity;
-import com.tristenallen.watersource.controller.viewReportsActivity;
+import com.tristenallen.watersource.controller.ViewReportsActivity;
 import com.tristenallen.watersource.model.AuthLevel;
 import com.tristenallen.watersource.model.Model;
 import com.tristenallen.watersource.controller.ViewProfileActivity;
@@ -33,7 +31,7 @@ import com.tristenallen.watersource.model.PurityReport;
 import com.tristenallen.watersource.model.ReportHelper;
 import com.tristenallen.watersource.model.SourceReport;
 import com.tristenallen.watersource.model.User;
-import com.tristenallen.watersource.reports.submitH20SourceReportActivity;
+import com.tristenallen.watersource.reports.SubmitH20SourceReportActivity;
 
 import java.util.Collection;
 
@@ -64,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements
         viewReportList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToReportList = new Intent(getApplicationContext(), viewReportsActivity.class);
+                Intent goToReportList = new Intent(getApplicationContext(), ViewReportsActivity.class);
                 startActivity(goToReportList);
             }
         });
@@ -181,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements
                 //if the marker is newly added show submit report screen
                 if (marker.getAlpha() == .5f) {
                     if (user.getRole() == AuthLevel.USER){
-                        Intent goToSubmitSourceActivity = new Intent(getApplicationContext(), submitH20SourceReportActivity.class);
+                        Intent goToSubmitSourceActivity = new Intent(getApplicationContext(), SubmitH20SourceReportActivity.class);
                         goToSubmitSourceActivity.putExtra(MainActivity.ARG_latLng,marker.getPosition());
                         startActivity(goToSubmitSourceActivity);
                     } else {

@@ -21,7 +21,7 @@ import com.tristenallen.watersource.model.SourceReport;
 import java.util.ArrayList;
 import java.util.List;
 
-public class viewReportsActivity extends AppCompatActivity {
+public class ViewReportsActivity extends AppCompatActivity {
     private ReportHelper reportHelper = Model.getReportHelper();
     private ListView listView;
     @Override
