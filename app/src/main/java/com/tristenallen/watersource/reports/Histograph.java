@@ -24,5 +24,5 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 /**
  * Created by jahziel on 3/27/17.
  */
-public class HistogramView extends AppCompatActivity {
+public class Histograph extends AppCompatActivity {
 }
