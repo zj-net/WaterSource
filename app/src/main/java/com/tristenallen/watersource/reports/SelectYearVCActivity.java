@@ -25,6 +25,9 @@ public class SelectYearVCActivity extends AppCompatActivity {
     private final ArrayList<Integer> YEARS = new ArrayList<>();
     private int FIRST_YEAR = 1917;
 
+    private boolean checkVirus = false;
+    private boolean checkContaminant = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +44,40 @@ public class SelectYearVCActivity extends AppCompatActivity {
             YEARS.add(FIRST_YEAR);
             FIRST_YEAR++;
         }
+
+
+        virus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (virus.isChecked()) {
+                    if (!checkVirus) {
+                        virus.setChecked(true);
+                        checkVirus = true;
+                    } else {
+                        checkVirus = false;
+                        virus.setChecked(false);
+                    }
+                }
+            }
+        });
+
+        contaminant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (contaminant.isChecked()) {
+                    if (!checkContaminant) {
+                        contaminant.setChecked(true);
+                        checkContaminant = true;
+                    } else {
+                        checkContaminant = false;
+                        contaminant.setChecked(false);
+                    }
+                }
+            }
+        });
+
+
 
         yearSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, YEARS));
 
