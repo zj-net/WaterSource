@@ -23,24 +23,29 @@ import com.jjoe64.graphview.Viewport;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import java.util.ArrayList;
+
 /**
  * Created by jahziel on 3/27/17.
  */
 public class HistographActivity extends AppCompatActivity {
+    private String[] splitStr;
+    private DataPoint[] dataPointsArray = {new DataPoint(0, 0)};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_histograph);
+        final ArrayList<String> extrasFromIntent = getIntent().getStringArrayListExtra("YearAndVC");
 
         GraphView graph = (GraphView) findViewById(R.id.graph);
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
-                /*new DataPoint(0, 1),
-                new DataPoint(1, 5),
-                new DataPoint(2, 3),
-                new DataPoint(3, 2),
-                new DataPoint(4, 6)*/
-
-        });
+        ArrayList<DataPoint> dataPoints = new ArrayList<>();
+        for (String s : extrasFromIntent) {
+            splitStr = s.split(":");
+            dataPoints.add(new DataPoint(Double.parseDouble(splitStr[0]), Double.parseDouble(splitStr[1])));
+        }
+        dataPoints.toArray(dataPointsArray);
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPointsArray);
         graph.addSeries(series);
     }
 }

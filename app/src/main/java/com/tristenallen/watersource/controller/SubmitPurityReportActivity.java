@@ -74,6 +74,12 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
             lngField.setText(Double.toString(latLng.longitude));
         }
 
+        if (getIntent().hasExtra("location")) {
+            double[] arr = getIntent().getDoubleArrayExtra("location");
+            latField.setText(Double.toString(arr[0]));
+            lngField.setText(Double.toString(arr[1]));
+        }
+
 
 
         reportSourceButton.setOnClickListener(new View.OnClickListener() {

@@ -253,7 +253,6 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     public void onInfoWindowClick(Marker marker) {
-        //TODO: implement once this window is ready
         Intent goToPRList = new Intent(getApplicationContext(), ViewLocationPurityReportsActivity.class);
         LatLng position = marker.getPosition();
         double[] latlng = {position.latitude, position.longitude};
