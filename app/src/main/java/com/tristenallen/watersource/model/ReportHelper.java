@@ -1,7 +1,12 @@
 package com.tristenallen.watersource.model;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.location.Location;
+import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,9 +18,10 @@ import java.util.Map;
  */
 public class ReportHelper {
     private static ReportHelper INSTANCE = new ReportHelper();
+    private static final String QUALITY_DB = "QualityReports";
+    private static final String PURITY_DB = "PurityReports";
+    private Gson gson;
     private int currentSourceReportNumber;
-    private Map<Integer,SourceReport> sourceReports;
-    private Map<Integer, PurityReport> purityReports;
 
     /**
      * Creates a new ReportHelper with empty Maps
@@ -23,8 +29,7 @@ public class ReportHelper {
      */
     private ReportHelper() {
         currentSourceReportNumber = 1;
-        sourceReports = new HashMap<>();
-        purityReports = new HashMap<>();
+        gson = new Gson();
     }
 
     /**
@@ -39,11 +44,14 @@ public class ReportHelper {
      * Returns the SourceReport associated with a specific report number.
      * Returns null if there is no such report.
      * @param id int specifying the report number to obtain.
+     * @param context Activity requesting the report.
      * @return SourceReport associated with the given report number.
      */
-    public SourceReport getSourceReport(int id) {
-        if (sourceReports.containsKey(id)) {
-            return sourceReports.get(id);
+    public SourceReport getSourceReport(int id, Activity context) {
+        SharedPreferences sourceReports = context.getSharedPreferences(QUALITY_DB, Context.MODE_PRIVATE);
+        if (sourceReports.contains(String.valueOf(id))) {
+            String reportString = sourceReports.getString(String.valueOf(id), null);
+            return gson.fromJson(reportString, SourceReport.class);
         } else {
             return null;
         }
@@ -53,11 +61,14 @@ public class ReportHelper {
      * Returns the PurityReport associated with a specific report number.
      * Returns null if there is no such report.
      * @param id int specifying the report number to obtain.
+     * @param context Activity requesting the report.
      * @return PurityReport associated with the given report number.
      */
-    public PurityReport getPurityReport(int id) {
-        if (purityReports.containsKey(id)) {
-            return purityReports.get(id);
+    public PurityReport getPurityReport(int id, Activity context) {
+        SharedPreferences purityReports = context.getSharedPreferences(PURITY_DB, Context.MODE_PRIVATE);
+        if (purityReports.contains(String.valueOf(id))) {
+            String reportString = purityReports.getString(String.valueOf(id), null);
+            return gson.fromJson(reportString, PurityReport.class);
         } else {
             return null;
         }
@@ -66,19 +77,35 @@ public class ReportHelper {
     /**
      * Returns all of the source reports stored in the model as
      * a Collection.
+     * @param context Activity requesting the report.
      * @return Collection of all the source reports in the model.
      */
-    public Collection<SourceReport> getSourceReports() {
-        return sourceReports.values();
+    public Collection<SourceReport> getSourceReports(Activity context) {
+        SharedPreferences sourceReports = context.getSharedPreferences(QUALITY_DB, Context.MODE_PRIVATE);
+        Collection<SourceReport> reportList = new ArrayList<>();
+
+        for (Object o: sourceReports.getAll().values()) {
+            reportList.add(gson.fromJson((String) o, SourceReport.class));
+        }
+
+        return reportList;
     }
 
     /**
      * Returns all of the purity reports stored in the model as
      * a Collection.
+     * @param context Activity requesting the report.
      * @return Collection of all the purity reports in the model.
      */
-    public Collection<PurityReport> getPurityReports() {
-        return purityReports.values();
+    public Collection<PurityReport> getPurityReports(Activity context) {
+        SharedPreferences sourceReports = context.getSharedPreferences(PURITY_DB, Context.MODE_PRIVATE);
+        Collection<PurityReport> reportList = new ArrayList<>();
+
+        for (Object o: sourceReports.getAll().values()) {
+            reportList.add(gson.fromJson((String) o, PurityReport.class));
+        }
+
+        return reportList;
     }
 
     /**
@@ -88,11 +115,13 @@ public class ReportHelper {
      * Note that this does not free up the report number for future use.
      * ID numbers are one-use-only for the lifetime of the application.
      * @param id int specifying the report to delete.
+     * @param context Activity requesting the deletion.
      * @return boolean indicating the success of the deletion.
      */
-    public boolean removeSourceReport(int id) {
-        if (sourceReports.containsKey(id)) {
-            sourceReports.remove(id);
+    public boolean removeSourceReport(int id, Activity context) {
+        SharedPreferences sourceReports = context.getSharedPreferences(QUALITY_DB, Context.MODE_PRIVATE);
+        if (sourceReports.contains(String.valueOf(id))) {
+            sourceReports.edit().remove(String.valueOf(id)).commit();
             return true;
         } else {
             return false;
@@ -106,11 +135,13 @@ public class ReportHelper {
      * Note that this does not free up the report number for future use.
      * ID numbers are one-use-only for the lifetime of the application.
      * @param id int specifying the report to delete.
+     * @param context Activity requesting the deletion.
      * @return boolean indicating the success of the deletion.
      */
-    public boolean removePurityReport(int id) {
-        if (purityReports.containsKey(id)) {
-            purityReports.remove(id);
+    public boolean removePurityReport(int id, Activity context) {
+        SharedPreferences purityReports = context.getSharedPreferences(PURITY_DB, Context.MODE_PRIVATE);
+        if (purityReports.contains(String.valueOf(id))) {
+            purityReports.edit().remove(String.valueOf(id)).commit();
             return true;
         } else {
             return false;
@@ -129,14 +160,17 @@ public class ReportHelper {
      * @param location Location of the water in this report.
      * @param quality WaterQuality of the water.
      * @param type WaterType of the water.
+     * @param context Activity adding the report.
      * @throws IllegalArgumentException if the given user ID is not a valid user.
      */
     public void addSourceReport(int user, Location location,
-                                   WaterQuality quality, WaterType type, DataSource data) {
+                                   WaterQuality quality, WaterType type, DataSource data, Activity context) {
         if (data.getUserbyID(user) != null) {
             SourceReport newReport = new SourceReport(user, location, quality, type,
                     currentSourceReportNumber);
-            sourceReports.put(currentSourceReportNumber++, newReport);
+            SharedPreferences sourceReports = context.getSharedPreferences(QUALITY_DB, Context.MODE_PRIVATE);
+            String reportString = gson.toJson(newReport);
+            sourceReports.edit().putString(String.valueOf(currentSourceReportNumber++), reportString).commit();
         } else {
             throw new IllegalArgumentException("You must pass in the ID of a"
             + " valid user!");
@@ -156,14 +190,17 @@ public class ReportHelper {
      * @param purity WaterPurity of the water.
      * @param virusPPM int specifying viruses in ppm.
      * @param contaminantPPM int specifying contaminants in ppm.
+     * @param context Activity adding the report.
      * @throws IllegalArgumentException if the given user ID is not a valid user.
      */
     public void addPurityReport(int user, Location location,
-                                WaterPurity purity, int virusPPM, int contaminantPPM, DataSource data) {
+                                WaterPurity purity, int virusPPM, int contaminantPPM, DataSource data, Activity context) {
         if (data.getUserbyID(user) != null) {
-            PurityReport newReport = new PurityReport(user, location, purity,
-                    currentSourceReportNumber, virusPPM, contaminantPPM);
-            purityReports.put(currentSourceReportNumber++, newReport);
+            PurityReport newReport = new PurityReport(user, location, purity, currentSourceReportNumber, contaminantPPM,
+                    virusPPM);
+            SharedPreferences purityReports = context.getSharedPreferences(PURITY_DB, Context.MODE_PRIVATE);
+            String reportString = gson.toJson(newReport);
+            purityReports.edit().putString(String.valueOf(currentSourceReportNumber++), reportString).commit();
         } else {
             throw new IllegalArgumentException("You must pass in the ID of a"
                     + " valid user!");

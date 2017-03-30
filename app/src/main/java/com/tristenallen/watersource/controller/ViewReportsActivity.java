@@ -29,7 +29,7 @@ public class ViewReportsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewreports);
         listView = (ListView) findViewById(R.id.sourceReportListView);
-        List<SourceReport> sourceReports = new ArrayList<>(reportHelper.getSourceReports());
+        List<SourceReport> sourceReports = new ArrayList<>(reportHelper.getSourceReports(this));
         List<String> sourceReportStrings = new ArrayList<>();
         for (SourceReport s : sourceReports) {
             sourceReportStrings.add(s.toString());

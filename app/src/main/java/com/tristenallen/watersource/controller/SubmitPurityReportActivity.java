@@ -176,7 +176,7 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
                 } else {
                     h20Loc.setLatitude(latDouble);
                     h20Loc.setLongitude(lngDouble);
-                    reportHelper.addPurityReport(Model.getCurrentUserID(), h20Loc, waterPurityData, virusPPMInt,contaminantPPMInt, data);
+                    reportHelper.addPurityReport(Model.getCurrentUserID(), h20Loc, waterPurityData, virusPPMInt,contaminantPPMInt, data, SubmitPurityReportActivity.this);
                     Context context = getApplicationContext();
                     CharSequence msg = "Report submitted successfully!";
                     int duration = Toast.LENGTH_LONG;

@@ -225,7 +225,7 @@ public class MainActivity extends AppCompatActivity implements
 
         });
 
-        Collection<SourceReport> reportList = reportHelper.getSourceReports();
+        Collection<SourceReport> reportList = reportHelper.getSourceReports(this);
         for (SourceReport r : reportList) {
             LatLng loc = new LatLng(r.getLocation().getLatitude(), r.getLocation().getLongitude());
             mMap.addMarker(new MarkerOptions().position(loc).title("Water Source").snippet("Type: "+ r.getType() + "\n" + "Quality: " + r.getQuality()));
@@ -233,7 +233,7 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         if (user.getRole().compareTo(AuthLevel.USER) > 0) {
-            Collection<PurityReport> purityReportList = reportHelper.getPurityReports();
+            Collection<PurityReport> purityReportList = reportHelper.getPurityReports(this);
             for (PurityReport r : purityReportList) {
                 LatLng loc = new LatLng(r.getLocation().getLatitude(), r.getLocation().getLongitude());
                 String s = "Condition: " + r.getPurity() + "\n" + "VirusPPM: " + r.getVirusPPM() + "\n" + "ContaminantPPM: " + r.getContaminantPPM();
