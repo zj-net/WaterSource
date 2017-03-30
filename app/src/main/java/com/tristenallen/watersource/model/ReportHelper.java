@@ -3,6 +3,7 @@ package com.tristenallen.watersource.model;
 import android.location.Location;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,7 +15,6 @@ import java.util.Map;
 public class ReportHelper {
     private static ReportHelper INSTANCE = new ReportHelper();
     private int currentSourceReportNumber;
-    private Map<Integer,SourceReport> sourceReports;
     private Map<Integer, PurityReport> purityReports;
 
     /**
@@ -22,8 +22,7 @@ public class ReportHelper {
      * and initial report numbers of 1.
      */
     private ReportHelper() {
-        currentSourceReportNumber = 1;
-        sourceReports = new HashMap<>();
+        currentSourceReportNumber = 0;
         purityReports = new HashMap<>();
     }
 
@@ -42,11 +41,8 @@ public class ReportHelper {
      * @return SourceReport associated with the given report number.
      */
     public SourceReport getSourceReport(int id) {
-        if (sourceReports.containsKey(id)) {
-            return sourceReports.get(id);
-        } else {
-            return null;
-        }
+        // TODO: 3/29/17
+        return null;
     }
 
     /**
@@ -56,11 +52,8 @@ public class ReportHelper {
      * @return PurityReport associated with the given report number.
      */
     public PurityReport getPurityReport(int id) {
-        if (purityReports.containsKey(id)) {
-            return purityReports.get(id);
-        } else {
-            return null;
-        }
+        // TODO: 3/29/17
+        return null;
     }
 
     /**
@@ -68,8 +61,8 @@ public class ReportHelper {
      * a Collection.
      * @return Collection of all the source reports in the model.
      */
-    public Collection<SourceReport> getSourceReports() {
-        return sourceReports.values();
+    public Collection<SourceReport> getSourceReports(DataSource data) {
+        return data.getAllSourceReports();
     }
 
     /**
@@ -91,12 +84,8 @@ public class ReportHelper {
      * @return boolean indicating the success of the deletion.
      */
     public boolean removeSourceReport(int id) {
-        if (sourceReports.containsKey(id)) {
-            sourceReports.remove(id);
-            return true;
-        } else {
-            return false;
-        }
+       // TODO: 3/29/17
+        return true;
     }
 
     /**
@@ -109,12 +98,8 @@ public class ReportHelper {
      * @return boolean indicating the success of the deletion.
      */
     public boolean removePurityReport(int id) {
-        if (purityReports.containsKey(id)) {
-            purityReports.remove(id);
-            return true;
-        } else {
-            return false;
-        }
+        // TODO: 3/29/17
+        return true;
     }
 
     /**
@@ -134,9 +119,11 @@ public class ReportHelper {
     public void addSourceReport(int user, Location location,
                                    WaterQuality quality, WaterType type, DataSource data) {
         if (data.getUserbyID(user) != null) {
+            currentSourceReportNumber = data.getSourceReportCount();
             SourceReport newReport = new SourceReport(user, location, quality, type,
                     currentSourceReportNumber);
-            sourceReports.put(currentSourceReportNumber++, newReport);
+            data.createSourceReport(currentSourceReportNumber,user,newReport.getTimestamp(),
+                    location, type, quality);
         } else {
             throw new IllegalArgumentException("You must pass in the ID of a"
             + " valid user!");

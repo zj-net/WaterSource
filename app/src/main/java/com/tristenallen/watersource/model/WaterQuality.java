@@ -6,7 +6,7 @@ package com.tristenallen.watersource.model;
  * Represents the different qualities of water.
  */
 public enum WaterQuality {
-    WASTE("Waste"), MUDDY("Treatable, Muddy"), CLEAR("Treatable, Clear"),
+    WASTE("Waste"), MUDDY("Muddy"), CLEAR("Clear"),
     POTABLE("Potable");
 
     String name;

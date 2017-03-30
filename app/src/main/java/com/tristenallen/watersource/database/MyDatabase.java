@@ -4,10 +4,15 @@ import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import android.location.Location;
 import com.tristenallen.watersource.model.AuthLevel;
 import com.tristenallen.watersource.model.DataSource;
+import com.tristenallen.watersource.model.SourceReport;
 import com.tristenallen.watersource.model.User;
+import com.tristenallen.watersource.model.WaterQuality;
+import com.tristenallen.watersource.model.WaterType;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -76,5 +81,17 @@ public class MyDatabase implements DataSource {
     @Override
     public int getUserCount() { return UserDB.getUserCount(database); }
 
+    @Override
+    public SourceReport createSourceReport(int reportID, int userID, Date timestamp,
+                                           Location location, WaterType type, WaterQuality quality){
+
+        return SourceReportDB.create(database, reportID, userID, timestamp, location, type, quality);
+    }
+
+    @Override
+    public int getSourceReportCount() {return SourceReportDB.getSourceReportCount(database);}
+
+    @Override
+    public List<SourceReport> getAllSourceReports() {return SourceReportDB.getAllReports(database);}
 }
 

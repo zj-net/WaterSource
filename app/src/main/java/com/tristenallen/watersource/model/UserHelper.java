@@ -33,7 +33,6 @@ public class UserHelper {
         } else {
             data.createUser(currentID,password,user.getEmail(),user.getRole(),user.getAddress(),user.getTitle(),
                     user.getLastName(),user.getFirstName());
-            currentID++;
             return true;
         }
     }

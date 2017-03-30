@@ -225,7 +225,7 @@ public class MainActivity extends AppCompatActivity implements
 
         });
 
-        Collection<SourceReport> reportList = reportHelper.getSourceReports();
+        Collection<SourceReport> reportList = reportHelper.getSourceReports(data);
         for (SourceReport r : reportList) {
             LatLng loc = new LatLng(r.getLocation().getLatitude(), r.getLocation().getLongitude());
             mMap.addMarker(new MarkerOptions().position(loc).title("Water Source").snippet("Type: "+ r.getType() + "\n" + "Quality: " + r.getQuality()));

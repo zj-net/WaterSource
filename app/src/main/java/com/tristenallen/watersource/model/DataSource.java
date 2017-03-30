@@ -1,5 +1,8 @@
 package com.tristenallen.watersource.model;
 
+import android.location.Location;
+
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,4 +21,9 @@ public interface DataSource {
     public int getIDbyEmail(String email);
     public User getUserbyID(int id);
     public int getUserCount();
+
+    SourceReport createSourceReport(int reportID, int userID, Date timestamp,
+                                    Location location, WaterType type, WaterQuality quality);
+    public int getSourceReportCount();
+    List<SourceReport> getAllSourceReports();
 }

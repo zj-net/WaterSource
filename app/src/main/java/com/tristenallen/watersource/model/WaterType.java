@@ -6,7 +6,7 @@ package com.tristenallen.watersource.model;
  * Represents the different sources of water.
  */
 public enum WaterType {
-    BOTTLE("Bottled"), WELL("Well"), STREAM("Stream"),
+    BOTTLED("Bottled"), WELL("Well"), STREAM("Stream"),
     LAKE("Lake"), SPRING("Spring"), OTHER("Other");
 
     String name;

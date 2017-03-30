@@ -4,12 +4,14 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.tristenallen.watersource.model.SourceReport;
+
 /**
  * Created by David on 3/28/17.
  */
 
 public class MyDBHelper extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = "student.db";
+    private static final String DATABASE_NAME = "WaterSource.db";
     private static final int DATABASE_VERSION = 1;
 
     public MyDBHelper(Context context) {
@@ -20,6 +22,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase database) {
         UserDB.onCreate(database);
+        SourceReportDB.onCreate(database);
     }
 
     // Method is called during an upgrade of the database,
@@ -28,5 +31,6 @@ public class MyDBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase database, int oldVersion,
                           int newVersion) {
         UserDB.onUpgrade(database, oldVersion, newVersion);
+        SourceReportDB.onUpgrade(database, oldVersion, newVersion);
     }
 }

@@ -11,9 +11,12 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+
+import com.tristenallen.watersource.database.MyDatabase;
 import com.tristenallen.watersource.login.LoginActivity;
 import com.tristenallen.watersource.login.RegistrationActivity;
 import com.tristenallen.watersource.R;
+import com.tristenallen.watersource.model.DataSource;
 import com.tristenallen.watersource.model.Model;
 import com.tristenallen.watersource.model.ReportHelper;
 import com.tristenallen.watersource.model.SourceReport;
@@ -24,12 +27,18 @@ import java.util.List;
 public class ViewReportsActivity extends AppCompatActivity {
     private ReportHelper reportHelper = Model.getReportHelper();
     private ListView listView;
+
+    private DataSource data;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        data = new MyDatabase(this);
+
         setContentView(R.layout.activity_viewreports);
         listView = (ListView) findViewById(R.id.sourceReportListView);
-        List<SourceReport> sourceReports = new ArrayList<>(reportHelper.getSourceReports());
+        List<SourceReport> sourceReports = new ArrayList<>(reportHelper.getSourceReports(data));
         List<String> sourceReportStrings = new ArrayList<>();
         for (SourceReport s : sourceReports) {
             sourceReportStrings.add(s.toString());

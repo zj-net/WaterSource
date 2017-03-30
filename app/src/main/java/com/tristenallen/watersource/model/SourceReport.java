@@ -28,7 +28,7 @@ public class SourceReport {
      *
      * All data in a SourceReport is considered immutable.
      */
-    protected SourceReport(int userID, Location location, WaterQuality quality,
+    public SourceReport(int userID, Location location, WaterQuality quality,
                            WaterType type, int reportNumber) {
         this.userID = userID;
         this.location = location;
