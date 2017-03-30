@@ -11,10 +11,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 import com.tristenallen.watersource.R;
+import com.tristenallen.watersource.database.MyDatabase;
 import com.tristenallen.watersource.main.MainActivity;
 import com.tristenallen.watersource.model.AuthLevel;
 import com.tristenallen.watersource.model.Model;
 import com.tristenallen.watersource.model.User;
+import com.tristenallen.watersource.model.DataSource;
 import java.util.regex.*;
 
 public class RegistrationActivity extends AppCompatActivity {
@@ -28,11 +30,14 @@ public class RegistrationActivity extends AppCompatActivity {
     private User user;
     private Pattern emailPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
-
+    private DataSource data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        data = new MyDatabase(this);
+
         setContentView(R.layout.activity_registration);
 
         //-----------------getting text input------------------------
@@ -92,7 +97,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
                     //last part, after checks are passed
                     user = new User(emailString, (AuthLevel) authSpinner.getSelectedItem(), lastNameString, firstNameString);
-                    if (!Model.getUserHelper().addUser(user, emailString, passwordString)) {
+                    if (!Model.getUserHelper().addUser(user, emailString, passwordString, data)) {
                         Context context = getApplicationContext();
                         CharSequence error = "That email has already been used!";
                         int duration = Toast.LENGTH_LONG;

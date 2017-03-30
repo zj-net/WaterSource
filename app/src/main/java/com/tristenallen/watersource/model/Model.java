@@ -1,5 +1,7 @@
 package com.tristenallen.watersource.model;
 
+import android.provider.ContactsContract;
+
 /**
  * Created by tristen on 2/21/17.
  *
@@ -52,9 +54,9 @@ public class Model {
      * Sets the currently logged in user's ID and associated User object.
      * @param currentUserID int specifying the ID of this user.
      */
-    public static void setCurrentUser(int currentUserID) {
+    public static void setCurrentUser(int currentUserID, DataSource data) {
         Model.currentUserID = currentUserID;
-        Model.currentUser = USER_HELPER.getUserByID(currentUserID);
+        Model.currentUser = data.getUserbyID(currentUserID);
     }
 
     /**

@@ -15,10 +15,14 @@ import android.widget.Toast;
 import com.google.android.gms.maps.model.LatLng;
 import com.tristenallen.watersource.R;
 import android.widget.Button;
+
+import com.tristenallen.watersource.database.MyDatabase;
 import com.tristenallen.watersource.main.MainActivity;
 import android.content.Context;
 import android.widget.ArrayAdapter;
 import android.location.Location;
+
+import com.tristenallen.watersource.model.DataSource;
 import com.tristenallen.watersource.model.Model;
 import com.tristenallen.watersource.model.ReportHelper;
 import com.tristenallen.watersource.model.WaterQuality;
@@ -38,9 +42,14 @@ public class SubmitH20SourceReportActivity extends AppCompatActivity {
     private boolean badLat;
     private boolean badLng;
 
+    private DataSource data;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        data = new MyDatabase(this);
+
         setContentView(R.layout.activity_sourcereport);
         //init the vars
         latField = (EditText) findViewById(R.id.latitudeTXT);
@@ -112,7 +121,7 @@ public class SubmitH20SourceReportActivity extends AppCompatActivity {
                 } else {
                     h20Loc.setLatitude(latDouble);
                     h20Loc.setLongitude(lngDouble);
-                    reportHelper.addSourceReport(Model.getCurrentUserID(), h20Loc, waterQualityData, waterTypeData);
+                    reportHelper.addSourceReport(Model.getCurrentUserID(), h20Loc, waterQualityData, waterTypeData, data);
                     Context context = getApplicationContext();
                     CharSequence msg = "Report submitted successfully!";
                     int duration = Toast.LENGTH_LONG;

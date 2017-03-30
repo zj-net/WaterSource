@@ -2,6 +2,7 @@ package com.tristenallen.watersource.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -23,7 +24,9 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.tristenallen.watersource.LaunchActivity;
 import com.tristenallen.watersource.R;
 import com.tristenallen.watersource.controller.*;
+import com.tristenallen.watersource.database.MyDatabase;
 import com.tristenallen.watersource.model.AuthLevel;
+import com.tristenallen.watersource.model.DataSource;
 import com.tristenallen.watersource.model.Model;
 import com.tristenallen.watersource.model.PurityReport;
 import com.tristenallen.watersource.model.ReportHelper;
@@ -53,9 +56,14 @@ public class MainActivity extends AppCompatActivity implements
 
     private User user;
 
+    private DataSource data;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        data = new MyDatabase(this);
+
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -143,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
-        Model.setCurrentUser(-1);
+        Model.setCurrentUser(-1,data);
         Intent goToLaunchActivity = new Intent(getApplicationContext(), LaunchActivity.class);
         goToLaunchActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(goToLaunchActivity);

@@ -14,7 +14,9 @@ import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.tristenallen.watersource.R;
+import com.tristenallen.watersource.database.MyDatabase;
 import com.tristenallen.watersource.main.MainActivity;
+import com.tristenallen.watersource.model.DataSource;
 import com.tristenallen.watersource.model.Model;
 import com.tristenallen.watersource.model.ReportHelper;
 import com.tristenallen.watersource.model.WaterPurity;
@@ -49,9 +51,14 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
     private boolean badVirusPPM;
     private boolean badContaminantPPM;
 
+    private DataSource data;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        data = new MyDatabase(this);
+
         setContentView(R.layout.activity_purityreport);
         //init the vars
         latField = (EditText) findViewById(R.id.latitudeTXT);
@@ -169,7 +176,7 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
                 } else {
                     h20Loc.setLatitude(latDouble);
                     h20Loc.setLongitude(lngDouble);
-                    reportHelper.addPurityReport(Model.getCurrentUserID(), h20Loc, waterPurityData, virusPPMInt,contaminantPPMInt);
+                    reportHelper.addPurityReport(Model.getCurrentUserID(), h20Loc, waterPurityData, virusPPMInt,contaminantPPMInt, data);
                     Context context = getApplicationContext();
                     CharSequence msg = "Report submitted successfully!";
                     int duration = Toast.LENGTH_LONG;

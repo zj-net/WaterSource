@@ -8,15 +8,8 @@ import java.util.Map;
  */
 public class AuthHelper {
     private static final AuthHelper INSTANCE = new AuthHelper();
-    private UserHelper userHelper;
-    private Map<Integer, String> passwords;
 
-    private AuthHelper() {
-        passwords = new HashMap<>();
-        userHelper = UserHelper.getInstance();
-    }
-
-    protected static AuthHelper getInstance() {
+    public static AuthHelper getInstance() {
         return INSTANCE;
     }
 
@@ -28,36 +21,18 @@ public class AuthHelper {
      * @return AuthPackage containing the logged-in user and/or a status message
      * indiciating the failure of the operation.
      */
-    public AuthPackage login(String email, String password) {
-        if (-1 == userHelper.getIDbyEmail(email)) {
+    public AuthPackage login(String email, String password, DataSource data) {
+        if (!data.checkEmail(email)) {
             return new AuthPackage(null, AuthStatus.INVALID_NAME);
         } else {
-            int id = userHelper.getIDbyEmail(email);
-            String validPass = passwords.get(id);
-            User user = userHelper.getUserByID(id);
-
-            if (password.equals(validPass)) {
-                Model.setCurrentUser(id);
-                return new AuthPackage(user, AuthStatus.VALID_LOGIN);
+            int id = data.getIDbyEmail(email);
+            if (data.validate(email,password)) {
+                Model.setCurrentUser(id,data);
+                return new AuthPackage(data.getUserbyID(id), AuthStatus.VALID_LOGIN);
             } else {
-                return new AuthPackage(user, AuthStatus.INVALID_PASSWORD);
+                return new AuthPackage(data.getUserbyID(id), AuthStatus.INVALID_PASSWORD);
             }
         }
     }
 
-    /**
-     * Adds a new user, by ID, to the internal password database.
-     * Returns false if the ID does not exist in the user database.
-     * @param id int ID of the user
-     * @param password String specifying the user's password.
-     * @return boolean indicating success of the operation.
-     */
-    protected boolean addUser(int id, String password) {
-        if (userHelper.getUserByID(id) == null) {
-            return false;
-        } else {
-            passwords.put(id, password);
-            return true;
-        }
-    }
 }

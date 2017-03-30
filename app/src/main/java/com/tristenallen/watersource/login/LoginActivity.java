@@ -8,12 +8,19 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.tristenallen.watersource.R;
 import android.widget.Button;
+
+import com.tristenallen.watersource.database.MyDatabase;
 import com.tristenallen.watersource.main.MainActivity;
 import android.content.Context;
 import com.tristenallen.watersource.model.AuthHelper;
+import com.tristenallen.watersource.model.AuthLevel;
 import com.tristenallen.watersource.model.AuthPackage;
 import com.tristenallen.watersource.model.AuthStatus;
+import com.tristenallen.watersource.model.DataSource;
 import com.tristenallen.watersource.model.Model;
+
+import com.tristenallen.watersource.model.User;
+import com.tristenallen.watersource.model.UserHelper;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -24,16 +31,21 @@ public class LoginActivity extends AppCompatActivity {
     private AuthStatus status;
     private Button loginButton;
 
+    private DataSource data;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        data = new MyDatabase(this);
+
         setContentView(R.layout.activity_login);
+
         usrname = (EditText) findViewById(R.id.editText);
         password = (EditText) findViewById(R.id.editText2);
 
+
         loginButton = (Button) findViewById(R.id.LOGIN_BUTTON);
-
-
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                 String usrnameStr = usrname.getText().toString();
                 String passwordStr = password.getText().toString();
                 verifier = Model.getAuthHelper();
-                AP = verifier.login(usrnameStr, passwordStr);
+                AP = verifier.login(usrnameStr, passwordStr, data);
                 status = AP.getStatus();
 
                 if (status == AuthStatus.INVALID_NAME) {

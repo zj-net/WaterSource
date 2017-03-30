@@ -87,16 +87,16 @@ public class PurityReport {
     }
 
     /**
-     * Returns the User who created this report.
-     * @return User object associated with this report.
+     * Returns the User ID who created this report.
+     * @return int User ID who created this report.
      */
-    public User getAuthor() {
-        return UserHelper.getInstance().getUserByID(userID);
+    public int getAuthorID() {
+        return userID;
     }
 
     @Override
     public String toString() {
-        return "Report Number: " + reportNumber + "\n" + "Author: " + getAuthor().toString() + "\n" + "Location: "
+        return "Report Number: " + reportNumber + "\n" + "Location: "
                 + location.getLatitude() + ", " + location.getLongitude() + "\n"
                 + "Water purity: " + purity.toString() + "\n" + "Virus PPM: " + virusPPM + "\n"
                 + "Contaminant PPM: " + contaminantPPM

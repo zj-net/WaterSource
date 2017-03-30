@@ -132,8 +132,8 @@ public class ReportHelper {
      * @throws IllegalArgumentException if the given user ID is not a valid user.
      */
     public void addSourceReport(int user, Location location,
-                                   WaterQuality quality, WaterType type) {
-        if (UserHelper.getInstance().getUserByID(user) != null) {
+                                   WaterQuality quality, WaterType type, DataSource data) {
+        if (data.getUserbyID(user) != null) {
             SourceReport newReport = new SourceReport(user, location, quality, type,
                     currentSourceReportNumber);
             sourceReports.put(currentSourceReportNumber++, newReport);
@@ -159,8 +159,8 @@ public class ReportHelper {
      * @throws IllegalArgumentException if the given user ID is not a valid user.
      */
     public void addPurityReport(int user, Location location,
-                                WaterPurity purity, int virusPPM, int contaminantPPM) {
-        if (UserHelper.getInstance().getUserByID(user) != null) {
+                                WaterPurity purity, int virusPPM, int contaminantPPM, DataSource data) {
+        if (data.getUserbyID(user) != null) {
             PurityReport newReport = new PurityReport(user, location, purity,
                     currentSourceReportNumber, virusPPM, contaminantPPM);
             purityReports.put(currentSourceReportNumber++, newReport);
