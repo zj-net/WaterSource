@@ -163,7 +163,7 @@ public class ReportHelper {
     public void addSourceReport(int user, Location location,
                                    WaterQuality quality, WaterType type, DataSource data, Activity context) {
         if (data.getUserbyID(user) != null) {
-            int currentSourceReportNumber = getSourceReports(context).size();
+            int currentSourceReportNumber = getSourceReports(context).size() + 1;
             SourceReport newReport = new SourceReport(user, location, quality, type,
                     currentSourceReportNumber);
             SharedPreferences sourceReports = context.getSharedPreferences(QUALITY_DB, Context.MODE_PRIVATE);
@@ -193,7 +193,7 @@ public class ReportHelper {
      */
     public void addPurityReport(int user, Location location,
                                 WaterPurity purity, int virusPPM, int contaminantPPM, DataSource data, Activity context) {
-        int currentPurityReportNumber = getPurityReports(context).size();
+        int currentPurityReportNumber = getPurityReports(context).size() + 1;
         if (data.getUserbyID(user) != null) {
             PurityReport newReport = new PurityReport(user, location, purity, currentPurityReportNumber, contaminantPPM,
                     virusPPM);
