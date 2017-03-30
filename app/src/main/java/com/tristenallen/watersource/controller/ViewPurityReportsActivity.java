@@ -29,7 +29,7 @@ public class ViewPurityReportsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_viewpurityreports);
         listView = (ListView) findViewById(R.id.purityReportListView);
         //viewGraphButton = (Button) findViewById(R.id.viewGraphButton);
-        List<PurityReport> purityReports = new ArrayList<>(reportHelper.getPurityReports());
+        List<PurityReport> purityReports = new ArrayList<>(reportHelper.getPurityReports(this));
         List<String> purityReportStrings = new ArrayList<>();
         for (PurityReport p : purityReports) {
             purityReportStrings.add(p.toString());

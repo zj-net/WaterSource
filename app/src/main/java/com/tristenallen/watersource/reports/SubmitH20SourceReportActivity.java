@@ -16,6 +16,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.tristenallen.watersource.R;
 import android.widget.Button;
 
+import com.tristenallen.watersource.controller.SubmitPurityReportActivity;
 import com.tristenallen.watersource.database.MyDatabase;
 import com.tristenallen.watersource.main.MainActivity;
 import android.content.Context;
@@ -121,7 +122,7 @@ public class SubmitH20SourceReportActivity extends AppCompatActivity {
                 } else {
                     h20Loc.setLatitude(latDouble);
                     h20Loc.setLongitude(lngDouble);
-                    reportHelper.addSourceReport(Model.getCurrentUserID(), h20Loc, waterQualityData, waterTypeData, data);
+                    reportHelper.addSourceReport(Model.getCurrentUserID(), h20Loc, waterQualityData, waterTypeData, data, SubmitH20SourceReportActivity.this);
                     Context context = getApplicationContext();
                     CharSequence msg = "Report submitted successfully!";
                     int duration = Toast.LENGTH_LONG;
