@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements
 
         //jve.
         viewPurityReportButton = (Button) findViewById(R.id.viewPurityReportsButton);
-        if (user.getRole() == AuthLevel.MANAGER || user.getRole() == AuthLevel.ADMINISTRATOR) {
+        if (user.getRole() == AuthLevel.MANAGER || user.getRole() == AuthLevel.ADMIN) {
             viewPurityReportButton.setVisibility(View.VISIBLE);
             viewPurityReportButton.setOnClickListener(new View.OnClickListener() {
                 @Override
