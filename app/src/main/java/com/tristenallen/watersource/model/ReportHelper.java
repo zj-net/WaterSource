@@ -21,14 +21,11 @@ public class ReportHelper {
     private static final String QUALITY_DB = "QualityReports";
     private static final String PURITY_DB = "PurityReports";
     private Gson gson;
-    private int currentSourceReportNumber;
 
     /**
-     * Creates a new ReportHelper with empty Maps
-     * and initial report numbers of 1.
+     * Creates a new ReportHelper.
      */
     private ReportHelper() {
-        currentSourceReportNumber = 1;
         gson = new Gson();
     }
 
@@ -166,11 +163,12 @@ public class ReportHelper {
     public void addSourceReport(int user, Location location,
                                    WaterQuality quality, WaterType type, DataSource data, Activity context) {
         if (data.getUserbyID(user) != null) {
+            int currentSourceReportNumber = getSourceReports(context).size();
             SourceReport newReport = new SourceReport(user, location, quality, type,
                     currentSourceReportNumber);
             SharedPreferences sourceReports = context.getSharedPreferences(QUALITY_DB, Context.MODE_PRIVATE);
             String reportString = gson.toJson(newReport);
-            sourceReports.edit().putString(String.valueOf(currentSourceReportNumber++), reportString).commit();
+            sourceReports.edit().putString(String.valueOf(currentSourceReportNumber), reportString).commit();
         } else {
             throw new IllegalArgumentException("You must pass in the ID of a"
             + " valid user!");
@@ -195,12 +193,13 @@ public class ReportHelper {
      */
     public void addPurityReport(int user, Location location,
                                 WaterPurity purity, int virusPPM, int contaminantPPM, DataSource data, Activity context) {
+        int currentPurityReportNumber = getPurityReports(context).size();
         if (data.getUserbyID(user) != null) {
-            PurityReport newReport = new PurityReport(user, location, purity, currentSourceReportNumber, contaminantPPM,
+            PurityReport newReport = new PurityReport(user, location, purity, currentPurityReportNumber, contaminantPPM,
                     virusPPM);
             SharedPreferences purityReports = context.getSharedPreferences(PURITY_DB, Context.MODE_PRIVATE);
             String reportString = gson.toJson(newReport);
-            purityReports.edit().putString(String.valueOf(currentSourceReportNumber++), reportString).commit();
+            purityReports.edit().putString(String.valueOf(currentPurityReportNumber), reportString).commit();
         } else {
             throw new IllegalArgumentException("You must pass in the ID of a"
                     + " valid user!");
