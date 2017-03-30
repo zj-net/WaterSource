@@ -26,6 +26,7 @@ public class SelectYearVCActivity extends AppCompatActivity {
     private final ArrayList<Integer> YEARS = new ArrayList<>();
     private int FIRST_YEAR = 1970;
     private int THIS_YEAR;
+    private ArrayList<String> monthYearVC = new ArrayList<>();
 
     private boolean checkVirus = false;
     private boolean checkContaminant = false;
@@ -41,7 +42,7 @@ public class SelectYearVCActivity extends AppCompatActivity {
         contaminant = (RadioButton) findViewById(R.id.contaminant);
         THIS_YEAR = Calendar.getInstance().get(Calendar.YEAR);
 
-        final ArrayList<String> monthYearVC = getIntent().getStringArrayListExtra("monthYearVC");
+        monthYearVC = getIntent().getStringArrayListExtra("monthYearVC");
         for (int i = THIS_YEAR; i >= FIRST_YEAR; i--) {
             YEARS.add(i);
         }

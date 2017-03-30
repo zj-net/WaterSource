@@ -13,12 +13,9 @@
     file that will be used to retrieve data for the graph -->
 
     <!-- we add graph view to display -->
-    <com.jjoe64.graphview.helper.GraphViewXML
+    <com.jjoe64.graphview.GraphView
             android:layout_width="match_parent"
-            android:id="@+id/graph"
             android:layout_height="match_parent"
-            app:seriesData="0=5;2=5;3=0;4=2"
-            app:seriesType="line"
-            app:seriesColor="#ee0000" />
+            android:id="@+id/graph" />
 
 </RelativeLayout>
