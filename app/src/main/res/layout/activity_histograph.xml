@@ -16,7 +16,7 @@
     <com.jjoe64.graphview.helper.GraphViewXML
             android:layout_width="match_parent"
             android:id="@+id/graph"
-            android:layout_height="100dip"
+            android:layout_height="match_parent"
             app:seriesData="0=5;2=5;3=0;4=2"
             app:seriesType="line"
             app:seriesColor="#ee0000" />

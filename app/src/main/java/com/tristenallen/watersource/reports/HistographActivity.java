@@ -2,20 +2,11 @@ package com.tristenallen.watersource.reports;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.widget.Toast;
 
-import com.google.android.gms.maps.model.LatLng;
+
+import com.jjoe64.graphview.GridLabelRenderer;
 import com.tristenallen.watersource.R;
-import android.widget.Button;
-import com.tristenallen.watersource.main.MainActivity;
-import android.content.Context;
-import android.widget.ArrayAdapter;
-import android.location.Location;
-import com.tristenallen.watersource.model.Model;
-import com.tristenallen.watersource.model.ReportHelper;
-import com.tristenallen.watersource.model.WaterQuality;
-import com.tristenallen.watersource.model.WaterType;
+
 
 //imports from that one website
 import com.jjoe64.graphview.GraphView;
@@ -30,7 +21,7 @@ import java.util.ArrayList;
  */
 public class HistographActivity extends AppCompatActivity {
     private String[] splitStr;
-    private DataPoint[] dataPointsArray = {new DataPoint(0, 0)};
+    private DataPoint[] dataPointsArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,5 +38,12 @@ public class HistographActivity extends AppCompatActivity {
         dataPoints.toArray(dataPointsArray);
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPointsArray);
         graph.addSeries(series);
+        GridLabelRenderer gridLabelRenderer = graph.getGridLabelRenderer();
+        gridLabelRenderer.setHorizontalAxisTitle("TIME (MONTHS)");
+        if (getIntent().hasExtra("v")) {
+            gridLabelRenderer.setVerticalAxisTitle("VIRUS LEVELS (PPM)");
+        } else if (getIntent().hasExtra("c")) {
+            gridLabelRenderer.setVerticalAxisTitle("CONTAMINANT LEVELS (PPM)");
+        }
     }
 }

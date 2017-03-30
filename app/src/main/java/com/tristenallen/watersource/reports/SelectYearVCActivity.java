@@ -9,6 +9,7 @@ import android.widget.*;
 import com.tristenallen.watersource.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by jahziel on 3/27/17.
@@ -23,7 +24,8 @@ public class SelectYearVCActivity extends AppCompatActivity {
     private String[] splitStr;
     private ArrayList<String> extrasForGraph = new ArrayList<>();
     private final ArrayList<Integer> YEARS = new ArrayList<>();
-    private int FIRST_YEAR = 1917;
+    private int FIRST_YEAR = 1970;
+    private int THIS_YEAR;
 
     private boolean checkVirus = false;
     private boolean checkContaminant = false;
@@ -32,17 +34,16 @@ public class SelectYearVCActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //TODO: populate spinner!
         setContentView(R.layout.activity_selectyearvc);
         submitGraphDetailsButton = (Button) findViewById(R.id.submitGraphDetailsButton);
         yearSpinner = (Spinner) findViewById(R.id.year);
         virus = (RadioButton) findViewById(R.id.virus);
         contaminant = (RadioButton) findViewById(R.id.contaminant);
+        THIS_YEAR = Calendar.getInstance().get(Calendar.YEAR);
 
         final ArrayList<String> monthYearVC = getIntent().getStringArrayListExtra("monthYearVC");
-        for (int i = 0; i <= 100; i++) {
-            YEARS.add(FIRST_YEAR);
-            FIRST_YEAR++;
+        for (int i = THIS_YEAR; i >= FIRST_YEAR; i--) {
+            YEARS.add(i);
         }
 
 
@@ -109,6 +110,11 @@ public class SelectYearVCActivity extends AppCompatActivity {
 
                 Intent goToGraph = new Intent(getApplicationContext(), HistographActivity.class);
                 goToGraph.putExtra("YearAndVC", extrasForGraph);
+                if (virusTrue) {
+                    goToGraph.putExtra("v", "v");
+                } else if (contTrue) {
+                    goToGraph.putExtra("c", "c");
+                }
                 startActivity(goToGraph);
             }
         });
