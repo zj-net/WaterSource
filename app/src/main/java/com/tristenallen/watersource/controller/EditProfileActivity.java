@@ -41,7 +41,7 @@ public class EditProfileActivity extends AppCompatActivity {
         addressField.setText(user.getAddress());
     }
 
-    protected void onSubmitPressed(View view) {
+    public void onSubmitPressed(View view) {
         user.setFirstName(firstNameField.getText().toString());
         user.setLastName(lastNameField.getText().toString());
         user.setTitle(titleField.getText().toString());
@@ -52,7 +52,7 @@ public class EditProfileActivity extends AppCompatActivity {
         startActivity(goToMainActivity);
     }
 
-    protected void onBackPressed(View view) {
-        onBackPressed();
+    public void onBackPressed(View view) {
+        super.onBackPressed();
     }
 }
