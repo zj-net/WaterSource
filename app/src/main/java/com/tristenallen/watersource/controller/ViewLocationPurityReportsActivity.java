@@ -15,10 +15,7 @@ import com.tristenallen.watersource.model.ReportHelper;
 import com.tristenallen.watersource.reports.HistographActivity;
 import com.tristenallen.watersource.reports.SelectYearVCActivity;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by jahziel on 3/28/17.
@@ -53,7 +50,7 @@ public class ViewLocationPurityReportsActivity extends AppCompatActivity {
         PurityReport sample = purityReports.get(0);
         location[0] = sample.getLocation().getLatitude();
         location[1] = sample.getLocation().getLongitude();
-
+        //int count = 0;
         for (PurityReport p : purityReports) {
             purityReportStrings.add(p.toString());
             Date leDate =  p.getTimestamp();
@@ -61,9 +58,12 @@ public class ViewLocationPurityReportsActivity extends AppCompatActivity {
             cal.setTime(leDate);
             int year = cal.get(Calendar.YEAR);
             int month = cal.get(Calendar.MONTH);
+            month++;
+            //month = month + count;
             int virusPPM = p.getVirusPPM();
             int contPPM = p.getContaminantPPM();
             monthYearVC.add(month + ":" + year + ":" + virusPPM + ":" + contPPM);
+            //count++;
         }
         listView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, purityReportStrings));
 
