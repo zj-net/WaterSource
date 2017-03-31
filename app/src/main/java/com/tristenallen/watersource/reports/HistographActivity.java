@@ -1,6 +1,7 @@
 package com.tristenallen.watersource.reports;
 
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 
 
@@ -35,7 +36,8 @@ public class HistographActivity extends AppCompatActivity {
             splitStr = s.split(":");
             dataPoints.add(new DataPoint(Double.parseDouble(splitStr[0]), Double.parseDouble(splitStr[1])));
         }
-        dataPoints.toArray(dataPointsArray);
+        dataPointsArray = new DataPoint[dataPoints.size()];
+        dataPointsArray = dataPoints.toArray(dataPointsArray);
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPointsArray);
         graph.addSeries(series);
         GridLabelRenderer gridLabelRenderer = graph.getGridLabelRenderer();
