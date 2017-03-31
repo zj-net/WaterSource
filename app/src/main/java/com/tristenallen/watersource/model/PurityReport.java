@@ -27,7 +27,7 @@ public class PurityReport {
      *
      * All data in a SourceReport is considered immutable.
      */
-    protected PurityReport(int userID, Location location, WaterPurity purity, int reportNumber,
+    public PurityReport(int userID, Location location, WaterPurity purity, int reportNumber,
                            int virusPPM, int contaminantPPM) {
         this.userID = userID;
         this.location = location;

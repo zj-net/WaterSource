@@ -122,7 +122,7 @@ public class SubmitH20SourceReportActivity extends AppCompatActivity {
                 } else {
                     h20Loc.setLatitude(latDouble);
                     h20Loc.setLongitude(lngDouble);
-                    reportHelper.addSourceReport(Model.getCurrentUserID(), h20Loc, waterQualityData, waterTypeData, data, SubmitH20SourceReportActivity.this);
+                    reportHelper.addSourceReport(Model.getCurrentUserID(), h20Loc, waterQualityData, waterTypeData, data);
                     Context context = getApplicationContext();
                     CharSequence msg = "Report submitted successfully!";
                     int duration = Toast.LENGTH_LONG;

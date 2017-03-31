@@ -1,0 +1,162 @@
+package com.tristenallen.watersource.database;
+
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.location.Location;
+import android.util.Log;
+
+import com.tristenallen.watersource.model.SourceReport;
+import com.tristenallen.watersource.model.WaterQuality;
+import com.tristenallen.watersource.model.WaterType;
+import com.tristenallen.watersource.model.WaterPurity;
+import com.tristenallen.watersource.model.PurityReport;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+/**
+ * Created by David on 3/31/17.
+ */
+
+public class PurityReportDB {
+
+    // Database table column names
+    public static final String TABLE_NAME = "PurityReport";
+
+    public static final String COLUMN_REPORTID = "reportID";
+    public static final String COLUMN_USERID = "userID";
+    public static final String COLUMN_YEAR = "year";
+    public static final String COLUMN_MONTH = "month";
+    public static final String COLUMN_DAY = "day";
+    public static final String COLUMN_LATITUDE = "latitude";
+    public static final String COLUMN_LONGITUDE = "longitude";
+    public static final String COLUMN_PURITY = "purity";
+    public static final String COLUMN_VIRUSPPM = "virusPPM";
+    public static final String COLUMN_CONTAMINANTPPM = "contaminantPPM";
+
+    public static final String[] allColumns = { PurityReportDB.COLUMN_REPORTID,
+            PurityReportDB.COLUMN_USERID, PurityReportDB.COLUMN_YEAR, PurityReportDB.COLUMN_MONTH,
+            PurityReportDB.COLUMN_DAY, PurityReportDB.COLUMN_LATITUDE,PurityReportDB.COLUMN_LONGITUDE,
+            PurityReportDB.COLUMN_PURITY, PurityReportDB.COLUMN_VIRUSPPM, PurityReportDB.COLUMN_CONTAMINANTPPM};
+
+    private static final int REPORTID_NUMBER = 0;
+    private static final int USERID_NUMBER = 1;
+    private static final int YEAR_NUMBER = 2;
+    private static final int MONTH_NUMBER = 3;
+    private static final int DAY_NUMBER = 4;
+    private static final int LONGITUDE_NUMBER = 5;
+    private static final int LATITUDE_NUMBER = 6;
+    private static final int PURITY_NUMBER = 7;
+    private static final int VIRUSPPM_NUMBER = 8;
+    private static final int CONTAMINANTPPM_NUMBER = 8;
+
+    // Database creation SQL statement
+    private static final String DATABASE_CREATE = "create table "
+            + TABLE_NAME
+            + "("
+            + COLUMN_REPORTID + " integer primary key autoincrement, "
+            + COLUMN_USERID + " integer,"
+            + COLUMN_YEAR + " integer,"
+            + COLUMN_MONTH + " integer,"
+            + COLUMN_DAY + " integer,"
+            + COLUMN_LATITUDE + " real,"
+            + COLUMN_LONGITUDE + " real,"
+            + COLUMN_PURITY + " text not null,"
+            + COLUMN_VIRUSPPM + " integer,"
+            + COLUMN_CONTAMINANTPPM + " integer"
+            + ");";
+
+    public static void onCreate(SQLiteDatabase database) {
+        database.execSQL(DATABASE_CREATE);
+    }
+
+    public static void onUpgrade(SQLiteDatabase database, int oldVersion,
+                                 int newVersion) {
+        Log.w(UserDB.class.getName(), "Upgrading database from version "
+                + oldVersion + " to " + newVersion
+                + ", which will destroy all old data");
+        database.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        onCreate(database);
+    }
+
+    public static PurityReport create(SQLiteDatabase database, int reportID, int userID,
+                                      Date timestamp, Location location, WaterPurity purity,
+                                      int virusPPM, int contaminantPPM) {
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_REPORTID, reportID);
+        values.put(COLUMN_USERID, userID);
+        values.put(COLUMN_YEAR, timestamp.getYear());
+        values.put(COLUMN_MONTH, timestamp.getMonth());
+        values.put(COLUMN_DAY, timestamp.getDay());
+        values.put(COLUMN_LATITUDE, location.getLatitude());
+        values.put(COLUMN_LONGITUDE, location.getLongitude());
+        values.put(COLUMN_PURITY, purity.toString());
+        values.put(COLUMN_VIRUSPPM, virusPPM);
+        values.put(COLUMN_CONTAMINANTPPM, contaminantPPM);
+
+        long insertId = database.insert(TABLE_NAME, null,
+                values);
+
+        Log.d("APP", "Inserted PurityReport: " + insertId);
+
+        Cursor cursor = database.query(TABLE_NAME,
+                allColumns, COLUMN_REPORTID + " = " + insertId, null,
+                null, null, null);
+
+        cursor.moveToFirst();
+
+        PurityReport report = cursorToReport(cursor);
+        cursor.close();
+        return report;
+    }
+
+    private static PurityReport cursorToReport(Cursor cursor) {
+        int reportID = cursor.getInt(REPORTID_NUMBER);
+        int userID = cursor.getInt(USERID_NUMBER);
+
+        double lat = cursor.getDouble(LATITUDE_NUMBER);
+        double lng = cursor.getDouble(LONGITUDE_NUMBER);
+        Location location = new Location("Purity Report Location");
+        location.setLatitude(lat);
+        location.setLongitude(lng);
+
+        WaterPurity purity = WaterPurity.valueOf(cursor.getString(PURITY_NUMBER).toUpperCase());
+        int virusPPM = cursor.getInt(VIRUSPPM_NUMBER);
+        int contaminantPPM = cursor.getInt(CONTAMINANTPPM_NUMBER);
+
+        PurityReport report = new PurityReport(userID,location,purity,reportID,virusPPM,contaminantPPM);
+        return report;
+    }
+
+
+    public static List<PurityReport> getAllReports(SQLiteDatabase database) {
+        List<PurityReport> reports = new ArrayList<>();
+        Cursor cursor = database.query(TABLE_NAME,
+                allColumns, null, null, null, null, null);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            PurityReport report = cursorToReport(cursor);
+            reports.add(report);
+            cursor.moveToNext();
+        }
+        // make sure to close the cursor
+        cursor.close();
+
+        Log.d("APP", "All Purity Reports: " + reports.toString());
+
+        return reports;
+    }
+
+
+    public static int getPurityReportCount(SQLiteDatabase database) {
+        String query = "SELECT * FROM " + TABLE_NAME;
+
+        Cursor  cursor = database.rawQuery(query,null);
+
+        return cursor.getCount();
+    }
+
+}

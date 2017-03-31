@@ -26,4 +26,9 @@ public interface DataSource {
                                     Location location, WaterType type, WaterQuality quality);
     public int getSourceReportCount();
     List<SourceReport> getAllSourceReports();
+
+    PurityReport createPurityReport(int reportID, int userID, Date timestamp, Location location,
+                                    WaterPurity purity, int virusPPM, int contaminantPPM);
+    public int getPurityReportCount();
+    List<PurityReport> getAllPurityReports();
 }

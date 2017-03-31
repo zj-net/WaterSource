@@ -233,7 +233,7 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         if (user.getRole().compareTo(AuthLevel.USER) > 0) {
-            Collection<PurityReport> purityReportList = reportHelper.getPurityReports();
+            Collection<PurityReport> purityReportList = reportHelper.getPurityReports(data);
             for (PurityReport r : purityReportList) {
                 LatLng loc = new LatLng(r.getLocation().getLatitude(), r.getLocation().getLongitude());
                 String s = "Condition: " + r.getPurity() + "\n" + "VirusPPM: " + r.getVirusPPM() + "\n" + "ContaminantPPM: " + r.getContaminantPPM();

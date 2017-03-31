@@ -11,6 +11,8 @@ import com.tristenallen.watersource.model.SourceReport;
 import com.tristenallen.watersource.model.User;
 import com.tristenallen.watersource.model.WaterQuality;
 import com.tristenallen.watersource.model.WaterType;
+import com.tristenallen.watersource.model.PurityReport;
+import com.tristenallen.watersource.model.WaterPurity;
 
 import java.util.Date;
 import java.util.List;
@@ -93,5 +95,20 @@ public class MyDatabase implements DataSource {
 
     @Override
     public List<SourceReport> getAllSourceReports() {return SourceReportDB.getAllReports(database);}
+
+    @Override
+    public PurityReport createPurityReport(int reportID, int userID, Date timestamp,
+                                           Location location, WaterPurity purity, int virusPPM,
+                                           int contaminantPPM){
+        return PurityReportDB.create(database, reportID, userID, timestamp, location, purity,
+                virusPPM,contaminantPPM);
+    }
+
+
+    @Override
+    public int getPurityReportCount() {return PurityReportDB.getPurityReportCount(database);}
+
+    @Override
+    public List<PurityReport> getAllPurityReports() {return PurityReportDB.getAllReports(database);}
 }
 

@@ -15,7 +15,7 @@ import java.util.Map;
 public class ReportHelper {
     private static ReportHelper INSTANCE = new ReportHelper();
     private int currentSourceReportNumber;
-    private Map<Integer, PurityReport> purityReports;
+    private int currentPurityReportNumber;
 
     /**
      * Creates a new ReportHelper with empty Maps
@@ -23,7 +23,7 @@ public class ReportHelper {
      */
     private ReportHelper() {
         currentSourceReportNumber = 0;
-        purityReports = new HashMap<>();
+        currentPurityReportNumber = 0;
     }
 
     /**
@@ -70,8 +70,8 @@ public class ReportHelper {
      * a Collection.
      * @return Collection of all the purity reports in the model.
      */
-    public Collection<PurityReport> getPurityReports() {
-        return purityReports.values();
+    public Collection<PurityReport> getPurityReports(DataSource data) {
+        return data.getAllPurityReports();
     }
 
     /**
@@ -148,9 +148,11 @@ public class ReportHelper {
     public void addPurityReport(int user, Location location,
                                 WaterPurity purity, int virusPPM, int contaminantPPM, DataSource data) {
         if (data.getUserbyID(user) != null) {
+            currentPurityReportNumber = data.getPurityReportCount();
             PurityReport newReport = new PurityReport(user, location, purity,
-                    currentSourceReportNumber, virusPPM, contaminantPPM);
-            purityReports.put(currentSourceReportNumber++, newReport);
+                    currentPurityReportNumber, virusPPM, contaminantPPM);
+            data.createPurityReport(currentPurityReportNumber,user,newReport.getTimestamp(),
+                    location, purity, virusPPM, contaminantPPM);
         } else {
             throw new IllegalArgumentException("You must pass in the ID of a"
                     + " valid user!");

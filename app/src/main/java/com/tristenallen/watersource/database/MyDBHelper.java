@@ -23,6 +23,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase database) {
         UserDB.onCreate(database);
         SourceReportDB.onCreate(database);
+        PurityReportDB.onCreate(database);
     }
 
     // Method is called during an upgrade of the database,
@@ -32,5 +33,6 @@ public class MyDBHelper extends SQLiteOpenHelper {
                           int newVersion) {
         UserDB.onUpgrade(database, oldVersion, newVersion);
         SourceReportDB.onUpgrade(database, oldVersion, newVersion);
+        PurityReportDB.onUpgrade(database, oldVersion, newVersion);
     }
 }

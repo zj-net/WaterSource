@@ -3,12 +3,15 @@ package com.tristenallen.watersource.controller;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import com.tristenallen.watersource.R;
+import com.tristenallen.watersource.database.MyDatabase;
+import com.tristenallen.watersource.model.DataSource;
 import com.tristenallen.watersource.model.Model;
 import com.tristenallen.watersource.model.PurityReport;
 import com.tristenallen.watersource.model.ReportHelper;
@@ -28,15 +31,20 @@ public class ViewLocationPurityReportsActivity extends AppCompatActivity {
     private double[] extrasFromInfoWindow;
     private double[] location = new double[2];
     private ArrayList<String> monthYearVC = new ArrayList<>();
+
+    private DataSource data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        data = new MyDatabase(this);
+
         setContentView(R.layout.activity_viewlocationpurityreports);
         listView = (ListView) findViewById(R.id.locationPurityReportListView);
         viewHistographButton = (Button) findViewById(R.id.viewHistographButton);
         addNewPurityReportButton = (Button) findViewById(R.id.addNewReportButton);
         extrasFromInfoWindow = getIntent().getDoubleArrayExtra("Location");
-        List<PurityReport> rawPurityReports = new ArrayList<>(reportHelper.getPurityReports(this));
+        List<PurityReport> rawPurityReports = new ArrayList<>(reportHelper.getPurityReports(data));
         List<PurityReport> purityReports = new ArrayList<>();
 
         List<String> purityReportStrings = new ArrayList<>();

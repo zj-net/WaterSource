@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import com.tristenallen.watersource.R;
+import com.tristenallen.watersource.database.MyDatabase;
+import com.tristenallen.watersource.model.DataSource;
 import com.tristenallen.watersource.model.Model;
 import com.tristenallen.watersource.model.PurityReport;
 import com.tristenallen.watersource.model.ReportHelper;
@@ -22,14 +24,20 @@ import java.util.List;
 public class ViewPurityReportsActivity extends AppCompatActivity {
     private ReportHelper reportHelper = Model.getReportHelper();
     private ListView listView;
+
+    private DataSource data;
+
     //private Button viewGraphButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        data = new MyDatabase(this);
+
         setContentView(R.layout.activity_viewpurityreports);
         listView = (ListView) findViewById(R.id.purityReportListView);
         //viewGraphButton = (Button) findViewById(R.id.viewGraphButton);
-        List<PurityReport> purityReports = new ArrayList<>(reportHelper.getPurityReports(this));
+        List<PurityReport> purityReports = new ArrayList<>(reportHelper.getPurityReports(data));
         List<String> purityReportStrings = new ArrayList<>();
         for (PurityReport p : purityReports) {
             purityReportStrings.add(p.toString());
