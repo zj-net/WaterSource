@@ -195,8 +195,8 @@ public class ReportHelper {
                                 WaterPurity purity, int virusPPM, int contaminantPPM, DataSource data, Activity context) {
         int currentPurityReportNumber = getPurityReports(context).size() + 1;
         if (data.getUserbyID(user) != null) {
-            PurityReport newReport = new PurityReport(user, location, purity, currentPurityReportNumber, contaminantPPM,
-                    virusPPM);
+            PurityReport newReport = new PurityReport(user, location, purity, currentPurityReportNumber, virusPPM,
+                    contaminantPPM);
             SharedPreferences purityReports = context.getSharedPreferences(PURITY_DB, Context.MODE_PRIVATE);
             String reportString = gson.toJson(newReport);
             purityReports.edit().putString(String.valueOf(currentPurityReportNumber), reportString).commit();
