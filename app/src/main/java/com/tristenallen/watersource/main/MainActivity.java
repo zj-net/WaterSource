@@ -228,7 +228,9 @@ public class MainActivity extends AppCompatActivity implements
         Collection<SourceReport> reportList = reportHelper.getSourceReports(this);
         for (SourceReport r : reportList) {
             LatLng loc = new LatLng(r.getLocation().getLatitude(), r.getLocation().getLongitude());
-            mMap.addMarker(new MarkerOptions().position(loc).title("Water Source").snippet("Type: "+ r.getType() + "\n" + "Quality: " + r.getQuality()));
+            mMap.addMarker(new MarkerOptions().position(loc).title("Water Source")
+                    .snippet("Type: "+ r.getType() + "\n" + "Quality: " + r.getQuality())
+                    .zIndex(r.getReportNumber()));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
         }
 
@@ -237,7 +239,10 @@ public class MainActivity extends AppCompatActivity implements
             for (PurityReport r : purityReportList) {
                 LatLng loc = new LatLng(r.getLocation().getLatitude(), r.getLocation().getLongitude());
                 String s = "Condition: " + r.getPurity() + "\n" + "VirusPPM: " + r.getVirusPPM() + "\n" + "ContaminantPPM: " + r.getContaminantPPM();
-                Marker newMarker = mMap.addMarker(new MarkerOptions().position(loc).title("Water Purity").snippet(s).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+                Marker newMarker = mMap.addMarker(new MarkerOptions().position(loc)
+                        .title("Water Purity").snippet(s)
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
+                        .zIndex(r.getReportNumber()));
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
                 purityMarkers.add(newMarker);
             }
