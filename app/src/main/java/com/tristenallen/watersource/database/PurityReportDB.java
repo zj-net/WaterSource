@@ -46,11 +46,11 @@ public class PurityReportDB {
     private static final int YEAR_NUMBER = 2;
     private static final int MONTH_NUMBER = 3;
     private static final int DAY_NUMBER = 4;
-    private static final int LONGITUDE_NUMBER = 5;
-    private static final int LATITUDE_NUMBER = 6;
+    private static final int LATITUDE_NUMBER = 5;
+    private static final int LONGITUDE_NUMBER = 6;
     private static final int PURITY_NUMBER = 7;
     private static final int VIRUSPPM_NUMBER = 8;
-    private static final int CONTAMINANTPPM_NUMBER = 8;
+    private static final int CONTAMINANTPPM_NUMBER = 9;
 
     // Database creation SQL statement
     private static final String DATABASE_CREATE = "create table "

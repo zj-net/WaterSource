@@ -1,8 +1,5 @@
 package com.tristenallen.watersource.model;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Created by tristen on 2/13/17.
  */
@@ -19,7 +16,7 @@ public class AuthHelper {
      * @param email String specifying the user's email.
      * @param password String specifying the user's password.
      * @return AuthPackage containing the logged-in user and/or a status message
-     * indiciating the failure of the operation.
+     * indicating the failure of the operation.
      */
     public AuthPackage login(String email, String password, DataSource data) {
         if (!data.checkEmail(email)) {

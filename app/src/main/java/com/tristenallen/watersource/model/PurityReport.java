@@ -97,7 +97,8 @@ public class PurityReport {
     @Override
     public String toString() {
         return "Report Number: " + reportNumber + "\n" + "Location: "
-                + location.getLatitude() + ", " + location.getLongitude() + "\n"
+                + String.format("%.2f",location.getLatitude()) + ", "
+                + String.format("%.2f",location.getLongitude()) + "\n"
                 + "Water purity: " + purity.toString() + "\n" + "Virus PPM: " + virusPPM + "\n"
                 + "Contaminant PPM: " + contaminantPPM
                 + "\n" + "Created: " + timestamp;

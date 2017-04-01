@@ -19,6 +19,7 @@ import com.tristenallen.watersource.reports.HistographActivity;
 import com.tristenallen.watersource.reports.SelectYearVCActivity;
 
 import java.util.*;
+import java.math.*;
 
 /**
  * Created by jahziel on 3/28/17.
@@ -50,7 +51,8 @@ public class ViewLocationPurityReportsActivity extends AppCompatActivity {
         List<String> purityReportStrings = new ArrayList<>();
 
         for (PurityReport x : rawPurityReports) {
-            if (x.getLocation().getLatitude() == extrasFromInfoWindow[0] && x.getLocation().getLongitude() == extrasFromInfoWindow[1]) {
+            if (Math.abs(x.getLocation().getLatitude()-extrasFromInfoWindow[0]) +
+                    Math.abs(x.getLocation().getLongitude()-extrasFromInfoWindow[1]) < 1E-10) {
                 purityReports.add(x);
             }
         }

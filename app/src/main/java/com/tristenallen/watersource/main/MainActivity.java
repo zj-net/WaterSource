@@ -2,7 +2,6 @@ package com.tristenallen.watersource.main;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -33,6 +32,7 @@ import com.tristenallen.watersource.model.ReportHelper;
 import com.tristenallen.watersource.model.SourceReport;
 import com.tristenallen.watersource.model.User;
 import com.tristenallen.watersource.reports.SubmitH20SourceReportActivity;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collection;
