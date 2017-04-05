@@ -138,7 +138,7 @@ public class UserDB {
         Cursor cursor = database.rawQuery(query,null);
         Log.d("checkEmail******",cursor.toString());
         if (cursor.getCount()>0) {
-            // duplicate emai
+            // duplicate email
             return true;
         }
         else {
