@@ -238,7 +238,7 @@ public class MainActivity extends AppCompatActivity implements
             Collection<PurityReport> purityReportList = reportHelper.getPurityReports(this);
             for (PurityReport r : purityReportList) {
                 LatLng loc = new LatLng(r.getLocation().getLatitude(), r.getLocation().getLongitude());
-                String s = "Condition: " + r.getPurity() + "\n" + "VirusPPM: " + r.getVirusPPM() + "\n" + "ContaminantPPM: " + r.getContaminantPPM();
+                String s = "Condition: " + r.getPurity() + "\n" + "VirusPPM: " + r.getVirusPPM() + "\n" + "ContaminantPPM: " + r.getContaminantPPM() + "\nLong press for more!";
                 Marker newMarker = mMap.addMarker(new MarkerOptions().position(loc)
                         .title("Water Purity").snippet(s)
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
@@ -250,7 +250,7 @@ public class MainActivity extends AppCompatActivity implements
 
         mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
 
-        if (user.getRole().compareTo(AuthLevel.MANAGER) > 0) {
+        if (user.getRole().compareTo(AuthLevel.MANAGER) >= 0) {
             mMap.setOnInfoWindowLongClickListener(new GoogleMap.OnInfoWindowLongClickListener() {
                 @Override
                 public void onInfoWindowLongClick(Marker marker) {
