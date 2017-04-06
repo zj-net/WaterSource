@@ -26,7 +26,7 @@ public class SelectYearVCActivity extends AppCompatActivity {
     private final ArrayList<Integer> YEARS = new ArrayList<>();
     private int FIRST_YEAR = 1970;
     private int THIS_YEAR;
-    private ArrayList<String> monthYearVC = new ArrayList<>();
+    private Iterable<String> monthYearVC = new ArrayList<>();
 
     private boolean checkVirus = false;
     private boolean checkContaminant = false;

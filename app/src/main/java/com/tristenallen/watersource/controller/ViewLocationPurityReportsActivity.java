@@ -36,7 +36,7 @@ public class ViewLocationPurityReportsActivity extends AppCompatActivity {
         viewHistographButton = (Button) findViewById(R.id.viewHistographButton);
         addNewPurityReportButton = (Button) findViewById(R.id.addNewReportButton);
         extrasFromInfoWindow = getIntent().getDoubleArrayExtra("Location");
-        List<PurityReport> rawPurityReports = new ArrayList<>(reportHelper.getPurityReports(this));
+        Iterable<PurityReport> rawPurityReports = new ArrayList<>(reportHelper.getPurityReports(this));
         List<PurityReport> purityReports = new ArrayList<>();
 
         List<String> purityReportStrings = new ArrayList<>();

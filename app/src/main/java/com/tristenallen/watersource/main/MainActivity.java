@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements
     public static final String ARG_latLng = "latLng";
     private Marker selectionMarker;
     private Toolbar toolbar;
-    private List<Marker> purityMarkers = new ArrayList<>();
+    private Collection<Marker> purityMarkers = new ArrayList<>();
 
 
     //getting list view button
