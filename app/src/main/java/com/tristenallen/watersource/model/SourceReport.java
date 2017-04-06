@@ -3,6 +3,7 @@ package com.tristenallen.watersource.model;
 import android.location.Location;
 
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by Tristen on 2/25/2017.
@@ -89,8 +90,8 @@ public class SourceReport {
     @Override
     public String toString() {
         return "Report Number: " + reportNumber + "\n" + "Location: "
-                + String.format("%.2f",location.getLatitude()) + ", "
-                + String.format("%.2f",location.getLongitude()) + "\n"
+                + String.format(Locale.US,"%.2f",location.getLatitude()) + ", "
+                + String.format(Locale.US, "%.2f",location.getLongitude()) + "\n"
                 + "Water type: " + type.toString() + "\n" + "Water quality: " + quality.toString()
                 + "\n" + "Created: " + timestamp;
     }

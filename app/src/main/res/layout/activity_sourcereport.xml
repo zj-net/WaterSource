@@ -118,7 +118,6 @@
                 android:visibility="visible"
                 style="@style/Widget.AppCompat.Light.ActionButton"
                 android:id="@+id/submitButton"
-                android:onClick="onSubmitPressed"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"/>
 

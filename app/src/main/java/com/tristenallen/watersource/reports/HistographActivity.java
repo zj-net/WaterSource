@@ -1,17 +1,16 @@
 package com.tristenallen.watersource.reports;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 
 
 import com.jjoe64.graphview.GridLabelRenderer;
+import com.jjoe64.graphview.series.Series;
 import com.tristenallen.watersource.R;
 
 
 //imports from that one website
 import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.Viewport;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
@@ -28,7 +27,7 @@ public class HistographActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_histograph);
-        final ArrayList<String> extrasFromIntent = getIntent().getStringArrayListExtra("YearAndVC");
+        final Iterable<String> extrasFromIntent = getIntent().getStringArrayListExtra("YearAndVC");
 
         GraphView graph = (GraphView) findViewById(R.id.graph);
         ArrayList<DataPoint> dataPoints = new ArrayList<>();
@@ -38,7 +37,7 @@ public class HistographActivity extends AppCompatActivity {
         }
         dataPointsArray = new DataPoint[dataPoints.size()];
         dataPointsArray = dataPoints.toArray(dataPointsArray);
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPointsArray);
+        Series<DataPoint> series = new LineGraphSeries<>(dataPointsArray);
         graph.addSeries(series);
         GridLabelRenderer gridLabelRenderer = graph.getGridLabelRenderer();
         gridLabelRenderer.setHorizontalAxisTitle("TIME (MONTHS)");

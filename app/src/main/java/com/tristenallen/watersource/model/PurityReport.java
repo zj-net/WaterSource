@@ -3,6 +3,7 @@ package com.tristenallen.watersource.model;
 import android.location.Location;
 
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by tristen on 3/10/17.
@@ -97,8 +98,8 @@ public class PurityReport {
     @Override
     public String toString() {
         return "Report Number: " + reportNumber + "\n" + "Location: "
-                + String.format("%.2f",location.getLatitude()) + ", "
-                + String.format("%.2f",location.getLongitude()) + "\n"
+                + String.format(Locale.US, "%.2f",location.getLatitude()) + ", "
+                + String.format(Locale.US, "%.2f",location.getLongitude()) + "\n"
                 + "Water purity: " + purity.toString() + "\n" + "Virus PPM: " + virusPPM + "\n"
                 + "Contaminant PPM: " + contaminantPPM
                 + "\n" + "Created: " + timestamp;
