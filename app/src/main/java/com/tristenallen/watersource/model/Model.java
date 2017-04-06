@@ -1,7 +1,5 @@
 package com.tristenallen.watersource.model;
 
-import android.provider.ContactsContract;
-
 /**
  * Created by tristen on 2/21/17.
  *

@@ -8,8 +8,6 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by Tristen on 2/25/2017.

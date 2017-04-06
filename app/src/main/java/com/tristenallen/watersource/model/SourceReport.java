@@ -94,4 +94,9 @@ public class SourceReport {
                 + "Water type: " + type.toString() + "\n" + "Water quality: " + quality.toString()
                 + "\n" + "Created: " + timestamp;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return (o instanceof SourceReport && ((SourceReport) o).reportNumber == reportNumber);
+    }
 }
