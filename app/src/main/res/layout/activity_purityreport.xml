@@ -1,22 +1,17 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="#2055a6"
-    android:orientation="vertical"
-    tools:context="com.tristenallen.watersource.controller.EditProfileActivity"
-    >
 
 
-    <RelativeLayout android:layout_width="fill_parent"
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="30dp"
         android:orientation="vertical"
+        tools:context="com.tristenallen.watersource.controller.EditProfileActivity"
         >
 
         <TextView
@@ -168,4 +163,3 @@
     </RelativeLayout>
 
 
-</LinearLayout>
