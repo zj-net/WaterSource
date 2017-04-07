@@ -1,11 +1,13 @@
 package com.tristenallen.watersource.reports;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.*;
-
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.Spinner;
 import com.tristenallen.watersource.R;
 
 import java.util.ArrayList;

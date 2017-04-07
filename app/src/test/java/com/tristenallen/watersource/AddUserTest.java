@@ -1,14 +1,17 @@
 package com.tristenallen.watersource;
+
 import com.tristenallen.watersource.database.MyDatabase;
 import com.tristenallen.watersource.model.AuthLevel;
 import com.tristenallen.watersource.model.User;
 import com.tristenallen.watersource.model.UserHelper;
-
 import org.junit.Before;
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 //import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
 
 /**
  * Created by Nelson on 4/5/2017.

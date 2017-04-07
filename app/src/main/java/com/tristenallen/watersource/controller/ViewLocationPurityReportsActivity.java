@@ -13,7 +13,10 @@ import com.tristenallen.watersource.model.PurityReport;
 import com.tristenallen.watersource.model.ReportHelper;
 import com.tristenallen.watersource.reports.SelectYearVCActivity;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by jahziel on 3/28/17.

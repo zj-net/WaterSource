@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-
 import com.tristenallen.watersource.model.AuthLevel;
 import com.tristenallen.watersource.model.User;
 

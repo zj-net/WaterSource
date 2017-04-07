@@ -2,19 +2,16 @@ package com.tristenallen.watersource.reports;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-
-
+import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GridLabelRenderer;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 import com.jjoe64.graphview.series.Series;
 import com.tristenallen.watersource.R;
 
+import java.util.ArrayList;
 
 //imports from that one website
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
-
-import java.util.ArrayList;
 
 /**
  * Created by jahziel on 3/27/17.

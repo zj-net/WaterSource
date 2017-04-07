@@ -3,7 +3,6 @@ package com.tristenallen.watersource.database;
 import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-
 import com.tristenallen.watersource.model.AuthLevel;
 import com.tristenallen.watersource.model.DataSource;
 import com.tristenallen.watersource.model.User;
