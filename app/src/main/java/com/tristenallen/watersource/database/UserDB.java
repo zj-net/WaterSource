@@ -101,8 +101,7 @@ class UserDB {
         AuthLevel role = AuthLevel.valueOf(cursor.getString(ROLE_NUMBER).toUpperCase());
         String lastName = cursor.getString(LASTNAME_NUMBER);
         String firstName = cursor.getString(FIRSTNAME_NUMBER);
-        User user = new User(email, role, lastName, firstName);
-        return user;
+        return new User(email, role, lastName, firstName);
     }
 
 
@@ -139,14 +138,9 @@ class UserDB {
         int row_count = cursor.getCount();
         cursor.close();
 
-        if (row_count>0) {
-            // duplicate email
-            return true;
-        }
-        else {
-            // legal email
-            return false;
-        }
+        //return true for duplicate email
+        //return false for legal email
+        return row_count>0;
     }
 
     public static boolean validate(SQLiteDatabase database, String email, String password) {
@@ -158,14 +152,9 @@ class UserDB {
         int row_count = cursor.getCount();
         cursor.close();
 
-        if (row_count>0) {
-            // email,password match
-            return true;
-        }
-        else {
-            // wrong password
-            return false;
-        }
+        //return true for email,password match
+        //return false for wrong password
+        return row_count>0;
     }
 
     public static int getIDbyEmail(SQLiteDatabase database, String email) {
