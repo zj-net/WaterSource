@@ -8,7 +8,7 @@
 
 
     <TextView
-            android:text="Water Purity Reports"
+            android:text="@string/water_purity_reports"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/title"
@@ -26,7 +26,7 @@
               android:layout_below="@+id/title"
     />
     <Button
-            android:text="View Graph"
+            android:text="@string/view_graph"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/viewHistographButton"
@@ -35,7 +35,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"/>
     <Button
-            android:text="Add new purity report"
+            android:text="@string/add_new_purityreport"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/addNewReportButton"

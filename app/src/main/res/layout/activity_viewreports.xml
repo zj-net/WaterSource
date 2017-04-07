@@ -17,10 +17,12 @@
         android:textSize="30sp"
         android:textStyle="normal|bold" />
 
-    <ListView android:id="@+id/sourceReportListView"
+    <ListView
+        android:id="@+id/sourceReportListView"
+        style="@style/Widget.AppCompat.ListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#2055a6"
         android:layout_weight="1"
-        android:drawSelectorOnTop="false"/>
+        android:background="#2055a6"
+        android:drawSelectorOnTop="false" />
 </LinearLayout>

@@ -29,7 +29,7 @@
 
         <EditText android:layout_width="fill_parent"
             android:layout_height="40dp"
-            android:hint="First Name"
+            android:hint="@string/first_name"
             android:background="#f3f3f3"
             android:paddingLeft="5dp"
             android:id="@+id/firstNameTXT"
@@ -39,7 +39,7 @@
 
         <EditText android:layout_width="fill_parent"
             android:layout_height="40dp"
-            android:hint="Last Name"
+            android:hint="@string/last_name"
             android:background="#f3f3f3"
             android:paddingLeft="5dp"
             android:id="@+id/lastNameTXT"
@@ -49,7 +49,7 @@
 
         <EditText android:layout_width="fill_parent"
             android:layout_height="40dp"
-            android:hint="Password"
+            android:hint="@string/password"
                   android:inputType="textPassword"
             android:background="#f3f3f3"
             android:paddingLeft="5dp"
@@ -60,7 +60,7 @@
 
         <EditText android:layout_width="fill_parent"
             android:layout_height="40dp"
-            android:hint="Confirm Password"
+            android:hint="@string/confirm_password"
                   android:inputType="textPassword"
             android:background="#f3f3f3"
             android:paddingLeft="5dp"
@@ -70,7 +70,7 @@
             android:layout_marginTop="19dp" />
 
         <TextView
-            android:text="Please fill out your information below"
+            android:text="@string/please_fill"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -81,12 +81,13 @@
 
         <EditText android:layout_width="fill_parent"
             android:layout_height="40dp"
-            android:hint="Email"
+            android:hint="@string/email"
             android:background="#f3f3f3"
             android:paddingLeft="5dp"
             android:id="@+id/emailTXT"
             android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:inputType="textEmailAddress"  />
 
         <Spinner
             android:layout_width="match_parent"
@@ -99,7 +100,7 @@
             android:layout_alignStart="@+id/accRegisterTXT" />
 
         <TextView
-            android:text="Personal Information"
+            android:text="@string/personal_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -109,7 +110,7 @@
             android:layout_alignParentStart="true" />
 
         <TextView
-            android:text="Welcome New User"
+            android:text="@string/welcome_new_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -122,7 +123,7 @@
             android:layout_height="38dp"
             android:layout_gravity="center_horizontal"
             android:background="#f3f3f3"
-            android:text="Submit"
+            android:text="@string/submit"
             android:visibility="visible"
             style="@style/Widget.AppCompat.Light.ActionButton"
             android:id="@+id/submitButton"
@@ -130,7 +131,7 @@
             android:layout_centerHorizontal="true" />
 
         <TextView
-            android:text="Account Registration"
+            android:text="@string/acc_registration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/accRegisterTXT"

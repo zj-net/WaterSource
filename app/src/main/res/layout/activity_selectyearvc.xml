@@ -38,7 +38,7 @@
                 android:layout_marginBottom="182dp" />
 
         <RadioButton
-                android:text="Contaminant"
+                android:text="@string/contaminant"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/contaminant"
@@ -47,7 +47,7 @@
                 android:layout_alignParentStart="true" />
 
         <RadioButton
-                android:text="Virus"
+                android:text="@string/virus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/virus"
@@ -56,7 +56,7 @@
                 android:layout_alignParentStart="true" />
 
         <TextView
-                android:text="Select a Year"
+                android:text="@string/select_a_year"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -65,7 +65,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true" />
         <Button
-                android:text="Create Graph"
+                android:text="@string/create_graph"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"

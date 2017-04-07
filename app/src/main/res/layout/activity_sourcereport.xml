@@ -20,7 +20,7 @@
         >
 
         <TextView
-            android:text="Enter your information below"
+            android:text="@string/enter_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -31,7 +31,7 @@
             android:layout_marginTop="11dp" />
 
         <TextView
-            android:text="Water Source Report Submission"
+            android:text="@string/water_src_submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -42,7 +42,7 @@
             android:layout_marginTop="14dp" />
 
         <TextView
-            android:text="Location"
+            android:text="@string/location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
@@ -53,7 +53,7 @@
 
 
         <TextView
-            android:text="Water Condition"
+            android:text="@string/waterCon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
@@ -64,7 +64,7 @@
 
         <EditText android:layout_width="fill_parent"
                   android:layout_height="40dp"
-                  android:hint="Latitude"
+                  android:hint="@string/latitude"
                   android:background="#f3f3f3"
                   android:paddingLeft="5dp"
                   android:id="@+id/latitudeTXT"
@@ -73,7 +73,7 @@
                   android:layout_alignParentStart="true" />
 
         <TextView
-            android:text="Water Type"
+            android:text="@string/waterType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/longitudeTXT"
@@ -97,7 +97,7 @@
             android:background="#f3f3f3"
             android:inputType="textPersonName"
             android:paddingLeft="5dp"
-            android:hint="Longitude"
+            android:hint="@string/longitude"
             android:id="@+id/longitudeTXT"
             android:layout_marginTop="24dp"
             android:layout_below="@+id/latitudeTXT"
@@ -114,7 +114,7 @@
                 android:layout_height="38dp"
                 android:layout_gravity="center_horizontal"
                 android:background="#f3f3f3"
-                android:text="submit"
+                android:text="@string/submit"
                 android:visibility="visible"
                 style="@style/Widget.AppCompat.Light.ActionButton"
                 android:id="@+id/submitButton"
@@ -125,7 +125,6 @@
     <LinearLayout android:layout_width="fill_parent"
                   android:layout_height="wrap_content"
                   android:orientation="vertical"
-
         >
 
     </LinearLayout>
