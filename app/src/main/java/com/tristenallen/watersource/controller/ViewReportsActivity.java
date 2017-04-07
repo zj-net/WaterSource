@@ -1,9 +1,5 @@
 package com.tristenallen.watersource.controller;
 
-/**
- * Created by jahziel on 3/1/17.
- */
-
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -16,6 +12,10 @@ import com.tristenallen.watersource.model.SourceReport;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by jahziel on 3/1/17.
+ * Activity for viewing source reports.
+ */
 public class ViewReportsActivity extends AppCompatActivity {
     private final ReportHelper reportHelper = Model.getReportHelper();
 

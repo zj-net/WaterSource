@@ -1,9 +1,5 @@
 package com.tristenallen.watersource.login;
 
-/**
- * Created by jahziel on 2/22/17.
- */
-
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +12,11 @@ import com.tristenallen.watersource.model.Model;
 import com.tristenallen.watersource.model.User;
 import com.tristenallen.watersource.model.DataSource;
 import java.util.regex.*;
+
+/**
+ * Created by jahziel on 2/22/17.
+ * Activity for first time users to register on the app.
+ */
 
 public class RegistrationActivity extends AppCompatActivity {
     private EditText firstNameField;

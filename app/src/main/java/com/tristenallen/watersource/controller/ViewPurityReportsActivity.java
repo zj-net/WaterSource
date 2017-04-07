@@ -14,6 +14,7 @@ import java.util.List;
 
 /**
  * Created by jahziel on 3/27/17.
+ * Activity for users to view a list of all purity reports submitted thus far.
  */
 public class ViewPurityReportsActivity extends AppCompatActivity {
     private final ReportHelper reportHelper = Model.getReportHelper();

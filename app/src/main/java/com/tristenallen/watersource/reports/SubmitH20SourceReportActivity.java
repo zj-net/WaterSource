@@ -2,6 +2,7 @@ package com.tristenallen.watersource.reports;
 
 /**
  * Created by jahziel on 2/27/17.
+ * Activity for user to submit a new water source report.
  */
 
 import android.content.Intent;

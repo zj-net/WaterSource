@@ -13,6 +13,7 @@ import java.util.Locale;
 
 /**
  * Created by David on 2/22/17.
+ * Activity for user to view their profile information.
  */
 
 public class ViewProfileActivity extends AppCompatActivity {

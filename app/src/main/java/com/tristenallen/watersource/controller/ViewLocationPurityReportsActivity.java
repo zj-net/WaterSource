@@ -17,6 +17,7 @@ import java.util.*;
 
 /**
  * Created by jahziel on 3/28/17.
+ * Activity for creating viewing the purity reports at the selected location.
  */
 public class ViewLocationPurityReportsActivity extends AppCompatActivity {
     private final ReportHelper reportHelper = Model.getReportHelper();

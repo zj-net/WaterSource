@@ -10,6 +10,7 @@ import com.tristenallen.watersource.model.User;
 
 /**
  * Created by David on 3/28/17.
+ * User database class for storing user data.
  */
 
 class UserDB {

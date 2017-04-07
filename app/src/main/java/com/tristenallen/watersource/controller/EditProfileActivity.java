@@ -12,6 +12,7 @@ import com.tristenallen.watersource.model.User;
 
 /**
  * Created by David on 2/22/17.
+ * Activity for users to edit their profile on the app.
  */
 
 @SuppressWarnings("FeatureEnvy") // feature envy smell occurs because User is a data holder class
