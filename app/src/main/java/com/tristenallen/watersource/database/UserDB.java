@@ -67,7 +67,7 @@ class UserDB {
         onCreate(database);
     }
 
-    public static User create(SQLiteDatabase database, int id, String password, String email,
+    public static void create(SQLiteDatabase database, int id, String password, String email,
                               AuthLevel role, String address, String title, String lastName,
                               String firstName) {
         ContentValues values = new ContentValues();
@@ -93,7 +93,6 @@ class UserDB {
 
         User user = cursorToUser(cursor);
         cursor.close();
-        return user;
     }
 
     private static User cursorToUser(Cursor cursor) {

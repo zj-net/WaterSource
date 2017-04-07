@@ -90,7 +90,7 @@ public class SelectYearVCActivity extends AppCompatActivity {
                     virusTrue = true;
                 } else if (contaminant.isChecked()) {
                     contTrue = true;
-                } //TODO: throw a fit if there's nothing selected
+                }
 
                 for(String s : monthYearVC) {
                     splitStr = s.split(":");
