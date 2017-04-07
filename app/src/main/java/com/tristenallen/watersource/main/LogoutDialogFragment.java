@@ -15,8 +15,9 @@ public class LogoutDialogFragment extends DialogFragment {
 
     // create interface to send events back to activity
     public interface LogoutDialogListener {
-        void onDialogPositiveClick(DialogFragment dialog);
-        void onDialogNegativeClick(DialogFragment dialog);
+        void onDialogPositiveClick();
+        @SuppressWarnings("EmptyMethod") // dialog box has both buttons; in future negative might take action
+        void onDialogNegativeClick();
     }
 
     private LogoutDialogListener mListener;
@@ -25,19 +26,20 @@ public class LogoutDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        //noinspection ChainedMethodCall
         builder.setMessage(R.string.dialog_logout)
                 .setPositiveButton(R.string.logout, new DialogInterface.OnClickListener() {
                     // route positive button to listener
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        mListener.onDialogPositiveClick(LogoutDialogFragment.this);
+                        mListener.onDialogPositiveClick();
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     // route negative button to listener
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        mListener.onDialogNegativeClick(LogoutDialogFragment.this);
+                        mListener.onDialogNegativeClick();
                     }
                 });
         // Create the AlertDialog object and return it

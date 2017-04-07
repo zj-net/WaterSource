@@ -40,6 +40,15 @@ public class SourceReport {
     }
 
     /**
+     * Returns the user ID that created this report.
+     * @return int ID of the user that created this report.
+     */
+    @SuppressWarnings("unused") // necessary for future use cases
+    public int getUserID() {
+        return userID;
+    }
+
+    /**
      * Returns the type of water considered in this report.
      * @return WaterType representing the type of water.
      */
@@ -64,27 +73,11 @@ public class SourceReport {
     }
 
     /**
-     * Returns the time this report was generated.
-     * @return Date representing the time this report was created.
-     */
-    public Date getTimestamp() {
-        return timestamp;
-    }
-
-    /**
      * Returns the ID number of this report.
      * @return int representing the ID of this report.
      */
     public int getReportNumber() {
         return reportNumber;
-    }
-
-    /**
-     * Returns the User ID who created this report.
-     * @return int User ID who created this report.
-     */
-    public int getAuthorID() {
-        return userID;
     }
 
     @Override

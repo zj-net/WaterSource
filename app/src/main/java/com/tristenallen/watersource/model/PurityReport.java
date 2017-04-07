@@ -40,6 +40,15 @@ public class PurityReport {
     }
 
     /**
+     * Returns the user ID that created this report.
+     * @return int ID of the user that created this report.
+     */
+    @SuppressWarnings("unused") // necessary for future use cases
+    public int getUserID() {
+        return userID;
+    }
+
+    /**
      * Returns the purity of water considered in this report.
      * @return WaterPurity representing the type of water.
      */
@@ -85,14 +94,6 @@ public class PurityReport {
      */
     public int getReportNumber() {
         return reportNumber;
-    }
-
-    /**
-     * Returns the User ID who created this report.
-     * @return int User ID who created this report.
-     */
-    public int getAuthorID() {
-        return userID;
     }
 
     @Override

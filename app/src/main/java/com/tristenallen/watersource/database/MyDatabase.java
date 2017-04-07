@@ -8,8 +8,6 @@ import com.tristenallen.watersource.model.AuthLevel;
 import com.tristenallen.watersource.model.DataSource;
 import com.tristenallen.watersource.model.User;
 
-import java.util.List;
-
 /**
  * Created by David on 3/28/17.
  */
@@ -28,10 +26,6 @@ public class MyDatabase implements DataSource {
 
     private void open() throws SQLException {
         database = dbHelper.getWritableDatabase();
-    }
-
-    public void close() {
-        dbHelper.close();
     }
 
     @Override
