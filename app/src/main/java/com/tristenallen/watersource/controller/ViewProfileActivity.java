@@ -3,6 +3,7 @@ package com.tristenallen.watersource.controller;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.TextView;
 
 import com.tristenallen.watersource.R;
@@ -41,5 +42,9 @@ public class ViewProfileActivity extends AppCompatActivity {
     public void onEditPressed() {
         Intent goToEditProfileActivity = new Intent(getApplicationContext(), EditProfileActivity.class);
         startActivity(goToEditProfileActivity);
+    }
+
+    public void onBackPressed(View view) {
+        super.onBackPressed();
     }
 }
