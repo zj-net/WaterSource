@@ -5,9 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.tristenallen.watersource.model.AuthLevel;
 import com.tristenallen.watersource.model.User;
@@ -16,20 +14,20 @@ import com.tristenallen.watersource.model.User;
  * Created by David on 3/28/17.
  */
 
-public class UserDB {
+class UserDB {
     // Database table column names
-    public static final String TABLE_NAME = "User";
+    private static final String TABLE_NAME = "User";
 
-    public static final String COLUMN_ID = "id";
-    public static final String COLUMN_PASSWORD = "password";
-    public static final String COLUMN_EMAIL = "email";
-    public static final String COLUMN_ROLE = "role";
-    public static final String COLUMN_ADDRESS = "address";
-    public static final String COLUMN_TITLE = "title";
-    public static final String COLUMN_LASTNAME = "lastname";
-    public static final String COLUMN_FIRSTNAME = "firstname";
+    private static final String COLUMN_ID = "id";
+    private static final String COLUMN_PASSWORD = "password";
+    private static final String COLUMN_EMAIL = "email";
+    private static final String COLUMN_ROLE = "role";
+    private static final String COLUMN_ADDRESS = "address";
+    private static final String COLUMN_TITLE = "title";
+    private static final String COLUMN_LASTNAME = "lastname";
+    private static final String COLUMN_FIRSTNAME = "firstname";
 
-    public static final String[] allColumns = { UserDB.COLUMN_ID, UserDB.COLUMN_PASSWORD,
+    private static final String[] allColumns = { UserDB.COLUMN_ID, UserDB.COLUMN_PASSWORD,
             UserDB.COLUMN_EMAIL, UserDB.COLUMN_ROLE, UserDB.COLUMN_ADDRESS, UserDB.COLUMN_TITLE,
             UserDB.COLUMN_LASTNAME, UserDB.COLUMN_FIRSTNAME};
 

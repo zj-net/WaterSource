@@ -14,11 +14,11 @@ import java.util.Collection;
  *
  * Contains methods for accessing and creating new kinds of reports.
  */
-public class ReportHelper {
-    private static ReportHelper INSTANCE = new ReportHelper();
+public final class ReportHelper {
+    private static final ReportHelper INSTANCE = new ReportHelper();
     private static final String QUALITY_DB = "QualityReports";
     private static final String PURITY_DB = "PurityReports";
-    private Gson gson;
+    private final Gson gson;
 
     /**
      * Creates a new ReportHelper.
@@ -31,7 +31,7 @@ public class ReportHelper {
      * Returns the instance of ReportHelper used in this application.
      * @return ReportHelper application instance.
      */
-    protected static ReportHelper getInstance() {
+    static ReportHelper getInstance() {
         return INSTANCE;
     }
 

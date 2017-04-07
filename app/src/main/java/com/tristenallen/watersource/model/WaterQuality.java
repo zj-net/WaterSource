@@ -9,7 +9,7 @@ public enum WaterQuality {
     WASTE("Waste"), MUDDY("Treatable, Muddy"), CLEAR("Treatable, Clear"),
     POTABLE("Potable");
 
-    String name;
+    final String name;
 
     WaterQuality(String name) {
         this.name = name;

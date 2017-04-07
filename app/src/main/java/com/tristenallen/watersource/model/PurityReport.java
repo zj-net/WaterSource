@@ -10,13 +10,13 @@ import java.util.Locale;
  * Stores information about a purity report.
  */
 public class PurityReport {
-    private WaterPurity purity;
-    private int userID;
-    private Location location;
-    private Date timestamp;
-    private int reportNumber;
-    private int virusPPM;
-    private int contaminantPPM;
+    private final WaterPurity purity;
+    private final int userID;
+    private final Location location;
+    private final Date timestamp;
+    private final int reportNumber;
+    private final int virusPPM;
+    private final int contaminantPPM;
 
     /**
      * Generates a new SourceReport at the given location
@@ -28,8 +28,8 @@ public class PurityReport {
      *
      * All data in a SourceReport is considered immutable.
      */
-    protected PurityReport(int userID, Location location, WaterPurity purity, int reportNumber,
-                           int virusPPM, int contaminantPPM) {
+    PurityReport(int userID, Location location, WaterPurity purity, int reportNumber,
+                 int virusPPM, int contaminantPPM) {
         this.userID = userID;
         this.location = location;
         this.purity = purity;

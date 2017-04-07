@@ -7,7 +7,7 @@ package com.tristenallen.watersource.model;
  * Automatically assigns users an ID number and associates their email with that ID number.
  * Also stores a list of passwords for the users.
  */
-public class UserHelper {
+public final class UserHelper {
     private static final UserHelper INSTANCE = new UserHelper();
     private int currentID;
 

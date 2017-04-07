@@ -15,11 +15,11 @@ public class LogoutDialogFragment extends DialogFragment {
 
     // create interface to send events back to activity
     public interface LogoutDialogListener {
-        public void onDialogPositiveClick(DialogFragment dialog);
-        public void onDialogNegativeClick(DialogFragment dialog);
+        void onDialogPositiveClick(DialogFragment dialog);
+        void onDialogNegativeClick(DialogFragment dialog);
     }
 
-    LogoutDialogListener mListener;
+    private LogoutDialogListener mListener;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -28,12 +28,14 @@ public class LogoutDialogFragment extends DialogFragment {
         builder.setMessage(R.string.dialog_logout)
                 .setPositiveButton(R.string.logout, new DialogInterface.OnClickListener() {
                     // route positive button to listener
+                    @Override
                     public void onClick(DialogInterface dialog, int id) {
                         mListener.onDialogPositiveClick(LogoutDialogFragment.this);
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     // route negative button to listener
+                    @Override
                     public void onClick(DialogInterface dialog, int id) {
                         mListener.onDialogNegativeClick(LogoutDialogFragment.this);
                     }

@@ -5,7 +5,7 @@ package com.tristenallen.watersource.model;
  *
  * Base class for the backend model. Provides static access to individual managers and data access features.
  */
-public class Model {
+public final class Model {
     private static final AuthHelper AUTH_HELPER = AuthHelper.getInstance();
     private static final UserHelper USER_HELPER = UserHelper.getInstance();
     private static final ReportHelper REPORT_HELPER = ReportHelper.getInstance();

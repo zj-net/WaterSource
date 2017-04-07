@@ -6,7 +6,7 @@ package com.tristenallen.watersource.model;
 public enum AuthLevel {
     USER("User"), WORKER("Worker"), MANAGER("Manager"), ADMIN("Admin");
 
-    private String shortName;
+    private final String shortName;
 
     AuthLevel(String shortName) {
         this.shortName = shortName;

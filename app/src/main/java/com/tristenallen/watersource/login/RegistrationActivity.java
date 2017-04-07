@@ -5,14 +5,12 @@ package com.tristenallen.watersource.login;
  */
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 import com.tristenallen.watersource.R;
 import com.tristenallen.watersource.database.MyDatabase;
-import com.tristenallen.watersource.main.MainActivity;
 import com.tristenallen.watersource.model.AuthLevel;
 import com.tristenallen.watersource.model.Model;
 import com.tristenallen.watersource.model.User;
@@ -20,7 +18,6 @@ import com.tristenallen.watersource.model.DataSource;
 import java.util.regex.*;
 
 public class RegistrationActivity extends AppCompatActivity {
-    private Button submitButton;
     private EditText firstNameField;
     private EditText lastNameField;
     private EditText emailField;
@@ -28,7 +25,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText confirmPassField;
     private Spinner authSpinner;
     private User user;
-    private Pattern emailPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+    private final Pattern emailPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
     private DataSource data;
 
@@ -56,7 +53,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
         //movement from registration to main screen, text processing
 
-        submitButton = (Button) findViewById(R.id.submitButton);
+        Button submitButton = (Button) findViewById(R.id.submitButton);
         submitButton.setOnClickListener(new View.OnClickListener() {
             /**
              * This method verifies input data once the Submit button is pressed.
