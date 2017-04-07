@@ -8,10 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.tristenallen.watersource.R;
 import com.tristenallen.watersource.database.MyDatabase;
-import com.tristenallen.watersource.controller.MainActivity;
-import com.tristenallen.watersource.model.*;
+import com.tristenallen.watersource.model.AuthHelper;
+import com.tristenallen.watersource.model.AuthPackage;
+import com.tristenallen.watersource.model.AuthStatus;
+import com.tristenallen.watersource.model.DataSource;
+import com.tristenallen.watersource.model.Model;
 
 
 public class LoginActivity extends AppCompatActivity {

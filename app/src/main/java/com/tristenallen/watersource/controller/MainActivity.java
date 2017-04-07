@@ -21,7 +21,14 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.tristenallen.watersource.R;
 import com.tristenallen.watersource.database.MyDatabase;
-import com.tristenallen.watersource.model.*;
+
+import com.tristenallen.watersource.model.AuthLevel;
+import com.tristenallen.watersource.model.DataSource;
+import com.tristenallen.watersource.model.Model;
+import com.tristenallen.watersource.model.ReportHelper;
+import com.tristenallen.watersource.model.SourceReport;
+import com.tristenallen.watersource.model.PurityReport;
+import com.tristenallen.watersource.model.User;
 
 import java.util.ArrayList;
 import java.util.Collection;
