@@ -137,7 +137,11 @@ public class UserDB {
 
         Cursor cursor = database.rawQuery(query,null);
         Log.d("checkEmail******",cursor.toString());
-        if (cursor.getCount()>0) {
+
+        int row_count = cursor.getCount();
+        cursor.close();
+
+        if (row_count>0) {
             // duplicate email
             return true;
         }
@@ -153,7 +157,10 @@ public class UserDB {
 
         Cursor cursor = database.rawQuery(query,null);
 
-        if (cursor.getCount()>0) {
+        int row_count = cursor.getCount();
+        cursor.close();
+
+        if (row_count>0) {
             // email,password match
             return true;
         }
@@ -170,9 +177,12 @@ public class UserDB {
 
         if (cursor.getCount()>0) {
             cursor.moveToFirst();
-            return cursor.getInt(ID_NUMBER);
+            int id = cursor.getInt(ID_NUMBER);
+            cursor.close();
+            return id;
         }
         else {
+            cursor.close();
             // does not exist
             return -1;
         }
@@ -201,7 +211,10 @@ public class UserDB {
 
         Cursor  cursor = database.rawQuery(query,null);
 
-        return cursor.getCount();
+        int row_count = cursor.getCount();
+        cursor.close();
+
+        return row_count;
     }
 
 }
