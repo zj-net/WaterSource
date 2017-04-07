@@ -22,6 +22,7 @@ public class ViewLocationPurityReportsActivity extends AppCompatActivity {
     private final ReportHelper reportHelper = Model.getReportHelper();
     private final double[] location = new double[2];
     private final ArrayList<String> monthYearVC = new ArrayList<>();
+    @SuppressWarnings("FeatureEnvy") // feature envy smell occurs because of onCreate() handling the bulk of work
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

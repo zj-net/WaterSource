@@ -10,12 +10,15 @@ import com.tristenallen.watersource.R;
 import com.tristenallen.watersource.model.Model;
 import com.tristenallen.watersource.model.User;
 
+import java.util.Locale;
+
 /**
  * Created by David on 2/22/17.
  */
 
 public class ViewProfileActivity extends AppCompatActivity {
 
+    @SuppressWarnings("FeatureEnvy") // feature envy smell occurs because User is a data holder class
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +31,8 @@ public class ViewProfileActivity extends AppCompatActivity {
 
         User user = Model.getCurrentUser();
 
-        nameField.setText(user.getTitle() +" " + user.getFirstName()+ " " + user.getLastName());
+        nameField.setText(String.format(Locale.US, "%s %s %s",
+                user.getTitle(), user.getFirstName(), user.getLastName()));
         addressField.setText(user.getAddress());
         emailField.setText(user.getEmail());
     }
