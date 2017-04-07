@@ -1,7 +1,5 @@
 package com.tristenallen.watersource.model;
 
-import java.util.List;
-
 /**
  * Created by David on 3/28/17.
  */

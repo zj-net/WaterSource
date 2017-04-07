@@ -3,7 +3,6 @@ package com.tristenallen.watersource.controller;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.EditText;
 
 import com.tristenallen.watersource.R;
@@ -42,7 +41,7 @@ public class EditProfileActivity extends AppCompatActivity {
         addressField.setText(user.getAddress());
     }
 
-    public void onSubmitPressed(View view) {
+    public void onSubmitPressed() {
         user.setFirstName(firstNameField.getText().toString());
         user.setLastName(lastNameField.getText().toString());
         user.setTitle(titleField.getText().toString());
@@ -51,9 +50,5 @@ public class EditProfileActivity extends AppCompatActivity {
         Intent goToMainActivity = new Intent(getApplicationContext(), MainActivity.class);
         goToMainActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(goToMainActivity);
-    }
-
-    public void onBackPressed(View view) {
-        super.onBackPressed();
     }
 }

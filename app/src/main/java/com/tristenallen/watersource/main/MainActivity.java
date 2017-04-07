@@ -3,13 +3,13 @@ package com.tristenallen.watersource.main;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -37,6 +37,7 @@ import com.tristenallen.watersource.reports.SubmitH20SourceReportActivity;
 import java.util.ArrayList;
 import java.util.Collection;
 
+@SuppressWarnings("ClassWithTooManyDependencies") // MainActivity must include numerous dependencies due to Android
 public class MainActivity extends AppCompatActivity implements
         LogoutDialogFragment.LogoutDialogListener,OnMapReadyCallback {
 
@@ -136,12 +137,12 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onDialogNegativeClick(DialogFragment dialog) {
+    public void onDialogNegativeClick() {
         //do nothing
     }
 
     @Override
-    public void onDialogPositiveClick(DialogFragment dialog) {
+    public void onDialogPositiveClick() {
         Model.setCurrentUser(-1,data);
         Intent goToLaunchActivity = new Intent(getApplicationContext(), LaunchActivity.class);
         goToLaunchActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -200,11 +201,13 @@ public class MainActivity extends AppCompatActivity implements
                 //if the marker is newly added show submit report screen
                 if (marker.getAlpha() == MARKER_ALPHA) {
                     if (user.getRole() == AuthLevel.USER){
-                        Intent goToSubmitSourceActivity = new Intent(getApplicationContext(), SubmitH20SourceReportActivity.class);
+                        Intent goToSubmitSourceActivity = new Intent(getApplicationContext(),
+                                SubmitH20SourceReportActivity.class);
                         goToSubmitSourceActivity.putExtra(MainActivity.ARG_latLng,marker.getPosition());
                         startActivity(goToSubmitSourceActivity);
                     } else {
-                        Intent goToSubmitPurityActivity = new Intent(getApplicationContext(), SubmitPurityReportActivity.class);
+                        Intent goToSubmitPurityActivity = new Intent(getApplicationContext(),
+                                SubmitPurityReportActivity.class);
                         goToSubmitPurityActivity.putExtra(MainActivity.ARG_latLng,marker.getPosition());
                         startActivity(goToSubmitPurityActivity);
                     }
@@ -234,7 +237,8 @@ public class MainActivity extends AppCompatActivity implements
             for (PurityReport r : purityReportList) {
                 Location reportLocation = r.getLocation();
                 LatLng loc = new LatLng(reportLocation.getLatitude(), reportLocation.getLongitude());
-                String s = "Condition: " + r.getPurity() + "\n" + "VirusPPM: " + r.getVirusPPM() + "\n" + "ContaminantPPM: " + r.getContaminantPPM() + "\nLong press for more!";
+                String s = "Condition: " + r.getPurity() + "\n" + "VirusPPM: " + r.getVirusPPM() + "\n"
+                        + "ContaminantPPM: " + r.getContaminantPPM() + "\nLong press for more!";
                 Marker newMarker = mMap.addMarker(new MarkerOptions().position(loc)
                         .title("Water Purity").snippet(s)
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
@@ -274,7 +278,7 @@ public class MainActivity extends AppCompatActivity implements
         private final View myContentsView;
 
         CustomInfoWindowAdapter(){
-            myContentsView = getLayoutInflater().inflate(R.layout.marker_info_content, null);
+            myContentsView = getLayoutInflater().inflate(R.layout.marker_info_content, (ViewGroup)null);
         }
 
         @Override

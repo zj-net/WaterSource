@@ -25,7 +25,8 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText confirmPassField;
     private Spinner authSpinner;
     private User user;
-    private final Pattern emailPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+    private final Pattern emailPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
+            Pattern.CASE_INSENSITIVE);
 
     private DataSource data;
 
@@ -47,7 +48,8 @@ public class RegistrationActivity extends AppCompatActivity {
         //--------------------------------------------------------------
 
         //populate spinner
-        authSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, AuthLevel.values()));
+        authSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
+                AuthLevel.values()));
 
 
 
@@ -94,6 +96,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
                     //last part, after checks are passed
                     user = new User(emailString, (AuthLevel) authSpinner.getSelectedItem(), lastNameString, firstNameString);
+                    //noinspection LawOfDemeter Model is the only way to get our singular instance of UserHelper
                     if (!Model.getUserHelper().addUser(user, emailString, passwordString, data)) {
                         Context context = getApplicationContext();
                         CharSequence error = "That email has already been used!";

@@ -3,7 +3,6 @@ package com.tristenallen.watersource.controller;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.TextView;
 
 import com.tristenallen.watersource.R;
@@ -18,7 +17,9 @@ import java.util.Locale;
 
 public class ViewProfileActivity extends AppCompatActivity {
 
-    @SuppressWarnings("FeatureEnvy") // feature envy smell occurs because User is a data holder class
+    @SuppressWarnings({"FeatureEnvy", "LawOfDemeter"})
+    // feature envy smell occurs because User is a data holder class
+    // Law of Demeter inspection error also occurs because of User being a data holder
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,12 +38,8 @@ public class ViewProfileActivity extends AppCompatActivity {
         emailField.setText(user.getEmail());
     }
 
-    public void onEditPressed(View view) {
+    public void onEditPressed() {
         Intent goToEditProfileActivity = new Intent(getApplicationContext(), EditProfileActivity.class);
         startActivity(goToEditProfileActivity);
-    }
-
-    public void onBackPressed(View view) {
-        super.onBackPressed();
     }
 }

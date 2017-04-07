@@ -53,23 +53,6 @@ public final class ReportHelper {
     }
 
     /**
-     * Returns the PurityReport associated with a specific report number.
-     * Returns null if there is no such report.
-     * @param id int specifying the report number to obtain.
-     * @param context Activity requesting the report.
-     * @return PurityReport associated with the given report number.
-     */
-    public PurityReport getPurityReport(int id, Activity context) {
-        SharedPreferences purityReports = context.getSharedPreferences(PURITY_DB, Context.MODE_PRIVATE);
-        if (purityReports.contains(String.valueOf(id))) {
-            String reportString = purityReports.getString(String.valueOf(id), null);
-            return gson.fromJson(reportString, PurityReport.class);
-        } else {
-            return null;
-        }
-    }
-
-    /**
      * Returns all of the source reports stored in the model as
      * a Collection.
      * @param context Activity requesting the report.
@@ -101,46 +84,6 @@ public final class ReportHelper {
         }
 
         return reportList;
-    }
-
-    /**
-     * Removes the SourceReport associated with the given ID number.
-     * Returns false if there was no such report.
-     *
-     * Note that this does not free up the report number for future use.
-     * ID numbers are one-use-only for the lifetime of the application.
-     * @param id int specifying the report to delete.
-     * @param context Activity requesting the deletion.
-     * @return boolean indicating the success of the deletion.
-     */
-    public boolean removeSourceReport(int id, Activity context) {
-        SharedPreferences sourceReports = context.getSharedPreferences(QUALITY_DB, Context.MODE_PRIVATE);
-        if (sourceReports.contains(String.valueOf(id))) {
-            sourceReports.edit().remove(String.valueOf(id)).apply();
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
-     * Removes the PurityReport associated with the given ID number.
-     * Returns false if there was no such report.
-     *
-     * Note that this does not free up the report number for future use.
-     * ID numbers are one-use-only for the lifetime of the application.
-     * @param id int specifying the report to delete.
-     * @param context Activity requesting the deletion.
-     * @return boolean indicating the success of the deletion.
-     */
-    public boolean removePurityReport(int id, Activity context) {
-        SharedPreferences purityReports = context.getSharedPreferences(PURITY_DB, Context.MODE_PRIVATE);
-        if (purityReports.contains(String.valueOf(id))) {
-            purityReports.edit().remove(String.valueOf(id)).apply();
-            return true;
-        } else {
-            return false;
-        }
     }
 
     /**
@@ -190,7 +133,8 @@ public final class ReportHelper {
      * @throws IllegalArgumentException if the given user ID is not a valid user.
      */
     public void addPurityReport(int user, Location location,
-                                WaterPurity purity, int virusPPM, int contaminantPPM, DataSource data, Activity context) {
+                                WaterPurity purity, int virusPPM, int contaminantPPM,
+                                DataSource data, Activity context) {
         int currentPurityReportNumber = getPurityReports(context).size() + 1;
         if (data.getUserbyID(user) != null) {
             PurityReport newReport = new PurityReport(user, location, purity, currentPurityReportNumber, virusPPM,

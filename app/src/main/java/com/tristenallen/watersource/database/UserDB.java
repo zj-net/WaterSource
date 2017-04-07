@@ -4,8 +4,6 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.tristenallen.watersource.model.AuthLevel;
 import com.tristenallen.watersource.model.User;
@@ -32,11 +30,8 @@ class UserDB {
             UserDB.COLUMN_LASTNAME, UserDB.COLUMN_FIRSTNAME};
 
     private static final int ID_NUMBER = 0;
-    private static final int PASSWORD_NUMBER = 1;
     private static final int EMAIL_NUMBER = 2;
     private static final int ROLE_NUMBER = 3;
-    private static final int ADDRESS_NUMBER = 4;
-    private static final int TITLE_NUMBER = 5;
     private static final int LASTNAME_NUMBER = 6;
     private static final int FIRSTNAME_NUMBER = 7;
 
@@ -90,8 +85,7 @@ class UserDB {
                 null, null, null);
 
         cursor.moveToFirst();
-
-        User user = cursorToUser(cursor);
+        cursorToUser(cursor);
         cursor.close();
     }
 
@@ -103,30 +97,6 @@ class UserDB {
         return new User(email, role, lastName, firstName);
     }
 
-
-    public static List<User> getAllUsers(SQLiteDatabase database) {
-        List<User> users = new ArrayList<>();
-        Cursor cursor = database.query(TABLE_NAME,
-                allColumns, null, null, null, null, null);
-
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            User user = cursorToUser(cursor);
-            users.add(user);
-            cursor.moveToNext();
-        }
-        // make sure to close the cursor
-        cursor.close();
-
-        Log.d("APP", "All Users: " + users.toString());
-
-        return users;
-    }
-
-    //delete user by id
-    public static void delete(SQLiteDatabase database, int id) {
-        database.delete(TABLE_NAME, COLUMN_ID + " = " + id, null);
-    }
 
     public static boolean checkEmail(SQLiteDatabase database, String email) {
         String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_EMAIL + " ='" + email + "'";

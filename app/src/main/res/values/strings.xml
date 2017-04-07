@@ -57,15 +57,4 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="title">Title</string>
 
-    <!--
-
-    This is not an error, this is a Lint warning. So you can run the App, but the recommended way to display texts(on TextViews, Buttons etc.) is to use string references. You have to go to your res folder and there will be a strings.xml file under values. Add this in there:
-
-   <string name="my_string">Your Text!</string>
-    And to set text on you button you then have to do this:
-
-    android:text="@string/my_string"
-
-    -->
-
 </resources>
