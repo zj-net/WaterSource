@@ -39,6 +39,8 @@ public class ViewProfileActivity extends AppCompatActivity {
         emailField.setText(user.getEmail());
     }
 
+    @SuppressWarnings("UnusedParameters")
+    //View view is required by android
     public void onEditPressed(View view) {
         Intent goToEditProfileActivity = new Intent(getApplicationContext(), EditProfileActivity.class);
         startActivity(goToEditProfileActivity);

@@ -41,6 +41,8 @@ public class EditProfileActivity extends AppCompatActivity {
         addressField.setText(user.getAddress());
     }
 
+    @SuppressWarnings("UnusedParameters")
+    //View view is required by android
     public void onSubmitPressed(View view) {
         user.setFirstName(firstNameField.getText().toString());
         user.setLastName(lastNameField.getText().toString());
