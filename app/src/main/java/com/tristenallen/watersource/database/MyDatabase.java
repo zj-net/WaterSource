@@ -40,17 +40,6 @@ public class MyDatabase implements DataSource {
                            String firstName) {
         UserDB.create(database, id, password, email, role, address, title, lastName,
                 firstName);
-        return;
-    }
-
-    @Override
-    public void deleteUser(int id) {
-        UserDB.delete(database, id);
-    }
-
-    @Override
-    public List<User> getAllUsers() {
-        return UserDB.getAllUsers(database);
     }
 
     @Override
