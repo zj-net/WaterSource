@@ -53,7 +53,9 @@ public class EditProfileActivity extends AppCompatActivity {
         startActivity(goToMainActivity);
     }
 
-    public void onBackPressed(View view) {
+    @SuppressWarnings("UnusedParameters")
+    //View view is required by android
+    public void onBackPressed( View view) {
         super.onBackPressed();
     }
 }
