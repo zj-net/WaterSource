@@ -2,6 +2,7 @@ package com.tristenallen.watersource.model;
 
 /**
  * Created by David on 3/28/17.
+ * Defines the user's data for persistence.
  */
 
 

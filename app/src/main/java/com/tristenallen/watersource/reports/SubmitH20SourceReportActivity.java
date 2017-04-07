@@ -1,9 +1,5 @@
 package com.tristenallen.watersource.reports;
 
-/**
- * Created by jahziel on 2/27/17.
- */
-
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,6 +26,10 @@ import com.tristenallen.watersource.model.WaterType;
 
 import java.util.Locale;
 
+/**
+ * Created by jahziel on 2/27/17.
+ * Activity for user to submit a new water source report.
+ */
 public class SubmitH20SourceReportActivity extends AppCompatActivity {
     private EditText latField;
     private EditText lngField;

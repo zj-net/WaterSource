@@ -26,6 +26,7 @@ import java.util.Locale;
 
 /**
  * Created by David on 3/14/17.
+ * Activity for submitting a new purity report.
  */
 
 public class SubmitPurityReportActivity extends AppCompatActivity {

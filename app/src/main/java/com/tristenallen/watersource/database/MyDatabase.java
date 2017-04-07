@@ -10,6 +10,7 @@ import com.tristenallen.watersource.model.User;
 
 /**
  * Created by David on 3/28/17.
+ * The database implementation class.
  */
 
 public class MyDatabase implements DataSource {

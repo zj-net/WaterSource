@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 /**
  * Created by jahziel on 3/27/17.
+ * Activity for displaying the graph of virus/contaminant levels versus time.
  */
 public class HistographActivity extends AppCompatActivity {
 

@@ -2,6 +2,7 @@ package com.tristenallen.watersource.model;
 
 /**
  * Created by tristen on 2/13/17.
+ * AuthHelper custom class
  */
 public class AuthHelper {
     private static final AuthHelper INSTANCE = new AuthHelper();

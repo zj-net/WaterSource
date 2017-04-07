@@ -10,6 +10,7 @@ import com.tristenallen.watersource.R;
 
 /**
  * Created by tristen on 2/14/17.
+ * LogoutDialogFragment class
  */
 public class LogoutDialogFragment extends DialogFragment {
 

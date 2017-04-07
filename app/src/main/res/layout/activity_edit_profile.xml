@@ -21,17 +21,16 @@
 
         <EditText android:layout_width="fill_parent"
             android:layout_height="40dp"
-            android:hint="First Name"
+            android:hint="@string/first_name"
             android:background="#f3f3f3"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
+            android:paddingLeft="5dp"
             android:id="@+id/fnameTXT"
             android:layout_below="@+id/personalTXT"
             android:layout_alignParentStart="true"
             android:layout_marginTop="10dp" />
 
         <TextView
-            android:text="Edit your information below"
+            android:text="@string/edit_your_information_below"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -42,7 +41,7 @@
             android:layout_marginTop="11dp" />
 
         <TextView
-            android:text="Edit Profile"
+            android:text="@string/edit_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -53,7 +52,7 @@
             android:layout_marginTop="14dp" />
 
         <TextView
-            android:text="Personal Information"
+            android:text="@string/personal_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
@@ -64,7 +63,7 @@
 
 
         <Button
-            android:text="back"
+            android:text="@string/back"
             android:layout_width="100dp"
             android:layout_height="38dp"
             android:layout_gravity="center_horizontal"
@@ -73,14 +72,13 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="38dp"
-            android:id="@+id/goBack"
             android:onClick="onBackPressed" />
 
         <Button android:layout_width="100dp"
             android:layout_height="38dp"
             android:layout_gravity="center_horizontal"
             android:background="#f3f3f3"
-            android:text="submit"
+            android:text="@string/submit"
             android:visibility="visible"
             style="@style/Widget.AppCompat.Light.ActionButton"
             android:id="@+id/submitButton"
@@ -94,9 +92,8 @@
             android:layout_height="40dp"
             android:background="#f3f3f3"
             android:inputType="textPersonName"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            android:hint="Last Name"
+            android:paddingLeft="5dp"
+            android:hint="@string/last_name"
             android:id="@+id/lnameTXT"
             android:layout_below="@+id/fnameTXT"
             android:layout_alignParentStart="true"
@@ -104,10 +101,9 @@
 
         <EditText android:layout_width="fill_parent"
             android:layout_height="40dp"
-            android:hint="Address"
+            android:hint="@string/address"
             android:background="#f3f3f3"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
+            android:paddingLeft="5dp"
             android:id="@+id/addressTXT"
             android:layout_marginTop="60dp"
             android:layout_alignTop="@+id/titleTXT"
@@ -115,15 +111,24 @@
 
         <EditText android:layout_width="fill_parent"
             android:layout_height="40dp"
-            android:hint="Title"
+            android:hint="@string/title"
             android:background="#f3f3f3"
             android:paddingLeft="5dp"
-            android:paddingRight="5dp"
             android:id="@+id/titleTXT"
             android:layout_centerVertical="true"
             android:layout_alignParentStart="true"
             android:onClick="onBackPressed" />
 
     </RelativeLayout>
+
+    <EditText android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="@string/password"
+        android:background="#f3f3f3"
+        android:paddingLeft="5dp"
+        android:id="@+id/PasswordTXT"
+        android:layout_marginBottom="14dp"
+        android:inputType="textPassword" />
+
 
 </LinearLayout>
