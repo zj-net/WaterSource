@@ -24,7 +24,7 @@ public class SelectYearVCActivity extends AppCompatActivity {
     private String[] splitStr;
     private ArrayList<String> extrasForGraph = new ArrayList<>();
     private final ArrayList<Integer> YEARS = new ArrayList<>();
-    private int FIRST_YEAR = 1970;
+    private static final int FIRST_YEAR = 1970;
     private int THIS_YEAR;
     private Iterable<String> monthYearVC = new ArrayList<>();
 

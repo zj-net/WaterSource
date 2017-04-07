@@ -43,6 +43,11 @@ public class SubmitH20SourceReportActivity extends AppCompatActivity {
     private boolean badLat;
     private boolean badLng;
 
+    private static final double LAT_MAX = 90;
+    private static final double LAT_MIN = -90;
+    private static final double LONG_MAX = 180;
+    private static final double LONG_MIN = -180;
+
     private DataSource data;
 
     @Override
@@ -103,7 +108,7 @@ public class SubmitH20SourceReportActivity extends AppCompatActivity {
                     Toast badLng = Toast.makeText(context, error, duration);
                     badLng.show();
 
-                } else if (latDouble > 90.0 || latDouble < -90.0 || badLat) {
+                } else if (latDouble > LAT_MAX || latDouble < LAT_MIN || badLat) {
                     //throw a fit!
                     Context context = getApplicationContext();
                     CharSequence error = "Please enter a number between +/- 90!";
@@ -111,7 +116,7 @@ public class SubmitH20SourceReportActivity extends AppCompatActivity {
                     latField.setText("");
                     Toast badLatitude = Toast.makeText(context, error, duration);
                     badLatitude.show();
-                } else if (lngDouble > 180.0 || lngDouble < -180.0 || badLng) {
+                } else if (lngDouble > LONG_MAX || lngDouble < LONG_MIN || badLng) {
                     //throw a fit!
                     Context context = getApplicationContext();
                     CharSequence error = "Please enter a number between +/- 180!";
