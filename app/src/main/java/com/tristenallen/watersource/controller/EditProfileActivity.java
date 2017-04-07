@@ -15,6 +15,7 @@ import com.tristenallen.watersource.model.User;
  * Created by David on 2/22/17.
  */
 
+@SuppressWarnings("FeatureEnvy") // feature envy smell occurs because User is a data holder class
 public class EditProfileActivity extends AppCompatActivity {
     private EditText firstNameField;
     private EditText lastNameField;

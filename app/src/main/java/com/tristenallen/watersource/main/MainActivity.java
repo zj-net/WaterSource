@@ -1,6 +1,7 @@
 package com.tristenallen.watersource.main;
 
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
@@ -58,10 +59,9 @@ public class MainActivity extends AppCompatActivity implements
         data = new MyDatabase(this);
 
         setContentView(R.layout.activity_main);
-        Toolbar toolbar1 = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar1);
-
-        getSupportActionBar().setTitle("WaterSource");
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("WaterSource");
+        setSupportActionBar(toolbar);
 
         Button viewReportList = (Button) findViewById(R.id.viewReports);
 
@@ -73,9 +73,7 @@ public class MainActivity extends AppCompatActivity implements
             }
         });
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
+        @SuppressWarnings("ChainedMethodCall") // we do not use the SupportFragmentManager more than once.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -162,6 +160,7 @@ public class MainActivity extends AppCompatActivity implements
         startActivity(goToEditProfileActivity);
     }
 
+    @SuppressWarnings("FeatureEnvy") // feature envy smell occurs because of how the map is constructed
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -220,17 +219,21 @@ public class MainActivity extends AppCompatActivity implements
 
         Collection<SourceReport> reportList = reportHelper.getSourceReports(this);
         for (SourceReport r : reportList) {
-            LatLng loc = new LatLng(r.getLocation().getLatitude(), r.getLocation().getLongitude());
+            Location reportLocation = r.getLocation();
+            LatLng loc = new LatLng(reportLocation.getLatitude(), reportLocation.getLongitude());
+            //noinspection ChainedMethodCall Necessary due to how MarkerOptions() works
             mMap.addMarker(new MarkerOptions().position(loc).title("Water Source")
                     .snippet("Type: "+ r.getType() + "\n" + "Quality: " + r.getQuality())
                     .zIndex(r.getReportNumber()));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
         }
 
+        //noinspection ChainedMethodCall only time this role is used in this statement
         if (user.getRole().compareTo(AuthLevel.USER) > 0) {
             Collection<PurityReport> purityReportList = reportHelper.getPurityReports(this);
             for (PurityReport r : purityReportList) {
-                LatLng loc = new LatLng(r.getLocation().getLatitude(), r.getLocation().getLongitude());
+                Location reportLocation = r.getLocation();
+                LatLng loc = new LatLng(reportLocation.getLatitude(), reportLocation.getLongitude());
                 String s = "Condition: " + r.getPurity() + "\n" + "VirusPPM: " + r.getVirusPPM() + "\n" + "ContaminantPPM: " + r.getContaminantPPM() + "\nLong press for more!";
                 Marker newMarker = mMap.addMarker(new MarkerOptions().position(loc)
                         .title("Water Purity").snippet(s)
@@ -287,7 +290,6 @@ public class MainActivity extends AppCompatActivity implements
 
         @Override
         public View getInfoWindow(Marker marker) {
-            // TODO Auto-generated method stub
             return null;
         }
 
