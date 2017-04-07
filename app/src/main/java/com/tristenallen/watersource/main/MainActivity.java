@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements
     private Marker selectionMarker;
     private Toolbar toolbar;
     private Collection<Marker> purityMarkers = new ArrayList<>();
+    private static final float MARKER_ALPHA = 0.5f;
 
 
     //getting list view button
@@ -192,7 +193,7 @@ public class MainActivity extends AppCompatActivity implements
                 // This will be displayed on taping the marker
                 markerOptions.title("Water Source");
                 markerOptions.draggable(true);
-                markerOptions.alpha(0.5f);
+                markerOptions.alpha(MARKER_ALPHA);
 
                 // Animating to the touched position
                 mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
@@ -206,7 +207,7 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public boolean onMarkerClick(Marker marker) {
                 //if the marker is newly added show submit report screen
-                if (marker.getAlpha() == .5f) {
+                if (marker.getAlpha() == MARKER_ALPHA) {
                     if (user.getRole() == AuthLevel.USER){
                         Intent goToSubmitSourceActivity = new Intent(getApplicationContext(), SubmitH20SourceReportActivity.class);
                         goToSubmitSourceActivity.putExtra(MainActivity.ARG_latLng,marker.getPosition());
