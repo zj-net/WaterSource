@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import com.tristenallen.watersource.R;
-import com.tristenallen.watersource.main.MainActivity;
 import com.tristenallen.watersource.model.Model;
 import com.tristenallen.watersource.model.User;
 
@@ -42,7 +41,7 @@ public class EditProfileActivity extends AppCompatActivity {
         addressField.setText(user.getAddress());
     }
 
-    public void onSubmitPressed() {
+    public void onSubmitPressed(View view) {
         user.setFirstName(firstNameField.getText().toString());
         user.setLastName(lastNameField.getText().toString());
         user.setTitle(titleField.getText().toString());

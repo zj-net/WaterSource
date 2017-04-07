@@ -1,4 +1,4 @@
-package com.tristenallen.watersource.main;
+package com.tristenallen.watersource.controller;
 
 import android.content.Intent;
 import android.location.Location;
@@ -19,12 +19,9 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.tristenallen.watersource.LaunchActivity;
 import com.tristenallen.watersource.R;
-import com.tristenallen.watersource.controller.*;
 import com.tristenallen.watersource.database.MyDatabase;
 import com.tristenallen.watersource.model.*;
-import com.tristenallen.watersource.reports.SubmitH20SourceReportActivity;
 
 import java.util.ArrayList;
 import java.util.Collection;

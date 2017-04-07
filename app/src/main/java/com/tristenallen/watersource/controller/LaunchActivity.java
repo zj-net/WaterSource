@@ -1,12 +1,11 @@
-package com.tristenallen.watersource;
+package com.tristenallen.watersource.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import com.tristenallen.watersource.login.LoginActivity;
-import com.tristenallen.watersource.login.RegistrationActivity;
+import com.tristenallen.watersource.R;
 
 public class LaunchActivity extends AppCompatActivity {
 

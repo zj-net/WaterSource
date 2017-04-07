@@ -10,12 +10,10 @@ import android.widget.*;
 import com.google.android.gms.maps.model.LatLng;
 import com.tristenallen.watersource.R;
 import com.tristenallen.watersource.database.MyDatabase;
-import com.tristenallen.watersource.main.MainActivity;
 import com.tristenallen.watersource.model.DataSource;
 import com.tristenallen.watersource.model.Model;
 import com.tristenallen.watersource.model.ReportHelper;
 import com.tristenallen.watersource.model.WaterPurity;
-import com.tristenallen.watersource.reports.SubmitH20SourceReportActivity;
 
 import java.util.Locale;
 

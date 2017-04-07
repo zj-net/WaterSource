@@ -1,4 +1,4 @@
-package com.tristenallen.watersource.main;
+package com.tristenallen.watersource.controller;
 
 import android.app.Dialog;
 import android.content.Context;
