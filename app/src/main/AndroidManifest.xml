@@ -8,32 +8,32 @@
             android:label="@string/app_name"
             android:supportsRtl="true"
             android:theme="@style/AppTheme" tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".LaunchActivity">
+        <activity android:name=".controller.LaunchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".login.LoginActivity">
+        <activity android:name=".controller.LoginActivity">
         </activity>
         <activity
-                android:name=".main.MainActivity"
+                android:name=".controller.MainActivity"
                 android:label="@string/title_activity_main"
-                android:parentActivityName=".login.LoginActivity"
+                android:parentActivityName=".controller.LoginActivity"
                 android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value="com.tristenallen.watersource.login.LoginActivity"/>
+                    android:value="com.tristenallen.watersource.controller.LoginActivity"/>
         </activity>
-        <activity android:name=".login.RegistrationActivity" android:theme="@style/MyTheme"/>
+        <activity android:name=".controller.RegistrationActivity" android:theme="@style/MyTheme"/>
         <activity android:name=".controller.EditProfileActivity" android:theme="@style/MyTheme"/>
         <activity android:name=".controller.ViewProfileActivity" android:theme="@style/MyTheme"/>
-        <activity android:name=".reports.SubmitH20SourceReportActivity" android:theme="@style/MyTheme"/>
+        <activity android:name=".controller.SubmitH20SourceReportActivity" android:theme="@style/MyTheme"/>
         <activity android:name=".controller.ViewReportsActivity" android:theme="@style/MyTheme"/>
         <activity android:name=".controller.SubmitPurityReportActivity" android:theme="@style/MyTheme"/>
-        <activity android:name=".reports.HistographActivity" android:theme="@style/MyTheme"/>
-        <activity android:name=".reports.SelectYearVCActivity" android:theme="@style/MyTheme"/>
+        <activity android:name=".controller.HistographActivity" android:theme="@style/MyTheme"/>
+        <activity android:name=".controller.SelectYearVCActivity" android:theme="@style/MyTheme"/>
         <activity android:name=".controller.ViewPurityReportsActivity" android:theme="@style/MyTheme"/>
         <activity android:name=".controller.ViewLocationPurityReportsActivity" android:theme="@style/MyTheme"/>
         <meta-data

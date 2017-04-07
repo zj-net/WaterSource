@@ -39,7 +39,7 @@ public class ViewProfileActivity extends AppCompatActivity {
         emailField.setText(user.getEmail());
     }
 
-    public void onEditPressed() {
+    public void onEditPressed(View view) {
         Intent goToEditProfileActivity = new Intent(getApplicationContext(), EditProfileActivity.class);
         startActivity(goToEditProfileActivity);
     }

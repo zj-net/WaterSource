@@ -1,4 +1,4 @@
-package com.tristenallen.watersource.reports;
+package com.tristenallen.watersource.controller;
 
 import android.content.Intent;
 import android.os.Bundle;

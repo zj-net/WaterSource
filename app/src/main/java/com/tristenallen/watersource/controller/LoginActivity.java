@@ -1,4 +1,4 @@
-package com.tristenallen.watersource.login;
+package com.tristenallen.watersource.controller;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.tristenallen.watersource.R;
 import com.tristenallen.watersource.database.MyDatabase;
-import com.tristenallen.watersource.main.MainActivity;
+import com.tristenallen.watersource.controller.MainActivity;
 import com.tristenallen.watersource.model.*;
 
 

@@ -11,7 +11,6 @@ import com.tristenallen.watersource.R;
 import com.tristenallen.watersource.model.Model;
 import com.tristenallen.watersource.model.PurityReport;
 import com.tristenallen.watersource.model.ReportHelper;
-import com.tristenallen.watersource.reports.SelectYearVCActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;

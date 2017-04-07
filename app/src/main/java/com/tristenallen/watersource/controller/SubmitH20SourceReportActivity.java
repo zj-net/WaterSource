@@ -1,4 +1,4 @@
-package com.tristenallen.watersource.reports;
+package com.tristenallen.watersource.controller;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,7 +10,6 @@ import android.widget.*;
 import com.google.android.gms.maps.model.LatLng;
 import com.tristenallen.watersource.R;
 import com.tristenallen.watersource.database.MyDatabase;
-import com.tristenallen.watersource.main.MainActivity;
 import com.tristenallen.watersource.model.*;
 
 import java.util.Locale;

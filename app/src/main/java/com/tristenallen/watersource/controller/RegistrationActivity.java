@@ -1,4 +1,4 @@
-package com.tristenallen.watersource.login;
+package com.tristenallen.watersource.controller;
 
 import android.content.Context;
 import android.os.Bundle;
