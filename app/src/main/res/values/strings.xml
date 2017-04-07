@@ -53,6 +53,9 @@
     <string name="personal_information">Personal Information</string>
     <string name="address">Address</string>
     <string name="emailtxt">emailtxt</string>
+    <string name="edit_your_information_below">Edit your information below</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="title">Title</string>
 
     <!--
 
