@@ -1,5 +1,6 @@
 package com.tristenallen.watersource.controller;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
@@ -274,8 +275,10 @@ public class MainActivity extends AppCompatActivity implements
 
         private final View myContentsView;
 
+        @SuppressLint("InflateParams")
+        // there is no parent for the inflated content.
         CustomInfoWindowAdapter(){
-            myContentsView = getLayoutInflater().inflate(R.layout.marker_info_content, (ViewGroup) null);
+            myContentsView = getLayoutInflater().inflate(R.layout.marker_info_content, null);
         }
 
         @Override
