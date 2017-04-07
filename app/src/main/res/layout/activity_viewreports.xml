@@ -8,7 +8,7 @@
 
 
     <TextView
-        android:text="@string/water_source_repor"
+        android:text="@string/water_source_reports"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/title"
