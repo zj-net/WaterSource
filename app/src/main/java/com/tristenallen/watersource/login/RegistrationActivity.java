@@ -1,17 +1,19 @@
 package com.tristenallen.watersource.login;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.*;
 import com.tristenallen.watersource.R;
 import com.tristenallen.watersource.database.MyDatabase;
 import com.tristenallen.watersource.model.AuthLevel;
+import com.tristenallen.watersource.model.DataSource;
 import com.tristenallen.watersource.model.Model;
 import com.tristenallen.watersource.model.User;
-import com.tristenallen.watersource.model.DataSource;
-import java.util.regex.*;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by jahziel on 2/22/17.

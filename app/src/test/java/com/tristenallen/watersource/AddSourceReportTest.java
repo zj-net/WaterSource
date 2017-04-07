@@ -1,26 +1,16 @@
 package com.tristenallen.watersource;
-import com.tristenallen.watersource.database.MyDatabase;
 
-import com.tristenallen.watersource.model.AuthLevel;
-import com.tristenallen.watersource.model.Model;
-import com.tristenallen.watersource.model.SourceReport;
-import com.tristenallen.watersource.model.WaterQuality;
-import com.tristenallen.watersource.model.WaterType;
-import com.tristenallen.watersource.model.DataSource;
-import com.tristenallen.watersource.model.ReportHelper;
-import com.tristenallen.watersource.model.User;
-import com.tristenallen.watersource.controller.*;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.location.Location;
 import android.support.v7.app.AppCompatActivity;
-
+import com.tristenallen.watersource.controller.SubmitPurityReportActivity;
+import com.tristenallen.watersource.database.MyDatabase;
+import com.tristenallen.watersource.model.*;
 import org.junit.Before;
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
-import org.junit.Test;
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by Allan on 4/5/17.

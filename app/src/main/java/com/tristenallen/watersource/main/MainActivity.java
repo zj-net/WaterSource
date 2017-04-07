@@ -9,29 +9,21 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.tristenallen.watersource.LaunchActivity;
 import com.tristenallen.watersource.R;
 import com.tristenallen.watersource.controller.*;
 import com.tristenallen.watersource.database.MyDatabase;
-import com.tristenallen.watersource.model.AuthLevel;
-import com.tristenallen.watersource.model.DataSource;
-import com.tristenallen.watersource.model.Model;
-import com.tristenallen.watersource.model.PurityReport;
-import com.tristenallen.watersource.model.ReportHelper;
-import com.tristenallen.watersource.model.SourceReport;
-import com.tristenallen.watersource.model.User;
+import com.tristenallen.watersource.model.*;
 import com.tristenallen.watersource.reports.SubmitH20SourceReportActivity;
 
 import java.util.ArrayList;
@@ -278,7 +270,7 @@ public class MainActivity extends AppCompatActivity implements
         private final View myContentsView;
 
         CustomInfoWindowAdapter(){
-            myContentsView = getLayoutInflater().inflate(R.layout.marker_info_content, (ViewGroup)null);
+            myContentsView = getLayoutInflater().inflate(R.layout.marker_info_content, null);
         }
 
         @Override
