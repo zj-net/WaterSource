@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -271,7 +272,7 @@ public class MainActivity extends AppCompatActivity implements
         private final View myContentsView;
 
         CustomInfoWindowAdapter(){
-            myContentsView = getLayoutInflater().inflate(R.layout.marker_info_content, null);
+            myContentsView = getLayoutInflater().inflate(R.layout.marker_info_content, (ViewGroup)null);
         }
 
         @Override
