@@ -8,11 +8,9 @@ import java.util.List;
 
 
 public interface DataSource {
-    User createUser(int id, String password, String email,
+    void createUser(int id, String password, String email,
                     AuthLevel role, String address, String title, String lastName,
                     String firstName);
-    void deleteUser(int id);
-    List<User> getAllUsers();
     boolean checkEmail(String email);
     boolean validate(String email, String password);
     int getIDbyEmail(String email);

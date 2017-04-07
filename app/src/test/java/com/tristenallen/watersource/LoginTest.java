@@ -20,9 +20,9 @@ import static org.mockito.Mockito.*;
  */
 
 public class LoginTest {
-    AuthHelper authHelper;
-    MyDatabase data;
-    User user = new User("1@1.com", AuthLevel.ADMIN,"Xiong","David");
+    private AuthHelper authHelper;
+    private MyDatabase data;
+    private final User user = new User("1@1.com", AuthLevel.ADMIN,"Xiong","David");
 
     @Before
     public void setUp() {
