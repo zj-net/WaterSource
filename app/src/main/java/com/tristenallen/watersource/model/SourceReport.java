@@ -12,12 +12,12 @@ import java.util.Locale;
  * holds the ID of the user who generated this report.
  */
 public class SourceReport {
-    private WaterType type;
-    private WaterQuality quality;
-    private int userID;
-    private Location location;
-    private Date timestamp;
-    private int reportNumber;
+    private final WaterType type;
+    private final WaterQuality quality;
+    private final int userID;
+    private final Location location;
+    private final Date timestamp;
+    private final int reportNumber;
 
     /**
      * Generates a new SourceReport at the given location
@@ -98,6 +98,6 @@ public class SourceReport {
 
     @Override
     public boolean equals(Object o) {
-        return (o instanceof SourceReport && ((SourceReport) o).reportNumber == reportNumber);
+        return ((o instanceof SourceReport) && (((SourceReport) o).reportNumber == reportNumber));
     }
 }

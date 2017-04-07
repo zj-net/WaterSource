@@ -1,17 +1,13 @@
 package com.tristenallen.watersource.controller;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import com.tristenallen.watersource.R;
 import com.tristenallen.watersource.model.Model;
 import com.tristenallen.watersource.model.PurityReport;
 import com.tristenallen.watersource.model.ReportHelper;
-import com.tristenallen.watersource.reports.HistographActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,14 +16,14 @@ import java.util.List;
  * Created by jahziel on 3/27/17.
  */
 public class ViewPurityReportsActivity extends AppCompatActivity {
-    private ReportHelper reportHelper = Model.getReportHelper();
-    private ListView listView;
+    private final ReportHelper reportHelper = Model.getReportHelper();
+
     //private Button viewGraphButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewpurityreports);
-        listView = (ListView) findViewById(R.id.purityReportListView);
+        ListView listView = (ListView) findViewById(R.id.purityReportListView);
         //viewGraphButton = (Button) findViewById(R.id.viewGraphButton);
         Iterable<PurityReport> purityReports = new ArrayList<>(reportHelper.getPurityReports(this));
         List<String> purityReportStrings = new ArrayList<>();

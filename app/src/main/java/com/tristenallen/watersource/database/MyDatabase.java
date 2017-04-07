@@ -18,7 +18,7 @@ public class MyDatabase implements DataSource {
 
 
     private SQLiteDatabase database;
-    private MyDBHelper dbHelper;
+    private final MyDBHelper dbHelper;
 
 
     public MyDatabase(Context context) {
@@ -26,7 +26,7 @@ public class MyDatabase implements DataSource {
         open();
     }
 
-    public void open() throws SQLException {
+    private void open() throws SQLException {
         database = dbHelper.getWritableDatabase();
     }
 

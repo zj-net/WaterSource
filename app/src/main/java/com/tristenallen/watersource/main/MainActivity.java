@@ -2,7 +2,6 @@ package com.tristenallen.watersource.main;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -36,7 +35,6 @@ import com.tristenallen.watersource.reports.SubmitH20SourceReportActivity;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements
         LogoutDialogFragment.LogoutDialogListener,OnMapReadyCallback {
@@ -45,15 +43,9 @@ public class MainActivity extends AppCompatActivity implements
     private ReportHelper reportHelper;
     public static final String ARG_latLng = "latLng";
     private Marker selectionMarker;
-    private Toolbar toolbar;
-    private Collection<Marker> purityMarkers = new ArrayList<>();
+    private final Collection<Marker> purityMarkers = new ArrayList<>();
     private static final float MARKER_ALPHA = 0.5f;
 
-
-    //getting list view button
-    private Button viewReportList;
-    //purity report button. jve
-    private Button viewPurityReportButton;
 
     private User user;
 
@@ -66,12 +58,12 @@ public class MainActivity extends AppCompatActivity implements
         data = new MyDatabase(this);
 
         setContentView(R.layout.activity_main);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        Toolbar toolbar1 = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar1);
 
         getSupportActionBar().setTitle("WaterSource");
 
-        viewReportList = (Button) findViewById(R.id.viewReports);
+        Button viewReportList = (Button) findViewById(R.id.viewReports);
 
         viewReportList.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,8 +85,8 @@ public class MainActivity extends AppCompatActivity implements
         user = Model.getCurrentUser();
 
         //jve.
-        viewPurityReportButton = (Button) findViewById(R.id.viewPurityReportsButton);
-        if (user.getRole() == AuthLevel.MANAGER || user.getRole() == AuthLevel.ADMIN) {
+        Button viewPurityReportButton = (Button) findViewById(R.id.viewPurityReportsButton);
+        if ((user.getRole() == AuthLevel.MANAGER) || (user.getRole() == AuthLevel.ADMIN)) {
             viewPurityReportButton.setVisibility(View.VISIBLE);
             viewPurityReportButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -266,7 +258,7 @@ public class MainActivity extends AppCompatActivity implements
 
     }
 
-    public void onInfoWindowClick(Marker marker) {
+    private void onInfoWindowClick(Marker marker) {
         Intent goToPRList = new Intent(getApplicationContext(), ViewLocationPurityReportsActivity.class);
         LatLng position = marker.getPosition();
         double[] latlng = {position.latitude, position.longitude};

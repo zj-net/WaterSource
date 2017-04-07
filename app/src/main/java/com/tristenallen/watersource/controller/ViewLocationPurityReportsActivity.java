@@ -1,7 +1,6 @@
 package com.tristenallen.watersource.controller;
 
 import android.content.Intent;
-import android.location.Location;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,7 +11,6 @@ import com.tristenallen.watersource.R;
 import com.tristenallen.watersource.model.Model;
 import com.tristenallen.watersource.model.PurityReport;
 import com.tristenallen.watersource.model.ReportHelper;
-import com.tristenallen.watersource.reports.HistographActivity;
 import com.tristenallen.watersource.reports.SelectYearVCActivity;
 
 import java.util.*;
@@ -21,28 +19,24 @@ import java.util.*;
  * Created by jahziel on 3/28/17.
  */
 public class ViewLocationPurityReportsActivity extends AppCompatActivity {
-    private ReportHelper reportHelper = Model.getReportHelper();
-    private ListView listView;
-    private Button viewHistographButton;
-    private Button addNewPurityReportButton;
-    private double[] extrasFromInfoWindow;
-    private double[] location = new double[2];
-    private ArrayList<String> monthYearVC = new ArrayList<>();
+    private final ReportHelper reportHelper = Model.getReportHelper();
+    private final double[] location = new double[2];
+    private final ArrayList<String> monthYearVC = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewlocationpurityreports);
-        listView = (ListView) findViewById(R.id.locationPurityReportListView);
-        viewHistographButton = (Button) findViewById(R.id.viewHistographButton);
-        addNewPurityReportButton = (Button) findViewById(R.id.addNewReportButton);
-        extrasFromInfoWindow = getIntent().getDoubleArrayExtra("Location");
+        ListView listView = (ListView) findViewById(R.id.locationPurityReportListView);
+        Button viewHistographButton = (Button) findViewById(R.id.viewHistographButton);
+        Button addNewPurityReportButton = (Button) findViewById(R.id.addNewReportButton);
+        double[] extrasFromInfoWindow = getIntent().getDoubleArrayExtra("Location");
         Iterable<PurityReport> rawPurityReports = new ArrayList<>(reportHelper.getPurityReports(this));
         List<PurityReport> purityReports = new ArrayList<>();
 
         List<String> purityReportStrings = new ArrayList<>();
 
         for (PurityReport x : rawPurityReports) {
-            if (x.getLocation().getLatitude() == extrasFromInfoWindow[0] && x.getLocation().getLongitude() == extrasFromInfoWindow[1]) {
+            if ((x.getLocation().getLatitude() == extrasFromInfoWindow[0]) && (x.getLocation().getLongitude() == extrasFromInfoWindow[1])) {
                 purityReports.add(x);
             }
         }

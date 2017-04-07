@@ -15,23 +15,18 @@ import com.tristenallen.watersource.model.User;
  */
 
 public class ViewProfileActivity extends AppCompatActivity {
-    private TextView nameField;
-    private TextView addressField;
-    private TextView emailField;
-
-    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewprofile);
 
-        nameField = (TextView) findViewById(R.id.shownameTXT);
-        addressField = (TextView) findViewById(R.id.showaddressTXT);
-        emailField = (TextView) findViewById(R.id.showemailTXT);
+        TextView nameField = (TextView) findViewById(R.id.shownameTXT);
+        TextView addressField = (TextView) findViewById(R.id.showaddressTXT);
+        TextView emailField = (TextView) findViewById(R.id.showemailTXT);
 
 
-        user = Model.getCurrentUser();
+        User user = Model.getCurrentUser();
 
         nameField.setText(user.getTitle() +" " + user.getFirstName()+ " " + user.getLastName());
         addressField.setText(user.getAddress());

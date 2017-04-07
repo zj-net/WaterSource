@@ -6,8 +6,8 @@ package com.tristenallen.watersource.model;
  * Email and authorization level are not editable.
  */
 public class User {
-    private String email;
-    private AuthLevel role;
+    private final String email;
+    private final AuthLevel role;
     private String address;
     private String title;
     private String lastName;

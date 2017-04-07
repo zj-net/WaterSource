@@ -15,17 +15,15 @@ import java.util.Calendar;
  * Created by jahziel on 3/27/17.
  */
 public class SelectYearVCActivity extends AppCompatActivity {
-    private Button submitGraphDetailsButton;
     private Spinner yearSpinner;
     private RadioButton virus;
     private RadioButton contaminant;
     private boolean virusTrue = false;
     private boolean contTrue = false;
     private String[] splitStr;
-    private ArrayList<String> extrasForGraph = new ArrayList<>();
+    private final ArrayList<String> extrasForGraph = new ArrayList<>();
     private final ArrayList<Integer> YEARS = new ArrayList<>();
     private static final int FIRST_YEAR = 1970;
-    private int THIS_YEAR;
     private Iterable<String> monthYearVC = new ArrayList<>();
 
     private boolean checkVirus = false;
@@ -36,11 +34,11 @@ public class SelectYearVCActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_selectyearvc);
-        submitGraphDetailsButton = (Button) findViewById(R.id.submitGraphDetailsButton);
+        Button submitGraphDetailsButton = (Button) findViewById(R.id.submitGraphDetailsButton);
         yearSpinner = (Spinner) findViewById(R.id.year);
         virus = (RadioButton) findViewById(R.id.virus);
         contaminant = (RadioButton) findViewById(R.id.contaminant);
-        THIS_YEAR = Calendar.getInstance().get(Calendar.YEAR);
+        int THIS_YEAR = Calendar.getInstance().get(Calendar.YEAR);
 
         monthYearVC = getIntent().getStringArrayListExtra("monthYearVC");
         for (int i = THIS_YEAR; i >= FIRST_YEAR; i--) {

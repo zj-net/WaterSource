@@ -13,14 +13,10 @@ import com.tristenallen.watersource.database.MyDatabase;
 import com.tristenallen.watersource.main.MainActivity;
 import android.content.Context;
 import com.tristenallen.watersource.model.AuthHelper;
-import com.tristenallen.watersource.model.AuthLevel;
 import com.tristenallen.watersource.model.AuthPackage;
 import com.tristenallen.watersource.model.AuthStatus;
 import com.tristenallen.watersource.model.DataSource;
 import com.tristenallen.watersource.model.Model;
-
-import com.tristenallen.watersource.model.User;
-import com.tristenallen.watersource.model.UserHelper;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -29,7 +25,6 @@ public class LoginActivity extends AppCompatActivity {
     private AuthHelper verifier;
     private AuthPackage AP;
     private AuthStatus status;
-    private Button loginButton;
 
     private DataSource data;
 
@@ -45,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.editText2);
 
 
-        loginButton = (Button) findViewById(R.id.LOGIN_BUTTON);
+        Button loginButton = (Button) findViewById(R.id.LOGIN_BUTTON);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
