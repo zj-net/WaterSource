@@ -22,6 +22,8 @@ import com.tristenallen.watersource.model.ReportHelper;
 import com.tristenallen.watersource.model.WaterPurity;
 import com.tristenallen.watersource.reports.SubmitH20SourceReportActivity;
 
+import java.util.Locale;
+
 /**
  * Created by David on 3/14/17.
  */
@@ -34,22 +36,24 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
 
     private Spinner waterConditionSpinner;
 
-    private Button submitButton;
-    private Button reportSourceButton;
-
     private double latDouble;
     private double lngDouble;
     private int virusPPMInt;
     private int contaminantPPMInt;
 
-    private Location h20Loc = new Location("Water Purity Report Location");
-    private ReportHelper reportHelper = Model.getReportHelper();
+    private final Location h20Loc = new Location("Water Purity Report Location");
+    private final ReportHelper reportHelper = Model.getReportHelper();
     private LatLng latLng;
 
     private boolean badLat;
     private boolean badLng;
     private boolean badVirusPPM;
     private boolean badContaminantPPM;
+
+    private static final double LAT_MAX = 90;
+    private static final double LAT_MIN = -90;
+    private static final double LONG_MAX = 180;
+    private static final double LONG_MIN = -180;
 
     private DataSource data;
 
@@ -68,8 +72,8 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
 
         waterConditionSpinner = (Spinner) findViewById(R.id.waterCondition);
 
-        submitButton = (Button) findViewById(R.id.submitButton);
-        reportSourceButton = (Button) findViewById(R.id.sourceReportButton);
+        Button submitButton = (Button) findViewById(R.id.submitButton);
+        Button reportSourceButton = (Button) findViewById(R.id.sourceReportButton);
 
         //populate spinners
         waterConditionSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, WaterPurity.values()));
@@ -77,14 +81,14 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
         // if latLng of a newly added marker is passed in, set latLng to it.
         if (getIntent().hasExtra(MainActivity.ARG_latLng)) {
             latLng = getIntent().getParcelableExtra(MainActivity.ARG_latLng);
-            latField.setText(Double.toString(latLng.latitude));
-            lngField.setText(Double.toString(latLng.longitude));
+            latField.setText(String.format(Locale.US, "%f",latLng.latitude));
+            lngField.setText(String.format(Locale.US, "%f",latLng.longitude));
         }
 
         if (getIntent().hasExtra("location")) {
             double[] arr = getIntent().getDoubleArrayExtra("location");
-            latField.setText(Double.toString(arr[0]));
-            lngField.setText(Double.toString(arr[1]));
+            latField.setText(String.format(Locale.US, "%f",arr[0]));
+            lngField.setText(String.format(Locale.US, "%f",arr[1]));
         }
 
 
@@ -143,7 +147,7 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
                     Toast badLng = Toast.makeText(context, error, duration);
                     badLng.show();
 
-                } else if (latDouble > 90.0 || latDouble < -90.0|| badLat) {
+                } else if ((latDouble > LAT_MAX) || (latDouble < LAT_MIN) || badLat) {
                     //throw a fit!
                     Context context = getApplicationContext();
                     CharSequence error = "Please enter a number between +/- 90!";
@@ -151,7 +155,7 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
                     latField.setText("");
                     Toast badLatitude = Toast.makeText(context, error, duration);
                     badLatitude.show();
-                } else if (lngDouble > 180.0 || lngDouble < -180.0 || badLng) {
+                } else if ((lngDouble > LONG_MAX) || (lngDouble < LONG_MIN) || badLng) {
                     //throw a fit!
                     Context context = getApplicationContext();
                     CharSequence error = "Please enter a number between +/- 180!";

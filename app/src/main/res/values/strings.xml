@@ -6,4 +6,63 @@
     <string name="dialog_logout">Are you sure you want to log out?</string>
     <string name="logout">Logout</string>
     <string name="cancel">Cancel</string>
+    <string name="enter_info">Enter your information below</string>
+    <string name="water_src_submit">Water Source Report Submission</string>
+    <string name="location">Location</string>
+    <string name="waterCon">Water Condition</string>
+    <string name="latitude">Latitude</string>
+    <string name="waterType">Water Type</string>
+    <string name="longitude">Longitude</string>
+    <string name="submit">Submit</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="please_fill">Please fill out your information below</string>
+    <string name="email">Email</string>
+    <string name="personal_info">Personal Information</string>
+    <string name="welcome_new_user">Welcome New User</string>
+    <string name="acc_registration">Account Registration</string>
+    <string name="water_purity_submission">Water Purity Report Submission</string>
+    <string name="virus_ppm">Virus PPM</string>
+    <string name="contaminant_ppm">Contaminant PPM</string>
+    <string name="source">source</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="welcome_to_watersource">Welcome to WaterSource!</string>
+    <string name="please_enter_your_username_and_password">Please Enter Your Username and Password</string>
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="username">Username</string>
+    <string name="view_reports">View Reports</string>
+    <string name="view_purity_reports">View Purity Reports</string>
+    <string name="contaminant">Contaminant</string>
+    <string name="virus">Virus</string>
+    <string name="select_a_year">Select a Year</string>
+    <string name="create_graph">Create Graph</string>
+    <string name="add_new_purityreport">Add new purity report</string>
+    <string name="view_graph">View Graph</string>
+    <string name="water_purity_reports">Water Purity Reports</string>
+    <string name="user_profile">User Profile</string>
+    <string name="all_user_information">All of your User Information</string>
+    <string name="edit">Edit</string>
+    <string name="back">Back</string>
+    <string name="account_information">Account Information</string>
+    <string name="addresstxt">addresstxt</string>
+    <string name="nametxt">nametxt</string>
+    <string name="name">Name</string>
+    <string name="personal_information">Personal Information</string>
+    <string name="address">Address</string>
+    <string name="emailtxt">emailtxt</string>
+
+    <!--
+
+    This is not an error, this is a Lint warning. So you can run the App, but the recommended way to display texts(on TextViews, Buttons etc.) is to use string references. You have to go to your res folder and there will be a strings.xml file under values. Add this in there:
+
+   <string name="my_string">Your Text!</string>
+    And to set text on you button you then have to do this:
+
+    android:text="@string/my_string"
+
+    -->
+
 </resources>

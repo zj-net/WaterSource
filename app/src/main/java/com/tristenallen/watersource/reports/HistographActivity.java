@@ -20,8 +20,6 @@ import java.util.ArrayList;
  * Created by jahziel on 3/27/17.
  */
 public class HistographActivity extends AppCompatActivity {
-    private String[] splitStr;
-    private DataPoint[] dataPointsArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +30,10 @@ public class HistographActivity extends AppCompatActivity {
         GraphView graph = (GraphView) findViewById(R.id.graph);
         ArrayList<DataPoint> dataPoints = new ArrayList<>();
         for (String s : extrasFromIntent) {
-            splitStr = s.split(":");
+            String[] splitStr = s.split(":");
             dataPoints.add(new DataPoint(Double.parseDouble(splitStr[0]), Double.parseDouble(splitStr[1])));
         }
-        dataPointsArray = new DataPoint[dataPoints.size()];
+        DataPoint[] dataPointsArray = new DataPoint[dataPoints.size()];
         dataPointsArray = dataPoints.toArray(dataPointsArray);
         Series<DataPoint> series = new LineGraphSeries<>(dataPointsArray);
         graph.addSeries(series);

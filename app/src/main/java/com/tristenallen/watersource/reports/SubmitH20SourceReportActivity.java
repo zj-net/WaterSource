@@ -16,7 +16,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.tristenallen.watersource.R;
 import android.widget.Button;
 
-import com.tristenallen.watersource.controller.SubmitPurityReportActivity;
 import com.tristenallen.watersource.database.MyDatabase;
 import com.tristenallen.watersource.main.MainActivity;
 import android.content.Context;
@@ -29,19 +28,24 @@ import com.tristenallen.watersource.model.ReportHelper;
 import com.tristenallen.watersource.model.WaterQuality;
 import com.tristenallen.watersource.model.WaterType;
 
+import java.util.Locale;
+
 public class SubmitH20SourceReportActivity extends AppCompatActivity {
     private EditText latField;
     private EditText lngField;
     private Spinner waterTypeSpinner;
     private Spinner waterQualSpinner;
-    private Button submitButton;
     private double latDouble;
     private double lngDouble;
-    private Location h20Loc = new Location("Water Report Location");
-    private ReportHelper reportHelper = Model.getReportHelper();
-    private LatLng latLng;
+    private final Location h20Loc = new Location("Water Report Location");
+    private final ReportHelper reportHelper = Model.getReportHelper();
     private boolean badLat;
     private boolean badLng;
+
+    private static final double LAT_MAX = 90;
+    private static final double LAT_MIN = -90;
+    private static final double LONG_MAX = 180;
+    private static final double LONG_MIN = -180;
 
     private DataSource data;
 
@@ -57,7 +61,7 @@ public class SubmitH20SourceReportActivity extends AppCompatActivity {
         lngField = (EditText) findViewById(R.id.longitudeTXT);
         waterTypeSpinner = (Spinner) findViewById(R.id.waterType);
         waterQualSpinner = (Spinner) findViewById(R.id.waterCondition);
-        submitButton = (Button) findViewById(R.id.submitButton);
+        Button submitButton = (Button) findViewById(R.id.submitButton);
 
         //populate spinners
         waterTypeSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, WaterType.values()));
@@ -65,9 +69,9 @@ public class SubmitH20SourceReportActivity extends AppCompatActivity {
 
         // if latLng of a newly added marker is passed in, set latLng to it.
         if (getIntent().hasExtra(MainActivity.ARG_latLng)) {
-            latLng = getIntent().getParcelableExtra(MainActivity.ARG_latLng);
-            latField.setText(Double.toString(latLng.latitude));
-            lngField.setText(Double.toString(latLng.longitude));
+            LatLng latLng = getIntent().getParcelableExtra(MainActivity.ARG_latLng);
+            latField.setText(String.format(Locale.US, "%f", latLng.latitude));
+            lngField.setText(String.format(Locale.US, "%f", latLng.longitude));
         }
 
 
@@ -103,7 +107,7 @@ public class SubmitH20SourceReportActivity extends AppCompatActivity {
                     Toast badLng = Toast.makeText(context, error, duration);
                     badLng.show();
 
-                } else if (latDouble > 90.0 || latDouble < -90.0 || badLat) {
+                } else if ((latDouble > LAT_MAX) || (latDouble < LAT_MIN) || badLat) {
                     //throw a fit!
                     Context context = getApplicationContext();
                     CharSequence error = "Please enter a number between +/- 90!";
@@ -111,7 +115,7 @@ public class SubmitH20SourceReportActivity extends AppCompatActivity {
                     latField.setText("");
                     Toast badLatitude = Toast.makeText(context, error, duration);
                     badLatitude.show();
-                } else if (lngDouble > 180.0 || lngDouble < -180.0 || badLng) {
+                } else if ((lngDouble > LONG_MAX) || (lngDouble < LONG_MIN) || badLng) {
                     //throw a fit!
                     Context context = getApplicationContext();
                     CharSequence error = "Please enter a number between +/- 180!";

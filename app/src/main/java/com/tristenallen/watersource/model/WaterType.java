@@ -9,7 +9,7 @@ public enum WaterType {
     BOTTLE("Bottled"), WELL("Well"), STREAM("Stream"),
     LAKE("Lake"), SPRING("Spring"), OTHER("Other");
 
-    String name;
+    final String name;
 
     WaterType(String name) {
         this.name = name;

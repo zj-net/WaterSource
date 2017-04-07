@@ -22,13 +22,13 @@
                 app:popupTheme="@style/AppTheme.PopupOverlay">
 
             <Button
-                android:text="View Reports"
+                android:text="@string/view_reports"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/viewReports"
                 />
             <Button
-                    android:text="View Purity Reports"
+                    android:text="@string/view_purity_reports"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/viewPurityReportsButton"
                     android:layout_weight="1"/>

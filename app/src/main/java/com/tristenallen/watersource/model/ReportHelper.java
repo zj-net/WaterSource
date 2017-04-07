@@ -14,11 +14,11 @@ import java.util.Collection;
  *
  * Contains methods for accessing and creating new kinds of reports.
  */
-public class ReportHelper {
-    private static ReportHelper INSTANCE = new ReportHelper();
+public final class ReportHelper {
+    private static final ReportHelper INSTANCE = new ReportHelper();
     private static final String QUALITY_DB = "QualityReports";
     private static final String PURITY_DB = "PurityReports";
-    private Gson gson;
+    private final Gson gson;
 
     /**
      * Creates a new ReportHelper.
@@ -31,7 +31,7 @@ public class ReportHelper {
      * Returns the instance of ReportHelper used in this application.
      * @return ReportHelper application instance.
      */
-    protected static ReportHelper getInstance() {
+    static ReportHelper getInstance() {
         return INSTANCE;
     }
 
@@ -116,7 +116,7 @@ public class ReportHelper {
     public boolean removeSourceReport(int id, Activity context) {
         SharedPreferences sourceReports = context.getSharedPreferences(QUALITY_DB, Context.MODE_PRIVATE);
         if (sourceReports.contains(String.valueOf(id))) {
-            sourceReports.edit().remove(String.valueOf(id)).commit();
+            sourceReports.edit().remove(String.valueOf(id)).apply();
             return true;
         } else {
             return false;
@@ -136,7 +136,7 @@ public class ReportHelper {
     public boolean removePurityReport(int id, Activity context) {
         SharedPreferences purityReports = context.getSharedPreferences(PURITY_DB, Context.MODE_PRIVATE);
         if (purityReports.contains(String.valueOf(id))) {
-            purityReports.edit().remove(String.valueOf(id)).commit();
+            purityReports.edit().remove(String.valueOf(id)).apply();
             return true;
         } else {
             return false;
@@ -166,7 +166,7 @@ public class ReportHelper {
                     currentSourceReportNumber);
             SharedPreferences sourceReports = context.getSharedPreferences(QUALITY_DB, Context.MODE_PRIVATE);
             String reportString = gson.toJson(newReport);
-            sourceReports.edit().putString(String.valueOf(currentSourceReportNumber), reportString).commit();
+            sourceReports.edit().putString(String.valueOf(currentSourceReportNumber), reportString).apply();
         } else {
             throw new IllegalArgumentException("You must pass in the ID of a"
             + " valid user!");
@@ -197,7 +197,7 @@ public class ReportHelper {
                     contaminantPPM);
             SharedPreferences purityReports = context.getSharedPreferences(PURITY_DB, Context.MODE_PRIVATE);
             String reportString = gson.toJson(newReport);
-            purityReports.edit().putString(String.valueOf(currentPurityReportNumber), reportString).commit();
+            purityReports.edit().putString(String.valueOf(currentPurityReportNumber), reportString).apply();
         } else {
             throw new IllegalArgumentException("You must pass in the ID of a"
                     + " valid user!");
