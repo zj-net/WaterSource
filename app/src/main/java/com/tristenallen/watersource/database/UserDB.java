@@ -49,10 +49,20 @@ class UserDB {
             + COLUMN_FIRSTNAME + " text not null"
             + ");";
 
+    /**
+     * method for create the database
+     * @param database SQLiteDatabase the database used
+     */
     public static void onCreate(SQLiteDatabase database) {
         database.execSQL(DATABASE_CREATE);
     }
 
+    /**
+     * method update db from old version to new version
+     * @param database SQLiteDatabase the database used
+     * @param oldVersion int old version number
+     * @param newVersion int new version number
+     */
     public static void onUpgrade(SQLiteDatabase database, int oldVersion,
                                  int newVersion) {
         Log.w(UserDB.class.getName(), "Upgrading database from version "
@@ -62,6 +72,18 @@ class UserDB {
         onCreate(database);
     }
 
+    /**
+     * method to insert a new user to the database
+     * @param database SQLiteDatabase the database used
+     * @param id int new user assigned id
+     * @param password String password for the user
+     * @param email String email for the user
+     * @param role AuthLevel user auth level: user,worker,manager,admin
+     * @param address String address of the user
+     * @param title String title of the user
+     * @param lastName String lastName of the user
+     * @param firstName String firstName of the user
+     */
     public static void create(SQLiteDatabase database, int id, String password, String email,
                               AuthLevel role, String address, String title, String lastName,
                               String firstName) {
@@ -98,6 +120,13 @@ class UserDB {
     }
 
 
+    /**
+     * method for check email
+     * @param database SQLiteDatabase the database used
+     * @param email String email for the user
+     * @return true if the email already exist in User DB, false otherwise
+     */
+
     public static boolean checkEmail(SQLiteDatabase database, String email) {
         String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_EMAIL + " ='" + email + "'";
 
@@ -112,6 +141,13 @@ class UserDB {
         return row_count>0;
     }
 
+    /**
+     * method for validate email and password
+     * @param database SQLiteDatabase the database used
+     * @param email String email for the user
+     * @param password String password for the user
+     * @return true if the email matches password, false otherwise
+     */
     public static boolean validate(SQLiteDatabase database, String email, String password) {
         String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_EMAIL + " ='"
                 + email + "' AND " + COLUMN_PASSWORD + " ='" + password + "'";
@@ -126,6 +162,12 @@ class UserDB {
         return row_count>0;
     }
 
+    /**
+     * method for get the id of user from email
+     * @param database SQLiteDatabase the database used
+     * @param email String email for the user
+     * @return the id int of the user
+     */
     public static int getIDbyEmail(SQLiteDatabase database, String email) {
         String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_EMAIL + " ='" + email + "'";
 
@@ -144,6 +186,12 @@ class UserDB {
         }
     }
 
+    /**
+     * method for get the user from id
+     * @param database SQLiteDatabase the database used
+     * @param id int id of the user
+     * @return User the user of the id
+     */
     public static User getUserByID(SQLiteDatabase database, int id) {
         String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + id;
 
@@ -162,6 +210,11 @@ class UserDB {
         return user;
     }
 
+    /**
+     * method for get the number of users from DB
+     * @param database SQLiteDatabase the database used
+     * @return int the number of user
+     */
     public static int getUserCount(SQLiteDatabase database) {
         String query = "SELECT * FROM " + TABLE_NAME;
 
