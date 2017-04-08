@@ -13,6 +13,10 @@ class MyDBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "student.db";
     private static final int DATABASE_VERSION = 1;
 
+    /**
+     * Public constructor for MyDBHelper class.
+     * @param context
+     */
     public MyDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }

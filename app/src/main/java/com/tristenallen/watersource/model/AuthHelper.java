@@ -16,6 +16,7 @@ public class AuthHelper {
      * Returns an AuthOutcome object specifying the outcome of the operation.
      * @param email String specifying the user's email.
      * @param password String specifying the user's password.
+     * @param data the DataSource
      * @return AuthPackage containing the logged-in user and/or a status message
      * indicating the failure of the operation.
      */
