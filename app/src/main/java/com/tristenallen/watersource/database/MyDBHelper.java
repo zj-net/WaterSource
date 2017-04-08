@@ -21,14 +21,21 @@ class MyDBHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    // Method is called during creation of the database
+    /**
+     * wrapper method for create the database
+     * @param database SQLiteDatabase the database used
+     */
     @Override
     public void onCreate(SQLiteDatabase database) {
         UserDB.onCreate(database);
     }
 
-    // Method is called during an upgrade of the database,
-    // e.g. if you increase the database version
+    /**
+     * wrapper method update db from old version to new version
+     * @param database SQLiteDatabase the database used
+     * @param oldVersion int old version number
+     * @param newVersion int new version number
+     */
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion,
                           int newVersion) {
