@@ -7,6 +7,7 @@ package com.tristenallen.watersource.model;
  * Automatically assigns users an ID number and associates their email with that ID number.
  * Also stores a list of passwords for the users.
  */
+@SuppressWarnings("FeatureEnvy")
 public final class UserHelper {
     private static final UserHelper INSTANCE = new UserHelper();
     private int currentID;
@@ -15,6 +16,10 @@ public final class UserHelper {
         currentID = 0;
     }
 
+    /**
+     * Method for getting an instance of the UserHelper class.
+     * @return this class's private instance of itself.
+     */
     public static UserHelper getInstance() {
         return INSTANCE;
     }
@@ -25,6 +30,8 @@ public final class UserHelper {
      * @param user User containing the new user's information.
      * @param email String specifying the new user's login email.
      * @param password String specifying the new user's password.
+     * @param data the DataSource object used to get information from the database.
+     * @return true or false depending on whether the method was successful or not.
      */
     public boolean addUser(User user, String email, String password, DataSource data) {
         currentID = data.getUserCount();

@@ -7,6 +7,10 @@ package com.tristenallen.watersource.model;
 public class AuthHelper {
     private static final AuthHelper INSTANCE = new AuthHelper();
 
+    /**
+     * Method for getting an instance of this class as the constructor is private.
+     * @return a new instance of the AuthHelper class.
+     */
     public static AuthHelper getInstance() {
         return INSTANCE;
     }
@@ -20,6 +24,7 @@ public class AuthHelper {
      * @return AuthPackage containing the logged-in user and/or a status message
      * indicating the failure of the operation.
      */
+    @SuppressWarnings("FeatureEnvy")
     public AuthPackage login(String email, String password, DataSource data) {
         if (!data.checkEmail(email)) {
             return new AuthPackage(null, AuthStatus.INVALID_NAME);

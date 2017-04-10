@@ -83,6 +83,7 @@ public final class ReportHelper {
             reportList.add(gson.fromJson((String) o, PurityReport.class));
         }
 
+
         return reportList;
     }
 
@@ -99,6 +100,7 @@ public final class ReportHelper {
      * @param quality WaterQuality of the water.
      * @param type WaterType of the water.
      * @param context Activity adding the report.
+     * @param data the DataSource object used to get saved data.
      * @throws IllegalArgumentException if the given user ID is not a valid user.
      */
     public void addSourceReport(int user, Location location,
@@ -130,6 +132,7 @@ public final class ReportHelper {
      * @param virusPPM int specifying viruses in ppm.
      * @param contaminantPPM int specifying contaminants in ppm.
      * @param context Activity adding the report.
+     * @param data the DataSource object used to get data from the database.
      * @throws IllegalArgumentException if the given user ID is not a valid user.
      */
     public void addPurityReport(int user, Location location,

@@ -52,6 +52,7 @@ public final class Model {
     /**
      * Sets the currently logged in user's ID and associated User object.
      * @param currentUserID int specifying the ID of this user.
+     * @param data the DataSource object used for getting data from database.
      */
     public static void setCurrentUser(int currentUserID, DataSource data) {
         Model.currentUserID = currentUserID;

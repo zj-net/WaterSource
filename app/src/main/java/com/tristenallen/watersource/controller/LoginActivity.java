@@ -17,6 +17,9 @@ import com.tristenallen.watersource.model.AuthStatus;
 import com.tristenallen.watersource.model.DataSource;
 import com.tristenallen.watersource.model.Model;
 
+/**
+ * Activity for handling existing users logging in.
+ */
 
 public class LoginActivity extends AppCompatActivity {
     private EditText usrname;

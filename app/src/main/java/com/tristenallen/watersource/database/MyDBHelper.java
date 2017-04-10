@@ -15,7 +15,7 @@ class MyDBHelper extends SQLiteOpenHelper {
 
     /**
      * Public constructor for MyDBHelper class.
-     * @param context
+     * @param context the app context in which this method will run.
      */
     public MyDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

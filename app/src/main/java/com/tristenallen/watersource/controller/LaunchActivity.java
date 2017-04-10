@@ -7,6 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import com.tristenallen.watersource.R;
 
+/**
+ * The first activity; generated upon app launch.
+ */
+
 public class LaunchActivity extends AppCompatActivity {
 
     @Override

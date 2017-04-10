@@ -34,6 +34,10 @@ import com.tristenallen.watersource.model.User;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ * The main activity class. This is the first screen that users see upon logging in.
+ * All other app functionality is accessible from this screen.
+ */
 @SuppressWarnings("ClassWithTooManyDependencies") // MainActivity must include numerous dependencies due to Android
 public class MainActivity extends AppCompatActivity implements
         LogoutDialogFragment.LogoutDialogListener,OnMapReadyCallback {

@@ -41,6 +41,10 @@ public class EditProfileActivity extends AppCompatActivity {
         addressField.setText(user.getAddress());
     }
 
+    /**
+     * Method defining actions once the submit button is pressed.
+     * @param view the View required by Android for this method to run.
+     */
     @SuppressWarnings("UnusedParameters")
     //View view is required by android
     public void onSubmitPressed(View view) {
@@ -54,6 +58,10 @@ public class EditProfileActivity extends AppCompatActivity {
         startActivity(goToMainActivity);
     }
 
+    /**
+     * Method defining actions for when back is pressed.
+     * @param view the View required by Android for this method to run.
+     */
     @SuppressWarnings("UnusedParameters")
     //View view is required by android
     public void onBackPressed( View view) {

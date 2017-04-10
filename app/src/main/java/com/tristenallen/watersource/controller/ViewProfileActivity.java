@@ -39,6 +39,10 @@ public class ViewProfileActivity extends AppCompatActivity {
         emailField.setText(user.getEmail());
     }
 
+    /**
+     * Method for handling user pressing the "Edit" button.
+     * @param view the View object required by Android for this method to run.
+     */
     @SuppressWarnings("UnusedParameters")
     //View view is required by android
     public void onEditPressed(View view) {
@@ -46,6 +50,10 @@ public class ViewProfileActivity extends AppCompatActivity {
         startActivity(goToEditProfileActivity);
     }
 
+    /**
+     * Method for handling the user pressing the "back" button.
+     * @param view the View object required by Adroid for this method to run.
+     */
     @SuppressWarnings("UnusedParameters")
     //View view is required by android
     public void onBackPressed(View view) {

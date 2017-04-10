@@ -15,8 +15,18 @@ import com.tristenallen.watersource.R;
 public class LogoutDialogFragment extends DialogFragment {
 
     // create interface to send events back to activity
+    /**
+     * Interface for creating a dialog box for verifying log out.
+     */
     public interface LogoutDialogListener {
+        /**
+         * Method for handling the user affirming their desire to log out.
+         */
         void onDialogPositiveClick();
+
+        /**
+         * Method for handling user canceling log out.
+         */
         @SuppressWarnings("EmptyMethod") // dialog box has both buttons; in future negative might take action
         void onDialogNegativeClick();
     }

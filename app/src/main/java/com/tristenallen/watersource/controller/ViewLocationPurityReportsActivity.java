@@ -48,7 +48,7 @@ public class ViewLocationPurityReportsActivity extends AppCompatActivity {
         PurityReport sample = purityReports.get(0);
         location[0] = sample.getLocation().getLatitude();
         location[1] = sample.getLocation().getLongitude();
-        int count = 0; //for testing
+        //int count = 0; //for testing
         for (PurityReport p : purityReports) {
             purityReportStrings.add(p.toString());
             Date leDate =  p.getTimestamp();
@@ -57,11 +57,11 @@ public class ViewLocationPurityReportsActivity extends AppCompatActivity {
             int year = cal.get(Calendar.YEAR);
             int month = cal.get(Calendar.MONTH);
             month++; // required due to 0 indexing of months
-            month = month + count; // for testing
+            //month = month + count; // for testing
             int virusPPM = p.getVirusPPM();
             int contPPM = p.getContaminantPPM();
             monthYearVC.add(month + ":" + year + ":" + virusPPM + ":" + contPPM);
-            count++;
+            //count++; for testing
         }
         listView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, purityReportStrings));
 
