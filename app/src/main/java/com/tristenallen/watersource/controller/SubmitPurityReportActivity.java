@@ -74,7 +74,8 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
         Button reportSourceButton = (Button) findViewById(R.id.sourceReportButton);
 
         //populate spinners
-        waterConditionSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, WaterPurity.values()));
+        waterConditionSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item
+                , WaterPurity.values()));
 
         // if latLng of a newly added marker is passed in, set latLng to it.
         if (getIntent().hasExtra(MainActivity.ARG_latLng)) {
@@ -94,7 +95,8 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
         reportSourceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToSubmitSourceActivity = new Intent(getApplicationContext(), SubmitH20SourceReportActivity.class);
+                Intent goToSubmitSourceActivity = new Intent(getApplicationContext()
+                        , SubmitH20SourceReportActivity.class);
                 goToSubmitSourceActivity.putExtra(MainActivity.ARG_latLng,latLng);
                 startActivity(goToSubmitSourceActivity);
             }
@@ -178,7 +180,8 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
                 } else {
                     h20Loc.setLatitude(latDouble);
                     h20Loc.setLongitude(lngDouble);
-                    reportHelper.addPurityReport(Model.getCurrentUserID(), h20Loc, waterPurityData, virusPPMInt,contaminantPPMInt, data, SubmitPurityReportActivity.this);
+                    reportHelper.addPurityReport(Model.getCurrentUserID(), h20Loc, waterPurityData
+                            , virusPPMInt,contaminantPPMInt, data, SubmitPurityReportActivity.this);
                     Context context = getApplicationContext();
                     CharSequence msg = "Report submitted successfully!";
                     int duration = Toast.LENGTH_LONG;

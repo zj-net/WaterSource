@@ -102,7 +102,8 @@ public class RegistrationActivity extends AppCompatActivity {
                 } else {
 
                     //last part, after checks are passed
-                    user = new User(emailString, (AuthLevel) authSpinner.getSelectedItem(), lastNameString, firstNameString);
+                    user = new User(emailString, (AuthLevel) authSpinner.getSelectedItem()
+                            ,lastNameString, firstNameString);
                     //noinspection LawOfDemeter Model is the only way to get our singular instance of UserHelper
                     if (!Model.getUserHelper().addUser(user, emailString, passwordString, data)) {
                         Context context = getApplicationContext();

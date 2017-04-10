@@ -40,7 +40,8 @@ public class ViewLocationPurityReportsActivity extends AppCompatActivity {
         List<String> purityReportStrings = new ArrayList<>();
 
         for (PurityReport x : rawPurityReports) {
-            if ((x.getLocation().getLatitude() == extrasFromInfoWindow[0]) && (x.getLocation().getLongitude() == extrasFromInfoWindow[1])) {
+            if ((x.getLocation().getLatitude() == extrasFromInfoWindow[0]) &&
+                    (x.getLocation().getLongitude() == extrasFromInfoWindow[1])) {
                 purityReports.add(x);
             }
         }
