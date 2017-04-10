@@ -30,7 +30,8 @@
     <string name="register">Register</string>
     <string name="login">Login</string>
     <string name="welcome_to_watersource">Welcome to WaterSource!</string>
-    <string name="please_enter_your_username_and_password">Please Enter Your Username and Password</string>
+    <string name="please_enter_your_username_and_password">
+        Please Enter Your Username and Password</string>
     <string name="welcome_back">Welcome Back!</string>
     <string name="username">Username</string>
     <string name="view_reports">View Reports</string>

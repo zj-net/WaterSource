@@ -128,7 +128,8 @@ class UserDB {
      */
 
     public static boolean checkEmail(SQLiteDatabase database, String email) {
-        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_EMAIL + " ='" + email + "'";
+        String query = "SELECT * FROM " + TABLE_NAME
+                + " WHERE " + COLUMN_EMAIL + " ='" + email + "'";
 
         Cursor cursor = database.rawQuery(query,null);
         Log.d("checkEmail******",cursor.toString());
@@ -169,7 +170,8 @@ class UserDB {
      * @return the id int of the user
      */
     public static int getIDbyEmail(SQLiteDatabase database, String email) {
-        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_EMAIL + " ='" + email + "'";
+        String query = "SELECT * FROM " + TABLE_NAME
+                + " WHERE " + COLUMN_EMAIL + " ='" + email + "'";
 
         Cursor cursor = database.rawQuery(query,null);
 

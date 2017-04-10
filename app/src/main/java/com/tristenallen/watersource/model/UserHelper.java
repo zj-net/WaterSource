@@ -25,8 +25,8 @@ public final class UserHelper {
     }
 
     /**
-     * Creates a new user from the given information. Returns false if there is already a user associated
-     * with the given email.
+     * Creates a new user from the given information. Returns false
+     * if there is already a user associated with the given email.
      * @param user User containing the new user's information.
      * @param email String specifying the new user's login email.
      * @param password String specifying the new user's password.
@@ -38,8 +38,8 @@ public final class UserHelper {
         if (data.checkEmail(email)) {
             return false;
         } else {
-            data.createUser(currentID,password,user.getEmail(),user.getRole(),user.getAddress(),user.getTitle(),
-                    user.getLastName(),user.getFirstName());
+            data.createUser(currentID,password,user.getEmail(),user.getRole(),
+                    user.getAddress(),user.getTitle(), user.getLastName(),user.getFirstName());
             return true;
         }
     }

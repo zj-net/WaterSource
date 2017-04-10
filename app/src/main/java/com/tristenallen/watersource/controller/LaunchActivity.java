@@ -31,7 +31,8 @@ public class LaunchActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToSignUpScreen = new Intent(LaunchActivity.this, RegistrationActivity.class);
+                Intent goToSignUpScreen = new Intent(LaunchActivity.this,
+                        RegistrationActivity.class);
                 startActivity(goToSignUpScreen);
 
             }

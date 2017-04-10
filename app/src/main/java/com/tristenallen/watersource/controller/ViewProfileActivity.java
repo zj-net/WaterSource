@@ -46,7 +46,8 @@ public class ViewProfileActivity extends AppCompatActivity {
     @SuppressWarnings("UnusedParameters")
     //View view is required by android
     public void onEditPressed(View view) {
-        Intent goToEditProfileActivity = new Intent(getApplicationContext(), EditProfileActivity.class);
+        Intent goToEditProfileActivity = new Intent(getApplicationContext(),
+                EditProfileActivity.class);
         startActivity(goToEditProfileActivity);
     }
 

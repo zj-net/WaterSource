@@ -25,7 +25,8 @@ public class ViewLocationPurityReportsActivity extends AppCompatActivity {
     private final ReportHelper reportHelper = Model.getReportHelper();
     private final double[] location = new double[2];
     private final ArrayList<String> monthYearVC = new ArrayList<>();
-    @SuppressWarnings("FeatureEnvy") // feature envy smell occurs because of onCreate() handling the bulk of work
+    @SuppressWarnings("FeatureEnvy")
+    // ^^ feature envy smell occurs because of onCreate() handling the bulk of work
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +35,8 @@ public class ViewLocationPurityReportsActivity extends AppCompatActivity {
         Button viewHistographButton = (Button) findViewById(R.id.viewHistographButton);
         Button addNewPurityReportButton = (Button) findViewById(R.id.addNewReportButton);
         double[] extrasFromInfoWindow = getIntent().getDoubleArrayExtra("Location");
-        Iterable<PurityReport> rawPurityReports = new ArrayList<>(reportHelper.getPurityReports(this));
+        Iterable<PurityReport> rawPurityReports =
+                new ArrayList<>(reportHelper.getPurityReports(this));
         List<PurityReport> purityReports = new ArrayList<>();
 
         List<String> purityReportStrings = new ArrayList<>();
@@ -64,7 +66,8 @@ public class ViewLocationPurityReportsActivity extends AppCompatActivity {
             monthYearVC.add(month + ":" + year + ":" + virusPPM + ":" + contPPM);
             //count++; for testing
         }
-        listView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, purityReportStrings));
+        listView.setAdapter(new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1, purityReportStrings));
 
         viewHistographButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +81,8 @@ public class ViewLocationPurityReportsActivity extends AppCompatActivity {
         addNewPurityReportButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent addAnother = new Intent(getApplicationContext(), SubmitPurityReportActivity.class);
+                Intent addAnother = new Intent(getApplicationContext(),
+                        SubmitPurityReportActivity.class);
                 addAnother.putExtra("location", location);
                 startActivity(addAnother);
             }

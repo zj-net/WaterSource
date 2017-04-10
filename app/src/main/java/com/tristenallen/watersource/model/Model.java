@@ -3,7 +3,8 @@ package com.tristenallen.watersource.model;
 /**
  * Created by tristen on 2/21/17.
  *
- * Base class for the backend model. Provides static access to individual managers and data access features.
+ * Base class for the backend model. Provides static access
+ * to individual managers and data access features.
  */
 @SuppressWarnings("ClassWithTooManyDependents") // Model class forms backbone of backend
 public final class Model {

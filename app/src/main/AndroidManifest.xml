@@ -26,16 +26,23 @@
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="com.tristenallen.watersource.controller.LoginActivity"/>
         </activity>
-        <activity android:name=".controller.RegistrationActivity" android:theme="@style/MyTheme"/>
-        <activity android:name=".controller.EditProfileActivity" android:theme="@style/MyTheme"/>
-        <activity android:name=".controller.ViewProfileActivity" android:theme="@style/MyTheme"/>
-        <activity android:name=".controller.SubmitH20SourceReportActivity" android:theme="@style/MyTheme"/>
+        <activity android:name=".controller.RegistrationActivity"
+            android:theme="@style/MyTheme"/>
+        <activity android:name=".controller.EditProfileActivity"
+            android:theme="@style/MyTheme"/>
+        <activity android:name=".controller.ViewProfileActivity"
+            android:theme="@style/MyTheme"/>
+        <activity android:name=".controller.SubmitH20SourceReportActivity"
+            android:theme="@style/MyTheme"/>
         <activity android:name=".controller.ViewReportsActivity" android:theme="@style/MyTheme"/>
-        <activity android:name=".controller.SubmitPurityReportActivity" android:theme="@style/MyTheme"/>
+        <activity android:name=".controller.SubmitPurityReportActivity"
+            android:theme="@style/MyTheme"/>
         <activity android:name=".controller.HistographActivity" android:theme="@style/MyTheme"/>
         <activity android:name=".controller.SelectYearVCActivity" android:theme="@style/MyTheme"/>
-        <activity android:name=".controller.ViewPurityReportsActivity" android:theme="@style/MyTheme"/>
-        <activity android:name=".controller.ViewLocationPurityReportsActivity" android:theme="@style/MyTheme"/>
+        <activity android:name=".controller.ViewPurityReportsActivity"
+            android:theme="@style/MyTheme"/>
+        <activity android:name=".controller.ViewLocationPurityReportsActivity"
+            android:theme="@style/MyTheme"/>
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAfiCQXt7MlOL5B7YbV6rFIfRDM5X8-Kok"/>

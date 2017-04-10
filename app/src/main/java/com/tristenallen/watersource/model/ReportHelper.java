@@ -43,7 +43,8 @@ public final class ReportHelper {
      * @return SourceReport associated with the given report number.
      */
     public SourceReport getSourceReport(int id, Activity context) {
-        SharedPreferences sourceReports = context.getSharedPreferences(QUALITY_DB, Context.MODE_PRIVATE);
+        SharedPreferences sourceReports =
+                context.getSharedPreferences(QUALITY_DB, Context.MODE_PRIVATE);
         if (sourceReports.contains(String.valueOf(id))) {
             String reportString = sourceReports.getString(String.valueOf(id), null);
             return gson.fromJson(reportString, SourceReport.class);
@@ -59,7 +60,8 @@ public final class ReportHelper {
      * @return Collection of all the source reports in the model.
      */
     public Collection<SourceReport> getSourceReports(Activity context) {
-        SharedPreferences sourceReports = context.getSharedPreferences(QUALITY_DB, Context.MODE_PRIVATE);
+        SharedPreferences sourceReports =
+                context.getSharedPreferences(QUALITY_DB, Context.MODE_PRIVATE);
         Collection<SourceReport> reportList = new ArrayList<>();
 
         for (Object o: sourceReports.getAll().values()) {
@@ -76,7 +78,8 @@ public final class ReportHelper {
      * @return Collection of all the purity reports in the model.
      */
     public Collection<PurityReport> getPurityReports(Activity context) {
-        SharedPreferences sourceReports = context.getSharedPreferences(PURITY_DB, Context.MODE_PRIVATE);
+        SharedPreferences sourceReports =
+                context.getSharedPreferences(PURITY_DB, Context.MODE_PRIVATE);
         Collection<PurityReport> reportList = new ArrayList<>();
 
         for (Object o: sourceReports.getAll().values()) {
@@ -103,15 +106,17 @@ public final class ReportHelper {
      * @param data the DataSource object used to get saved data.
      * @throws IllegalArgumentException if the given user ID is not a valid user.
      */
-    public void addSourceReport(int user, Location location,
-                                   WaterQuality quality, WaterType type, DataSource data, Activity context) {
+    public void addSourceReport(int user, Location location, WaterQuality quality,
+                                WaterType type, DataSource data, Activity context) {
         if (data.getUserbyID(user) != null) {
             int currentSourceReportNumber = getSourceReports(context).size() + 1;
             SourceReport newReport = new SourceReport(user, location, quality, type,
                     currentSourceReportNumber);
-            SharedPreferences sourceReports = context.getSharedPreferences(QUALITY_DB, Context.MODE_PRIVATE);
+            SharedPreferences sourceReports =
+                    context.getSharedPreferences(QUALITY_DB, Context.MODE_PRIVATE);
             String reportString = gson.toJson(newReport);
-            sourceReports.edit().putString(String.valueOf(currentSourceReportNumber), reportString).apply();
+            sourceReports.edit().putString(String
+                    .valueOf(currentSourceReportNumber), reportString).apply();
         } else {
             throw new IllegalArgumentException("You must pass in the ID of a"
             + " valid user!");
@@ -140,11 +145,13 @@ public final class ReportHelper {
                                 DataSource data, Activity context) {
         int currentPurityReportNumber = getPurityReports(context).size() + 1;
         if (data.getUserbyID(user) != null) {
-            PurityReport newReport = new PurityReport(user, location, purity, currentPurityReportNumber, virusPPM,
-                    contaminantPPM);
-            SharedPreferences purityReports = context.getSharedPreferences(PURITY_DB, Context.MODE_PRIVATE);
+            PurityReport newReport = new PurityReport(user, location, purity,
+                    currentPurityReportNumber, virusPPM, contaminantPPM);
+            SharedPreferences purityReports =
+                    context.getSharedPreferences(PURITY_DB, Context.MODE_PRIVATE);
             String reportString = gson.toJson(newReport);
-            purityReports.edit().putString(String.valueOf(currentPurityReportNumber), reportString).apply();
+            purityReports.edit()
+                    .putString(String.valueOf(currentPurityReportNumber), reportString).apply();
         } else {
             throw new IllegalArgumentException("You must pass in the ID of a"
                     + " valid user!");

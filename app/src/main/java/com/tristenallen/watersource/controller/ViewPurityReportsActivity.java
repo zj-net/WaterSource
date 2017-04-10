@@ -31,11 +31,13 @@ public class ViewPurityReportsActivity extends AppCompatActivity {
         for (PurityReport p : purityReports) {
             purityReportStrings.add(p.toString());
         }
-        listView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, purityReportStrings));
+        listView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
+                purityReportStrings));
         /*viewGraphButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToHistograph = new Intent(getApplicationContext(), HistographActivity.class);
+                Intent goToHistograph = new Intent(getApplicationContext(),
+                HistographActivity.class);
                 startActivity(goToHistograph);
             }
         });*/

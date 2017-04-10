@@ -29,7 +29,8 @@ public class HistographActivity extends AppCompatActivity {
         ArrayList<DataPoint> dataPoints = new ArrayList<>();
         for (String s : extrasFromIntent) {
             String[] splitStr = s.split(":");
-            dataPoints.add(new DataPoint(Double.parseDouble(splitStr[0]), Double.parseDouble(splitStr[1])));
+            dataPoints.add(new DataPoint(Double.parseDouble(splitStr[0]),
+                    Double.parseDouble(splitStr[1])));
         }
         DataPoint[] dataPointsArray = new DataPoint[dataPoints.size()];
         dataPointsArray = dataPoints.toArray(dataPointsArray);

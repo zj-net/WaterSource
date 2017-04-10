@@ -5,7 +5,8 @@ package com.tristenallen.watersource.model;
  * Contains user information.
  * Email and authorization level are not editable.
  */
-@SuppressWarnings("ClassWithTooManyDependents") // User class is a data-holding class central to the backend model
+@SuppressWarnings("ClassWithTooManyDependents")
+// ^^ User class is a data-holding class central to the backend model
 public class User {
     private final String email;
     private final AuthLevel role;

@@ -70,7 +70,8 @@ public class LoginActivity extends AppCompatActivity {
                     badPass.show();
 
                 } else {
-                    Intent goToMainActivity = new Intent(getApplicationContext(), MainActivity.class);
+                    Intent goToMainActivity = new Intent(getApplicationContext(),
+                            MainActivity.class);
                     startActivity(goToMainActivity);
                 }
             }
