@@ -9,12 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.tristenallen.watersource.controller.LaunchActivity"
-    android:background="#2055a6">
-
-    <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true">
+    android:layout_centerVertical="true">
 
         <TextView
                 android:layout_width="wrap_content"
@@ -53,4 +48,3 @@
         </RelativeLayout>
     </RelativeLayout>
 
-</RelativeLayout>

@@ -28,6 +28,7 @@ public class PurityReport {
      *
      * All data in a SourceReport is considered immutable.
      */
+    @SuppressWarnings("ConstructorWithTooManyParameters") //this is part of the design...
     PurityReport(int userID, Location location, WaterPurity purity, int reportNumber,
                  int virusPPM, int contaminantPPM) {
         this.userID = userID;
