@@ -28,7 +28,8 @@ public class ViewReportsActivity extends AppCompatActivity {
         for (SourceReport s : sourceReports) {
             sourceReportStrings.add(s.toString());
         }
-        listView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, sourceReportStrings));
+        listView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
+                sourceReportStrings));
 
 
     }

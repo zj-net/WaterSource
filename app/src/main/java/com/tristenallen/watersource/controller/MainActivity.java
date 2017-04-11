@@ -38,7 +38,8 @@ import java.util.Collection;
  * The main activity class. This is the first screen that users see upon logging in.
  * All other app functionality is accessible from this screen.
  */
-@SuppressWarnings("ClassWithTooManyDependencies") // MainActivity must include numerous dependencies due to Android
+@SuppressWarnings("ClassWithTooManyDependencies")
+// ^^ MainActivity must include numerous dependencies due to Android
 public class MainActivity extends AppCompatActivity implements
         LogoutDialogFragment.LogoutDialogListener,OnMapReadyCallback {
 
@@ -71,12 +72,14 @@ public class MainActivity extends AppCompatActivity implements
         viewReportList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToReportList = new Intent(getApplicationContext(), ViewReportsActivity.class);
+                Intent goToReportList =
+                        new Intent(getApplicationContext(), ViewReportsActivity.class);
                 startActivity(goToReportList);
             }
         });
 
-        @SuppressWarnings("ChainedMethodCall") // we do not use the SupportFragmentManager more than once.
+        @SuppressWarnings("ChainedMethodCall")
+        // ^^ we do not use the SupportFragmentManager more than once.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -93,7 +96,8 @@ public class MainActivity extends AppCompatActivity implements
             viewPurityReportButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent goToPurityReportList = new Intent(getApplicationContext(), ViewPurityReportsActivity.class);
+                    Intent goToPurityReportList =
+                            new Intent(getApplicationContext(), ViewPurityReportsActivity.class);
                     startActivity(goToPurityReportList);
                 }
             });
@@ -160,11 +164,13 @@ public class MainActivity extends AppCompatActivity implements
 
     // launches a dialog confirming that the user wants to log out
     private void showProfile() {
-        Intent goToEditProfileActivity = new Intent(getApplicationContext(), ViewProfileActivity.class);
+        Intent goToEditProfileActivity =
+                new Intent(getApplicationContext(), ViewProfileActivity.class);
         startActivity(goToEditProfileActivity);
     }
 
-    @SuppressWarnings("FeatureEnvy") // feature envy smell occurs because of how the map is constructed
+    @SuppressWarnings("FeatureEnvy")
+    // ^^ feature envy smell occurs because of how the map is constructed
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -206,12 +212,14 @@ public class MainActivity extends AppCompatActivity implements
                     if (user.getRole() == AuthLevel.USER){
                         Intent goToSubmitSourceActivity = new Intent(getApplicationContext(),
                                 SubmitH20SourceReportActivity.class);
-                        goToSubmitSourceActivity.putExtra(MainActivity.ARG_latLng,marker.getPosition());
+                        goToSubmitSourceActivity
+                                .putExtra(MainActivity.ARG_latLng,marker.getPosition());
                         startActivity(goToSubmitSourceActivity);
                     } else {
                         Intent goToSubmitPurityActivity = new Intent(getApplicationContext(),
                                 SubmitPurityReportActivity.class);
-                        goToSubmitPurityActivity.putExtra(MainActivity.ARG_latLng,marker.getPosition());
+                        goToSubmitPurityActivity
+                                .putExtra(MainActivity.ARG_latLng,marker.getPosition());
                         startActivity(goToSubmitPurityActivity);
                     }
                     return true;
@@ -239,13 +247,16 @@ public class MainActivity extends AppCompatActivity implements
             Collection<PurityReport> purityReportList = reportHelper.getPurityReports(this);
             for (PurityReport r : purityReportList) {
                 Location reportLocation = r.getLocation();
-                LatLng loc = new LatLng(reportLocation.getLatitude(), reportLocation.getLongitude());
-                String s = "Condition: " + r.getPurity() + "\n" + "VirusPPM: " + r.getVirusPPM() + "\n"
+                LatLng loc = new LatLng(reportLocation.getLatitude(),
+                        reportLocation.getLongitude());
+                String s = "Condition: " + r.getPurity() + "\n" + "VirusPPM: "
+                        + r.getVirusPPM() + "\n"
                         + "ContaminantPPM: " + r.getContaminantPPM() + "\nLong press for more!";
                 @SuppressWarnings("ChainedMethodCall") // required by android
                 Marker newMarker = mMap.addMarker(new MarkerOptions().position(loc)
                         .title("Water Purity").snippet(s)
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
+                        .icon(BitmapDescriptorFactory
+                                .defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
                         .zIndex(r.getReportNumber()));
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
                 purityMarkers.add(newMarker);
@@ -272,7 +283,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void onInfoWindowClick(Marker marker) {
-        Intent goToPRList = new Intent(getApplicationContext(), ViewLocationPurityReportsActivity.class);
+        Intent goToPRList = new Intent(getApplicationContext(),
+                ViewLocationPurityReportsActivity.class);
         LatLng position = marker.getPosition();
         double[] latlng = {position.latitude, position.longitude};
         goToPRList.putExtra("Location", latlng);

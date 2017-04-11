@@ -28,7 +28,8 @@ public class LogoutDialogFragment extends DialogFragment {
         /**
          * Method for handling user canceling log out.
          */
-        @SuppressWarnings("EmptyMethod") // dialog box has both buttons; in future negative might take action
+        @SuppressWarnings("EmptyMethod")
+        // ^^ dialog box has both buttons; in future negative might take action
         void onDialogNegativeClick();
     }
 

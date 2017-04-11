@@ -76,8 +76,8 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
         Button reportSourceButton = (Button) findViewById(R.id.sourceReportButton);
 
         //populate spinners
-        waterConditionSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item
-                , WaterPurity.values()));
+        waterConditionSpinner.setAdapter(new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, WaterPurity.values()));
 
         // if latLng of a newly added marker is passed in, set latLng to it.
         if (getIntent().hasExtra(MainActivity.ARG_latLng)) {

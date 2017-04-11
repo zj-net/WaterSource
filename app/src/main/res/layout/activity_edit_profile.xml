@@ -1,21 +1,16 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical"
-    tools:context="com.tristenallen.watersource.controller.EditProfileActivity"
-    >
 
 
-    <RelativeLayout android:layout_width="fill_parent"
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="30dp"
         android:orientation="vertical"
+        tools:context="com.tristenallen.watersource.controller.EditProfileActivity"
         >
 
         <EditText android:layout_width="fill_parent"
@@ -122,17 +117,20 @@
             android:layout_alignParentStart="true"
             android:onClick="onBackPressed" />
 
+        <EditText android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="@string/password"
+            android:background="#f3f3f3"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:id="@+id/PasswordTXT"
+            android:inputType="textPassword"
+            android:layout_below="@+id/addressTXT"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="31dp" />
+
     </RelativeLayout>
 
-    <EditText android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:hint="@string/password"
-        android:background="#f3f3f3"
-        android:paddingStart="5dp"
-        android:paddingEnd="5dp"
-        android:id="@+id/PasswordTXT"
-        android:layout_marginBottom="14dp"
-        android:inputType="textPassword" />
 
 
-</LinearLayout>
+

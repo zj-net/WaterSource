@@ -15,7 +15,8 @@ import java.util.Calendar;
 
 /**
  * Created by jahziel on 3/27/17.
- * Activity for the user to select virus or contaminant levels as well as what year to view in the graph.
+ * Activity for the user to select virus or contaminant
+ * levels as well as what year to view in the graph.
  */
 public class SelectYearVCActivity extends AppCompatActivity {
     private Spinner yearSpinner;
@@ -84,7 +85,8 @@ public class SelectYearVCActivity extends AppCompatActivity {
 
 
 
-        yearSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, YEARS));
+        yearSpinner.setAdapter(new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, YEARS));
 
         submitGraphDetailsButton.setOnClickListener(new View.OnClickListener() {
             @Override
