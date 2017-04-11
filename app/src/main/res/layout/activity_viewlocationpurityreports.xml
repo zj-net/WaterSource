@@ -27,20 +27,19 @@
     />
     <Button
             android:text="@string/view_graph"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="38dp"
             android:id="@+id/viewHistographButton"
-            android:layout_marginStart="29dp"
-            android:layout_marginBottom="20dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"/>
+            android:layout_marginStart="32dp"
+            android:layout_marginBottom="27dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
     <Button
             android:text="@string/add_new_purityreport"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="38dp"
             android:id="@+id/addNewReportButton"
-            android:layout_alignBaseline="@+id/viewHistographButton"
-            android:layout_alignBottom="@+id/viewHistographButton"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="18dp"/>
+        android:layout_marginEnd="18dp"
+        android:layout_alignTop="@+id/viewHistographButton"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>

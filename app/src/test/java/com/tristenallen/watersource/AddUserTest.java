@@ -6,6 +6,7 @@ import com.tristenallen.watersource.model.User;
 import com.tristenallen.watersource.model.UserHelper;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -17,10 +18,12 @@ import static org.mockito.Mockito.when;
  * Created by Nelson on 4/5/2017.
  */
 
+
 public class AddUserTest {
     UserHelper userHelper;
     MyDatabase stuff;
     User user = new User("q@q.com", AuthLevel.MANAGER, "Taylor", "David");
+    User badU = new User(null, AuthLevel.USER, null, null);
 
     @Before
     public void setUp() {
