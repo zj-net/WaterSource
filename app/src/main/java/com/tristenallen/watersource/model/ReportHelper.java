@@ -24,7 +24,7 @@ public final class ReportHelper {
     /**
      * Creates a new ReportHelper.
      */
-    private ReportHelper() {
+    public ReportHelper() {
         gson = new Gson();
     }
 
@@ -42,7 +42,7 @@ public final class ReportHelper {
      * @param context Activity requesting the report.
      * @return SourceReport associated with the given report number.
      */
-    public SourceReport getSourceReport(int id, Activity context) {
+    public SourceReport getSourceReport(int id, Context context) {
         SharedPreferences sourceReports = context.getSharedPreferences(QUALITY_DB, Context.MODE_PRIVATE);
         if (sourceReports.contains(String.valueOf(id))) {
             String reportString = sourceReports.getString(String.valueOf(id), null);
@@ -58,7 +58,7 @@ public final class ReportHelper {
      * @param context Activity requesting the report.
      * @return Collection of all the source reports in the model.
      */
-    public Collection<SourceReport> getSourceReports(Activity context) {
+    public Collection<SourceReport> getSourceReports(Context context) {
         SharedPreferences sourceReports = context.getSharedPreferences(QUALITY_DB, Context.MODE_PRIVATE);
         Collection<SourceReport> reportList = new ArrayList<>();
 
@@ -76,7 +76,7 @@ public final class ReportHelper {
      * @param context Activity requesting the report.
      * @return Collection of all the purity reports in the model.
      */
-    public Collection<PurityReport> getPurityReports(Activity context) {
+    public Collection<PurityReport> getPurityReports(Context context) {
         SharedPreferences sourceReports = context.getSharedPreferences(PURITY_DB, Context.MODE_PRIVATE);
         Collection<PurityReport> reportList = new ArrayList<>();
 
@@ -107,7 +107,7 @@ public final class ReportHelper {
      */
     @SuppressWarnings("ChainedMethodCall") // Required by android
     public void addSourceReport(int user, Location location,
-                                WaterQuality quality, WaterType type, DataSource data, Activity context) {
+                                WaterQuality quality, WaterType type, DataSource data, Context context) {
         if (data.getUserByID(user) != null) {
             int currentSourceReportNumber = sizeOfSourceReports(context);
             SourceReport newReport = new SourceReport(user, location, quality, type,
@@ -143,7 +143,7 @@ public final class ReportHelper {
     @SuppressWarnings("ChainedMethodCall") // Required by android
     public void addPurityReport(int user, Location location,
                                 WaterPurity purity, int virusPPM, int contaminantPPM,
-                                DataSource data, Activity context) {
+                                DataSource data, Context context) {
         int currentPurityReportNumber = sizeOfPurityReports(context) + 1;
         if (data.getUserByID(user) != null) {
             PurityReport newReport = new PurityReport(user, location, purity, currentPurityReportNumber, virusPPM,
@@ -159,12 +159,12 @@ public final class ReportHelper {
         }
     }
 
-    private int sizeOfPurityReports(Activity context) {
+    private int sizeOfPurityReports(Context context) {
         SharedPreferences purityReports = context.getSharedPreferences(STORAGE_OTHER, Context.MODE_PRIVATE);
         return purityReports.getInt("puritySize", 0);
     }
 
-    private int sizeOfSourceReports(Activity context) {
+    private int sizeOfSourceReports(Context context) {
         SharedPreferences sourceReports = context.getSharedPreferences(STORAGE_OTHER, Context.MODE_PRIVATE);
         return sourceReports.getInt("sourceSize", 0);
     }
