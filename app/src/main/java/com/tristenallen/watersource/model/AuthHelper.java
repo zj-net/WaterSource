@@ -4,12 +4,22 @@ package com.tristenallen.watersource.model;
  * Created by tristen on 2/13/17.
  * AuthHelper custom class
  */
-public class AuthHelper {
+public final class AuthHelper {
+    private int currentUserID;
+    private User currentUser;
     private static final AuthHelper INSTANCE = new AuthHelper();
 
     /**
-     * Method for getting an instance of this class as the constructor is private.
-     * @return a new instance of the AuthHelper class.
+     * Constructs a new AuthHelper with no current user ID and no current user.
+     */
+    private AuthHelper() {
+        currentUserID = -1;
+        currentUser = new User(null, null, null, null);
+    }
+
+    /**
+     * Returns the singular instance of this class.
+     * @return AuthHelper to be used throughout the app.
      */
     public static AuthHelper getInstance() {
         return INSTANCE;
@@ -31,12 +41,38 @@ public class AuthHelper {
         } else {
             int id = data.getIDbyEmail(email);
             if (data.validate(email,password)) {
-                Model.setCurrentUser(id,data);
-                return new AuthPackage(data.getUserbyID(id), AuthStatus.VALID_LOGIN);
+                setCurrentUser(id,data);
+                return new AuthPackage(data.getUserByID(id), AuthStatus.VALID_LOGIN);
             } else {
-                return new AuthPackage(data.getUserbyID(id), AuthStatus.INVALID_PASSWORD);
+                return new AuthPackage(data.getUserByID(id), AuthStatus.INVALID_PASSWORD);
             }
         }
+    }
+
+    /**
+     * Sets the currently logged in user's ID and associated User object.
+     * @param currentUserID int specifying the ID of this user.
+     * @param data the DataSource object used for getting data from database.
+     */
+    public void setCurrentUser(int currentUserID, DataSource data) {
+        this.currentUserID = currentUserID;
+        this.currentUser = data.getUserByID(currentUserID);
+    }
+
+    /**
+     * Returns the ID of the currently logged in user.
+     * @return int specifying the ID of this user.
+     */
+    public int getCurrentUserID() {
+        return currentUserID;
+    }
+
+    /**
+     * Returns the currently logged in user.
+     * @return User that is currently logged in.
+     */
+    public User getCurrentUser() {
+        return currentUser;
     }
 
 }

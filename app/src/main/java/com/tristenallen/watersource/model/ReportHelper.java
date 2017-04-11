@@ -15,9 +15,10 @@ import java.util.Collection;
  * Contains methods for accessing and creating new kinds of reports.
  */
 public final class ReportHelper {
-    private static final ReportHelper INSTANCE = new ReportHelper();
     private static final String QUALITY_DB = "QualityReports";
     private static final String PURITY_DB = "PurityReports";
+    private static final String STORAGE_OTHER = "OtherPrefs";
+    private static final ReportHelper INSTANCE = new ReportHelper();
     private final Gson gson;
 
     /**
@@ -28,13 +29,12 @@ public final class ReportHelper {
     }
 
     /**
-     * Returns the instance of ReportHelper used in this application.
-     * @return ReportHelper application instance.
+     * Returns the singular instance of this class.
+     * @return ReportHelper to be used throughout the app.
      */
-    static ReportHelper getInstance() {
+    public static ReportHelper getInstance() {
         return INSTANCE;
     }
-
     /**
      * Returns the SourceReport associated with a specific report number.
      * Returns null if there is no such report.
@@ -62,6 +62,7 @@ public final class ReportHelper {
         SharedPreferences sourceReports = context.getSharedPreferences(QUALITY_DB, Context.MODE_PRIVATE);
         Collection<SourceReport> reportList = new ArrayList<>();
 
+        //noinspection ChainedMethodCall required by android
         for (Object o: sourceReports.getAll().values()) {
             reportList.add(gson.fromJson((String) o, SourceReport.class));
         }
@@ -79,6 +80,7 @@ public final class ReportHelper {
         SharedPreferences sourceReports = context.getSharedPreferences(PURITY_DB, Context.MODE_PRIVATE);
         Collection<PurityReport> reportList = new ArrayList<>();
 
+        //noinspection ChainedMethodCall required by android
         for (Object o: sourceReports.getAll().values()) {
             reportList.add(gson.fromJson((String) o, PurityReport.class));
         }
@@ -99,19 +101,22 @@ public final class ReportHelper {
      * @param location Location of the water in this report.
      * @param quality WaterQuality of the water.
      * @param type WaterType of the water.
+     * @param data DataSource to retrieve the user from.
      * @param context Activity adding the report.
-     * @param data the DataSource object used to get saved data.
      * @throws IllegalArgumentException if the given user ID is not a valid user.
      */
+    @SuppressWarnings("ChainedMethodCall") // Required by android
     public void addSourceReport(int user, Location location,
-                                   WaterQuality quality, WaterType type, DataSource data, Activity context) {
-        if (data.getUserbyID(user) != null) {
-            int currentSourceReportNumber = getSourceReports(context).size() + 1;
+                                WaterQuality quality, WaterType type, DataSource data, Activity context) {
+        if (data.getUserByID(user) != null) {
+            int currentSourceReportNumber = sizeOfSourceReports(context);
             SourceReport newReport = new SourceReport(user, location, quality, type,
                     currentSourceReportNumber);
             SharedPreferences sourceReports = context.getSharedPreferences(QUALITY_DB, Context.MODE_PRIVATE);
+            SharedPreferences otherPreferences = context.getSharedPreferences(STORAGE_OTHER, Context.MODE_PRIVATE);
             String reportString = gson.toJson(newReport);
             sourceReports.edit().putString(String.valueOf(currentSourceReportNumber), reportString).apply();
+            otherPreferences.edit().putInt("sourceSize", currentSourceReportNumber).apply();
         } else {
             throw new IllegalArgumentException("You must pass in the ID of a"
             + " valid user!");
@@ -131,23 +136,36 @@ public final class ReportHelper {
      * @param purity WaterPurity of the water.
      * @param virusPPM int specifying viruses in ppm.
      * @param contaminantPPM int specifying contaminants in ppm.
+     * @param data DataSource to retrieve the user from.
      * @param context Activity adding the report.
-     * @param data the DataSource object used to get data from the database.
      * @throws IllegalArgumentException if the given user ID is not a valid user.
      */
+    @SuppressWarnings("ChainedMethodCall") // Required by android
     public void addPurityReport(int user, Location location,
                                 WaterPurity purity, int virusPPM, int contaminantPPM,
                                 DataSource data, Activity context) {
-        int currentPurityReportNumber = getPurityReports(context).size() + 1;
-        if (data.getUserbyID(user) != null) {
+        int currentPurityReportNumber = sizeOfPurityReports(context) + 1;
+        if (data.getUserByID(user) != null) {
             PurityReport newReport = new PurityReport(user, location, purity, currentPurityReportNumber, virusPPM,
                     contaminantPPM);
             SharedPreferences purityReports = context.getSharedPreferences(PURITY_DB, Context.MODE_PRIVATE);
+            SharedPreferences otherPrefs = context.getSharedPreferences(STORAGE_OTHER, Context.MODE_PRIVATE);
             String reportString = gson.toJson(newReport);
             purityReports.edit().putString(String.valueOf(currentPurityReportNumber), reportString).apply();
+            otherPrefs.edit().putInt("puritySize", currentPurityReportNumber).apply();
         } else {
             throw new IllegalArgumentException("You must pass in the ID of a"
                     + " valid user!");
         }
+    }
+
+    private int sizeOfPurityReports(Activity context) {
+        SharedPreferences purityReports = context.getSharedPreferences(STORAGE_OTHER, Context.MODE_PRIVATE);
+        return purityReports.getInt("puritySize", 0);
+    }
+
+    private int sizeOfSourceReports(Activity context) {
+        SharedPreferences sourceReports = context.getSharedPreferences(STORAGE_OTHER, Context.MODE_PRIVATE);
+        return sourceReports.getInt("sourceSize", 0);
     }
 }

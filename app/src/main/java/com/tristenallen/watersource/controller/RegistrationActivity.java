@@ -13,8 +13,8 @@ import com.tristenallen.watersource.R;
 import com.tristenallen.watersource.database.MyDatabase;
 import com.tristenallen.watersource.model.AuthLevel;
 import com.tristenallen.watersource.model.DataSource;
-import com.tristenallen.watersource.model.Model;
 import com.tristenallen.watersource.model.User;
+import com.tristenallen.watersource.model.UserHelper;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -68,6 +68,7 @@ public class RegistrationActivity extends AppCompatActivity {
              * This method verifies input data once the Submit button is pressed.
              * @param v the View for the activity
              */
+            @SuppressWarnings({"ChainedMethodCall", "OverlyLongMethod"}) // required by android
             @Override
             public void onClick(View v) {
                 //doing stuff with the text
@@ -104,8 +105,8 @@ public class RegistrationActivity extends AppCompatActivity {
                     //last part, after checks are passed
                     user = new User(emailString, (AuthLevel) authSpinner.getSelectedItem()
                             ,lastNameString, firstNameString);
-                    //noinspection LawOfDemeter Model is the only way to get our singular instance of UserHelper
-                    if (!Model.getUserHelper().addUser(user, emailString, passwordString, data)) {
+                    UserHelper helper = UserHelper.getInstance();
+                    if (!helper.addUser(user, emailString, passwordString, data)) {
                         Context context = getApplicationContext();
                         CharSequence error = "That email has already been used!";
                         int duration = Toast.LENGTH_LONG;

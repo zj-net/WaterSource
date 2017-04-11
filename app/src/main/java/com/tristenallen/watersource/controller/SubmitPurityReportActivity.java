@@ -14,9 +14,9 @@ import android.widget.Toast;
 import com.google.android.gms.maps.model.LatLng;
 import com.tristenallen.watersource.R;
 import com.tristenallen.watersource.database.MyDatabase;
-import com.tristenallen.watersource.model.DataSource;
-import com.tristenallen.watersource.model.Model;
 import com.tristenallen.watersource.model.ReportHelper;
+import com.tristenallen.watersource.model.AuthHelper;
+import com.tristenallen.watersource.model.DataSource;
 import com.tristenallen.watersource.model.WaterPurity;
 
 import java.util.Locale;
@@ -26,6 +26,7 @@ import java.util.Locale;
  * Activity for submitting a new purity report.
  */
 
+@SuppressWarnings("ChainedMethodCall") // all chained calls are due to android
 public class SubmitPurityReportActivity extends AppCompatActivity {
     private EditText latField;
     private EditText lngField;
@@ -40,7 +41,8 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
     private int contaminantPPMInt;
 
     private final Location h20Loc = new Location("Water Purity Report Location");
-    private final ReportHelper reportHelper = Model.getReportHelper();
+    private final ReportHelper reportHelper = ReportHelper.getInstance();
+    private final AuthHelper authHelper = AuthHelper.getInstance();
     private LatLng latLng;
 
     private boolean badLat;
@@ -103,6 +105,7 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
         });
 
         submitButton.setOnClickListener(new View.OnClickListener() {
+            @SuppressWarnings({"OverlyLongMethod", "OverlyComplexMethod"})
             @Override
             public void onClick(View v) {
                 //------------------get all the data out------------------------
@@ -180,7 +183,7 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
                 } else {
                     h20Loc.setLatitude(latDouble);
                     h20Loc.setLongitude(lngDouble);
-                    reportHelper.addPurityReport(Model.getCurrentUserID(), h20Loc, waterPurityData
+                    reportHelper.addPurityReport(authHelper.getCurrentUserID(), h20Loc, waterPurityData
                             , virusPPMInt,contaminantPPMInt, data, SubmitPurityReportActivity.this);
                     Context context = getApplicationContext();
                     CharSequence msg = "Report submitted successfully!";

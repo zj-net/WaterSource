@@ -41,8 +41,10 @@ public class SelectYearVCActivity extends AppCompatActivity {
         yearSpinner = (Spinner) findViewById(R.id.year);
         virus = (RadioButton) findViewById(R.id.virus);
         contaminant = (RadioButton) findViewById(R.id.contaminant);
+        @SuppressWarnings("ChainedMethodCall") // Java Standard Library
         int THIS_YEAR = Calendar.getInstance().get(Calendar.YEAR);
 
+        //noinspection ChainedMethodCall Required by android
         monthYearVC = getIntent().getStringArrayListExtra("monthYearVC");
         for (int i = THIS_YEAR; i >= FIRST_YEAR; i--) {
             YEARS.add(i);
@@ -87,6 +89,7 @@ public class SelectYearVCActivity extends AppCompatActivity {
         submitGraphDetailsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                @SuppressWarnings("ChainedMethodCall") // Required by android
                 String chosenYear = yearSpinner.getSelectedItem().toString();
 
                 if (virus.isChecked()) {

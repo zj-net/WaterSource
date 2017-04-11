@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import com.tristenallen.watersource.R;
-import com.tristenallen.watersource.model.Model;
 import com.tristenallen.watersource.model.PurityReport;
 import com.tristenallen.watersource.model.ReportHelper;
 
@@ -17,7 +16,7 @@ import java.util.List;
  * Activity for users to view a list of all purity reports submitted thus far.
  */
 public class ViewPurityReportsActivity extends AppCompatActivity {
-    private final ReportHelper reportHelper = Model.getReportHelper();
+    private final ReportHelper reportHelper = ReportHelper.getInstance();
 
     //private Button viewGraphButton;
     @Override

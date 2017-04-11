@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import com.tristenallen.watersource.R;
-import com.tristenallen.watersource.model.Model;
 import com.tristenallen.watersource.model.ReportHelper;
 import com.tristenallen.watersource.model.SourceReport;
 
@@ -17,7 +16,7 @@ import java.util.List;
  * Activity for viewing source reports.
  */
 public class ViewReportsActivity extends AppCompatActivity {
-    private final ReportHelper reportHelper = Model.getReportHelper();
+    private final ReportHelper reportHelper = ReportHelper.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

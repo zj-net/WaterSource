@@ -9,16 +9,16 @@ package com.tristenallen.watersource.model;
  */
 @SuppressWarnings("FeatureEnvy")
 public final class UserHelper {
-    private static final UserHelper INSTANCE = new UserHelper();
     private int currentID;
+    private static final UserHelper INSTANCE = new UserHelper();
 
     private UserHelper() {
         currentID = 0;
     }
 
     /**
-     * Method for getting an instance of the UserHelper class.
-     * @return this class's private instance of itself.
+     * Returns the singular instance of this class.
+     * @return UserHelper to be used throughout the app.
      */
     public static UserHelper getInstance() {
         return INSTANCE;
@@ -38,8 +38,7 @@ public final class UserHelper {
         if (data.checkEmail(email)) {
             return false;
         } else {
-            data.createUser(currentID,password,user.getEmail(),user.getRole(),user.getAddress(),user.getTitle(),
-                    user.getLastName(),user.getFirstName());
+            data.createUser(currentID, password, user.getAddress(), user.getTitle(), user);
             return true;
         }
     }

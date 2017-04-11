@@ -23,13 +23,13 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.tristenallen.watersource.R;
 import com.tristenallen.watersource.database.MyDatabase;
 
-import com.tristenallen.watersource.model.AuthLevel;
-import com.tristenallen.watersource.model.DataSource;
-import com.tristenallen.watersource.model.Model;
+import com.tristenallen.watersource.model.AuthHelper;
 import com.tristenallen.watersource.model.ReportHelper;
-import com.tristenallen.watersource.model.SourceReport;
-import com.tristenallen.watersource.model.PurityReport;
 import com.tristenallen.watersource.model.User;
+import com.tristenallen.watersource.model.DataSource;
+import com.tristenallen.watersource.model.AuthLevel;
+import com.tristenallen.watersource.model.PurityReport;
+import com.tristenallen.watersource.model.SourceReport;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private GoogleMap mMap;
     private ReportHelper reportHelper;
+    private AuthHelper authHelper;
     public static final String ARG_latLng = "latLng";
     private Marker selectionMarker;
     private final Collection<Marker> purityMarkers = new ArrayList<>();
@@ -80,9 +81,10 @@ public class MainActivity extends AppCompatActivity implements
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        reportHelper = Model.getReportHelper();
+        reportHelper = ReportHelper.getInstance();
+        authHelper = AuthHelper.getInstance();
 
-        user = Model.getCurrentUser();
+        user = authHelper.getCurrentUser();
 
         //jve.
         Button viewPurityReportButton = (Button) findViewById(R.id.viewPurityReportsButton);
@@ -144,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onDialogPositiveClick() {
-        Model.setCurrentUser(-1,data);
+        authHelper.setCurrentUser(-1,data);
         Intent goToLaunchActivity = new Intent(getApplicationContext(), LaunchActivity.class);
         goToLaunchActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(goToLaunchActivity);
@@ -240,6 +242,7 @@ public class MainActivity extends AppCompatActivity implements
                 LatLng loc = new LatLng(reportLocation.getLatitude(), reportLocation.getLongitude());
                 String s = "Condition: " + r.getPurity() + "\n" + "VirusPPM: " + r.getVirusPPM() + "\n"
                         + "ContaminantPPM: " + r.getContaminantPPM() + "\nLong press for more!";
+                @SuppressWarnings("ChainedMethodCall") // required by android
                 Marker newMarker = mMap.addMarker(new MarkerOptions().position(loc)
                         .title("Water Purity").snippet(s)
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
@@ -251,7 +254,9 @@ public class MainActivity extends AppCompatActivity implements
 
         mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
 
-        if (user.getRole().compareTo(AuthLevel.MANAGER) >= 0) {
+        AuthLevel role = user.getRole();
+
+        if (role.compareTo(AuthLevel.MANAGER) >= 0) {
             mMap.setOnInfoWindowLongClickListener(new GoogleMap.OnInfoWindowLongClickListener() {
                 @Override
                 public void onInfoWindowLongClick(Marker marker) {
@@ -281,6 +286,7 @@ public class MainActivity extends AppCompatActivity implements
         @SuppressLint("InflateParams")
         // there is no parent for the inflated content.
         CustomInfoWindowAdapter(){
+            //noinspection ChainedMethodCall required by android
             myContentsView = getLayoutInflater().inflate(R.layout.marker_info_content, null);
         }
 

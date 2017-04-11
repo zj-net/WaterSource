@@ -12,16 +12,11 @@ public interface DataSource {
      * method for add user to the db
      * @param id int new user assigned id
      * @param password String password for the user
-     * @param email String email for the user
-     * @param role AuthLevel user auth level: user,worker,manager,admin
      * @param address String address of the user
      * @param title String title of the user
-     * @param lastName String lastName of the user
-     * @param firstName String firstName of the user
+     * @param user User object containing basic user info
      */
-    void createUser(int id, String password, String email,
-                    AuthLevel role, String address, String title, String lastName,
-                    String firstName);
+    void createUser(int id, String password, String address, String title, User user);
 
     /**
      * method for check email
@@ -50,7 +45,7 @@ public interface DataSource {
      * @param id int id of the user
      * @return User the user of the id
      */
-    User getUserbyID(int id);
+    User getUserByID(int id);
 
     /**
      * method for get the number of users from DB

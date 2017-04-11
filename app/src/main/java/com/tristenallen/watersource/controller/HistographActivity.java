@@ -19,6 +19,7 @@ import java.util.ArrayList;
  */
 public class HistographActivity extends AppCompatActivity {
 
+    @SuppressWarnings("ChainedMethodCall") // chained calls required by Android
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

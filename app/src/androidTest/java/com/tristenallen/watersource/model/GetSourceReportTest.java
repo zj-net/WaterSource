@@ -37,7 +37,7 @@ public class GetSourceReportTest {
         when(sharedPrefs.getString("1", null)).thenReturn(validReportString);
         when(sharedPrefs.contains("1")).thenReturn(true);
         when(context.getSharedPreferences("QualityReports", Context.MODE_PRIVATE)).thenReturn(sharedPrefs);
-        reportHelper = Model.getReportHelper();
+        reportHelper = ReportHelper.getInstance();
     }
 
     @Test

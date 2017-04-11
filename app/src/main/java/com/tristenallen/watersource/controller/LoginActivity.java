@@ -15,7 +15,6 @@ import com.tristenallen.watersource.model.AuthHelper;
 import com.tristenallen.watersource.model.AuthPackage;
 import com.tristenallen.watersource.model.AuthStatus;
 import com.tristenallen.watersource.model.DataSource;
-import com.tristenallen.watersource.model.Model;
 
 /**
  * Activity for handling existing users logging in.
@@ -45,11 +44,12 @@ public class LoginActivity extends AppCompatActivity {
         Button loginButton = (Button) findViewById(R.id.LOGIN_BUTTON);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
+            @SuppressWarnings("ChainedMethodCall") // required by android
             @Override
             public void onClick(View v) {
                 String usrnameStr = usrname.getText().toString();
                 String passwordStr = password.getText().toString();
-                verifier = Model.getAuthHelper();
+                verifier = AuthHelper.getInstance();
                 AP = verifier.login(usrnameStr, passwordStr, data);
                 status = AP.getStatus();
 

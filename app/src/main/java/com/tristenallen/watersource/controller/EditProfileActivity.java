@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import com.tristenallen.watersource.R;
-import com.tristenallen.watersource.model.Model;
+import com.tristenallen.watersource.model.AuthHelper;
 import com.tristenallen.watersource.model.User;
 
 /**
@@ -33,7 +33,9 @@ public class EditProfileActivity extends AppCompatActivity {
         titleField = (EditText) findViewById(R.id.titleTXT);
         addressField = (EditText) findViewById(R.id.addressTXT);
 
-        user = Model.getCurrentUser();
+        AuthHelper authHelper = AuthHelper.getInstance();
+
+        user = authHelper.getCurrentUser();
 
         firstNameField.setText(user.getFirstName());
         lastNameField.setText(user.getLastName());
@@ -45,8 +47,9 @@ public class EditProfileActivity extends AppCompatActivity {
      * Method defining actions once the submit button is pressed.
      * @param view the View required by Android for this method to run.
      */
-    @SuppressWarnings("UnusedParameters")
+    @SuppressWarnings({"UnusedParameters", "ChainedMethodCall"})
     //View view is required by android
+    //chained calls required by android
     public void onSubmitPressed(View view) {
         user.setFirstName(firstNameField.getText().toString());
         user.setLastName(lastNameField.getText().toString());

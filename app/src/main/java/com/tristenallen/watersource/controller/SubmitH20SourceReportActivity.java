@@ -15,10 +15,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.tristenallen.watersource.R;
 import com.tristenallen.watersource.database.MyDatabase;
 import com.tristenallen.watersource.model.DataSource;
-import com.tristenallen.watersource.model.Model;
 import com.tristenallen.watersource.model.ReportHelper;
-import com.tristenallen.watersource.model.WaterType;
+import com.tristenallen.watersource.model.AuthHelper;
 import com.tristenallen.watersource.model.WaterQuality;
+import com.tristenallen.watersource.model.WaterType;
 
 import java.util.Locale;
 
@@ -26,6 +26,7 @@ import java.util.Locale;
  * Created by jahziel on 2/27/17.
  * Activity for user to submit a new water source report.
  */
+@SuppressWarnings("ChainedMethodCall") // all chained calls are due to android
 public class SubmitH20SourceReportActivity extends AppCompatActivity {
     private EditText latField;
     private EditText lngField;
@@ -34,7 +35,8 @@ public class SubmitH20SourceReportActivity extends AppCompatActivity {
     private double latDouble;
     private double lngDouble;
     private final Location h20Loc = new Location("Water Report Location");
-    private final ReportHelper reportHelper = Model.getReportHelper();
+    private final ReportHelper reportHelper = ReportHelper.getInstance();
+    private final AuthHelper authHelper = AuthHelper.getInstance();
     private boolean badLat;
     private boolean badLng;
 
@@ -74,6 +76,7 @@ public class SubmitH20SourceReportActivity extends AppCompatActivity {
 
 
         submitButton.setOnClickListener(new View.OnClickListener() {
+            @SuppressWarnings({"OverlyLongMethod", "OverlyComplexMethod"})
             @Override
             public void onClick(View v) {
                 //------------------get all the data out------------------------
@@ -124,7 +127,7 @@ public class SubmitH20SourceReportActivity extends AppCompatActivity {
                 } else {
                     h20Loc.setLatitude(latDouble);
                     h20Loc.setLongitude(lngDouble);
-                    reportHelper.addSourceReport(Model.getCurrentUserID(), h20Loc, waterQualityData, waterTypeData
+                    reportHelper.addSourceReport(authHelper.getCurrentUserID(), h20Loc, waterQualityData, waterTypeData
                             , data, SubmitH20SourceReportActivity.this);
                     Context context = getApplicationContext();
                     CharSequence msg = "Report submitted successfully!";

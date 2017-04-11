@@ -1,6 +1,7 @@
 package com.tristenallen.watersource.controller;
 
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -8,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import com.tristenallen.watersource.R;
-import com.tristenallen.watersource.model.Model;
 import com.tristenallen.watersource.model.PurityReport;
 import com.tristenallen.watersource.model.ReportHelper;
 
@@ -22,10 +22,12 @@ import java.util.List;
  * Activity for creating viewing the purity reports at the selected location.
  */
 public class ViewLocationPurityReportsActivity extends AppCompatActivity {
-    private final ReportHelper reportHelper = Model.getReportHelper();
+    private final ReportHelper reportHelper = ReportHelper.getInstance();
     private final double[] location = new double[2];
     private final ArrayList<String> monthYearVC = new ArrayList<>();
-    @SuppressWarnings("FeatureEnvy") // feature envy smell occurs because of onCreate() handling the bulk of work
+    @SuppressWarnings({"FeatureEnvy", "OverlyLongMethod"})
+    // feature envy smell occurs because of onCreate() handling the bulk of work
+    // long method is due to onCreate having to handle bulk of work
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +35,7 @@ public class ViewLocationPurityReportsActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.locationPurityReportListView);
         Button viewHistographButton = (Button) findViewById(R.id.viewHistographButton);
         Button addNewPurityReportButton = (Button) findViewById(R.id.addNewReportButton);
+        @SuppressWarnings("ChainedMethodCall") // required by android
         double[] extrasFromInfoWindow = getIntent().getDoubleArrayExtra("Location");
         Iterable<PurityReport> rawPurityReports = new ArrayList<>(reportHelper.getPurityReports(this));
         List<PurityReport> purityReports = new ArrayList<>();
@@ -40,15 +43,17 @@ public class ViewLocationPurityReportsActivity extends AppCompatActivity {
         List<String> purityReportStrings = new ArrayList<>();
 
         for (PurityReport x : rawPurityReports) {
-            if ((x.getLocation().getLatitude() == extrasFromInfoWindow[0]) &&
-                    (x.getLocation().getLongitude() == extrasFromInfoWindow[1])) {
+            Location l = x.getLocation();
+            if ((l.getLatitude() == extrasFromInfoWindow[0]) &&
+                    (l.getLongitude() == extrasFromInfoWindow[1])) {
                 purityReports.add(x);
             }
         }
 
         PurityReport sample = purityReports.get(0);
-        location[0] = sample.getLocation().getLatitude();
-        location[1] = sample.getLocation().getLongitude();
+        Location locationRaw = sample.getLocation();
+        location[0] = locationRaw.getLatitude();
+        location[1] = locationRaw.getLongitude();
         //int count = 0; //for testing
         for (PurityReport p : purityReports) {
             purityReportStrings.add(p.toString());

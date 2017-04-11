@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import com.tristenallen.watersource.R;
-import com.tristenallen.watersource.model.Model;
+import com.tristenallen.watersource.model.AuthHelper;
 import com.tristenallen.watersource.model.User;
 
 import java.util.Locale;
@@ -30,8 +30,9 @@ public class ViewProfileActivity extends AppCompatActivity {
         TextView addressField = (TextView) findViewById(R.id.showaddressTXT);
         TextView emailField = (TextView) findViewById(R.id.showemailTXT);
 
+        AuthHelper authHelper = AuthHelper.getInstance();
 
-        User user = Model.getCurrentUser();
+        User user = authHelper.getCurrentUser();
 
         nameField.setText(String.format(Locale.US, "%s %s %s",
                 user.getTitle(), user.getFirstName(), user.getLastName()));
