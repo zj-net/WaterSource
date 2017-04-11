@@ -32,7 +32,7 @@ public class LoginTest {
         when(data.getIDbyEmail("1@1.com")).thenReturn(1);
         when(data.validate("1@1.com","1")).thenReturn(true);
         when(data.validate("1@1.com","2")).thenReturn(false);
-        when(data.getUserbyID(1)).thenReturn(user);
+        when(data.getUserByID(1)).thenReturn(user);
 
         authHelper = new AuthHelper();
     }

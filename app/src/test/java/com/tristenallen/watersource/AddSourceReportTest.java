@@ -30,11 +30,11 @@ public class AddSourceReportTest {
         when(data.getIDbyEmail("false@nope.com")).thenReturn(0);
         when(data.validate("allanserna@gmail.com","1")).thenReturn(true);
         when(data.validate("allanserna@gmail.com","2")).thenReturn(false);
-        when(data.getUserbyID(1)).thenReturn(user);
-        when(data.getUserbyID(0)).thenReturn(nullUser);
+        when(data.getUserByID(1)).thenReturn(user);
+        when(data.getUserByID(0)).thenReturn(nullUser);
         when(data.getIDbyEmail("false@nope.com")).thenReturn(0);
 
-        reportHelper = Model.getReportHelper();
+        reportHelper = ReportHelper.getInstance();
     }
 
     @Test

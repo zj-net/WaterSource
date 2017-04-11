@@ -12,7 +12,7 @@ public final class AuthHelper {
     /**
      * Constructs a new AuthHelper with no current user ID and no current user.
      */
-    private AuthHelper() {
+    public AuthHelper() {
         currentUserID = -1;
         currentUser = new User(null, null, null, null);
     }
