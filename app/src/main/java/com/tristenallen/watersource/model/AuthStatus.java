@@ -7,5 +7,5 @@ package com.tristenallen.watersource.model;
 public enum AuthStatus {
     INVALID_NAME,
     INVALID_PASSWORD,
-    VALID_LOGIN;
+    VALID_LOGIN
 }

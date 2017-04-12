@@ -1,84 +1,110 @@
-package com.tristenallen.watersource.main;
+package com.tristenallen.watersource.controller;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.tristenallen.watersource.LaunchActivity;
 import com.tristenallen.watersource.R;
-import com.tristenallen.watersource.controller.SubmitPurityReportActivity;
-import com.tristenallen.watersource.controller.viewReportsActivity;
-import com.tristenallen.watersource.model.AuthLevel;
-import com.tristenallen.watersource.model.Model;
-import com.tristenallen.watersource.controller.ViewProfileActivity;
-import com.tristenallen.watersource.model.PurityReport;
-import com.tristenallen.watersource.model.ReportHelper;
-import com.tristenallen.watersource.model.SourceReport;
-import com.tristenallen.watersource.model.User;
-import com.tristenallen.watersource.reports.submitH20SourceReportActivity;
+import com.tristenallen.watersource.database.MyDatabase;
 
+import com.tristenallen.watersource.model.AuthHelper;
+import com.tristenallen.watersource.model.ReportHelper;
+import com.tristenallen.watersource.model.User;
+import com.tristenallen.watersource.model.DataSource;
+import com.tristenallen.watersource.model.AuthLevel;
+import com.tristenallen.watersource.model.PurityReport;
+import com.tristenallen.watersource.model.SourceReport;
+
+import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ * The main activity class. This is the first screen that users see upon logging in.
+ * All other app functionality is accessible from this screen.
+ */
+@SuppressWarnings("ClassWithTooManyDependencies")
+// ^^ MainActivity must include numerous dependencies due to Android
 public class MainActivity extends AppCompatActivity implements
         LogoutDialogFragment.LogoutDialogListener,OnMapReadyCallback {
 
     private GoogleMap mMap;
     private ReportHelper reportHelper;
+    private AuthHelper authHelper;
     public static final String ARG_latLng = "latLng";
     private Marker selectionMarker;
-    private Toolbar toolbar;
+    private final Collection<Marker> purityMarkers = new ArrayList<>();
+    private static final float MARKER_ALPHA = 0.5f;
 
-    //getting list view button
-    private Button viewReportList;
 
     private User user;
+
+    private DataSource data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("WaterSource");
 
-        viewReportList = (Button) findViewById(R.id.viewReports);
+        data = new MyDatabase(this);
+
+        setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("WaterSource");
+        setSupportActionBar(toolbar);
+
+        Button viewReportList = (Button) findViewById(R.id.viewReports);
 
         viewReportList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToReportList = new Intent(getApplicationContext(), viewReportsActivity.class);
+                Intent goToReportList =
+                        new Intent(getApplicationContext(), ViewReportsActivity.class);
                 startActivity(goToReportList);
             }
         });
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
+        @SuppressWarnings("ChainedMethodCall")
+        // ^^ we do not use the SupportFragmentManager more than once.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        reportHelper = Model.getReportHelper();
+        reportHelper = ReportHelper.getInstance();
+        authHelper = AuthHelper.getInstance();
 
-        user = Model.getCurrentUser();
+        user = authHelper.getCurrentUser();
+
+        //jve.
+        Button viewPurityReportButton = (Button) findViewById(R.id.viewPurityReportsButton);
+        if ((user.getRole() == AuthLevel.MANAGER) || (user.getRole() == AuthLevel.ADMIN)) {
+            viewPurityReportButton.setVisibility(View.VISIBLE);
+            viewPurityReportButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent goToPurityReportList =
+                            new Intent(getApplicationContext(), ViewPurityReportsActivity.class);
+                    startActivity(goToPurityReportList);
+                }
+            });
+        } else {
+            viewPurityReportButton.setVisibility(View.INVISIBLE);
+        }
+
     }
 
     @Override
@@ -118,13 +144,13 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onDialogNegativeClick(DialogFragment dialog) {
+    public void onDialogNegativeClick() {
         //do nothing
     }
 
     @Override
-    public void onDialogPositiveClick(DialogFragment dialog) {
-        Model.setCurrentUser(-1);
+    public void onDialogPositiveClick() {
+        authHelper.setCurrentUser(-1,data);
         Intent goToLaunchActivity = new Intent(getApplicationContext(), LaunchActivity.class);
         goToLaunchActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(goToLaunchActivity);
@@ -138,10 +164,13 @@ public class MainActivity extends AppCompatActivity implements
 
     // launches a dialog confirming that the user wants to log out
     private void showProfile() {
-        Intent goToEditProfileActivity = new Intent(getApplicationContext(), ViewProfileActivity.class);
+        Intent goToEditProfileActivity =
+                new Intent(getApplicationContext(), ViewProfileActivity.class);
         startActivity(goToEditProfileActivity);
     }
 
+    @SuppressWarnings("FeatureEnvy")
+    // ^^ feature envy smell occurs because of how the map is constructed
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -165,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements
                 // This will be displayed on taping the marker
                 markerOptions.title("Water Source");
                 markerOptions.draggable(true);
-                markerOptions.alpha(0.5f);
+                markerOptions.alpha(MARKER_ALPHA);
 
                 // Animating to the touched position
                 mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
@@ -179,14 +208,18 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public boolean onMarkerClick(Marker marker) {
                 //if the marker is newly added show submit report screen
-                if (marker.getAlpha() == .5f) {
+                if (marker.getAlpha() == MARKER_ALPHA) {
                     if (user.getRole() == AuthLevel.USER){
-                        Intent goToSubmitSourceActivity = new Intent(getApplicationContext(), submitH20SourceReportActivity.class);
-                        goToSubmitSourceActivity.putExtra(MainActivity.ARG_latLng,marker.getPosition());
+                        Intent goToSubmitSourceActivity = new Intent(getApplicationContext(),
+                                SubmitH20SourceReportActivity.class);
+                        goToSubmitSourceActivity
+                                .putExtra(MainActivity.ARG_latLng,marker.getPosition());
                         startActivity(goToSubmitSourceActivity);
                     } else {
-                        Intent goToSubmitPurityActivity = new Intent(getApplicationContext(), SubmitPurityReportActivity.class);
-                        goToSubmitPurityActivity.putExtra(MainActivity.ARG_latLng,marker.getPosition());
+                        Intent goToSubmitPurityActivity = new Intent(getApplicationContext(),
+                                SubmitPurityReportActivity.class);
+                        goToSubmitPurityActivity
+                                .putExtra(MainActivity.ARG_latLng,marker.getPosition());
                         startActivity(goToSubmitPurityActivity);
                     }
                     return true;
@@ -198,34 +231,74 @@ public class MainActivity extends AppCompatActivity implements
 
         });
 
-        Collection<SourceReport> reportList = reportHelper.getSourceReports();
+        Collection<SourceReport> reportList = reportHelper.getSourceReports(this);
         for (SourceReport r : reportList) {
-            LatLng loc = new LatLng(r.getLocation().getLatitude(), r.getLocation().getLongitude());
-            mMap.addMarker(new MarkerOptions().position(loc).title("Water Source").snippet("Type: "+ r.getType() + "\n" + "Quality: " + r.getQuality()));
+            Location reportLocation = r.getLocation();
+            LatLng loc = new LatLng(reportLocation.getLatitude(), reportLocation.getLongitude());
+            //noinspection ChainedMethodCall Necessary due to how MarkerOptions() works
+            mMap.addMarker(new MarkerOptions().position(loc).title("Water Source")
+                    .snippet("Type: "+ r.getType() + "\n" + "Quality: " + r.getQuality())
+                    .zIndex(r.getReportNumber()));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
         }
 
+        //noinspection ChainedMethodCall only time this role is used in this statement
         if (user.getRole().compareTo(AuthLevel.USER) > 0) {
-            Collection<PurityReport> purityReportList = reportHelper.getPurityReports();
+            Collection<PurityReport> purityReportList = reportHelper.getPurityReports(this);
             for (PurityReport r : purityReportList) {
-                LatLng loc = new LatLng(r.getLocation().getLatitude(), r.getLocation().getLongitude());
-                String s = "Condition: " + r.getPurity() + "\n" + "VirusPPM: " + r.getVirusPPM() + "\n" + "ContaminantPPM: " + r.getContaminantPPM();
-                mMap.addMarker(new MarkerOptions().position(loc).title("Water Purity").snippet(s).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+                Location reportLocation = r.getLocation();
+                LatLng loc = new LatLng(reportLocation.getLatitude(),
+                        reportLocation.getLongitude());
+                String s = "Condition: " + r.getPurity() + "\n" + "VirusPPM: "
+                        + r.getVirusPPM() + "\n"
+                        + "ContaminantPPM: " + r.getContaminantPPM() + "\nLong press for more!";
+                @SuppressWarnings("ChainedMethodCall") // required by android
+                Marker newMarker = mMap.addMarker(new MarkerOptions().position(loc)
+                        .title("Water Purity").snippet(s)
+                        .icon(BitmapDescriptorFactory
+                                .defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
+                        .zIndex(r.getReportNumber()));
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
+                purityMarkers.add(newMarker);
             }
         }
 
         mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
 
+        AuthLevel role = user.getRole();
+
+        if (role.compareTo(AuthLevel.MANAGER) >= 0) {
+            mMap.setOnInfoWindowLongClickListener(new GoogleMap.OnInfoWindowLongClickListener() {
+                @Override
+                public void onInfoWindowLongClick(Marker marker) {
+                    if (purityMarkers.contains(marker)) {
+                        onInfoWindowClick(marker);
+                    }
+                }
+            });
+        }
 
 
+
+    }
+
+    private void onInfoWindowClick(Marker marker) {
+        Intent goToPRList = new Intent(getApplicationContext(),
+                ViewLocationPurityReportsActivity.class);
+        LatLng position = marker.getPosition();
+        double[] latlng = {position.latitude, position.longitude};
+        goToPRList.putExtra("Location", latlng);
+        startActivity(goToPRList);
     }
 
     class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
         private final View myContentsView;
 
+        @SuppressLint("InflateParams")
+        // there is no parent for the inflated content.
         CustomInfoWindowAdapter(){
+            //noinspection ChainedMethodCall required by android
             myContentsView = getLayoutInflater().inflate(R.layout.marker_info_content, null);
         }
 
@@ -242,13 +315,10 @@ public class MainActivity extends AppCompatActivity implements
 
         @Override
         public View getInfoWindow(Marker marker) {
-            // TODO Auto-generated method stub
             return null;
         }
+
 
     }
 
 }
-
-
-

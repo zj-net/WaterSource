@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:weightSum="1">
+                android:orientation="vertical" android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="1">
 
     <View
-        android:id="@+id/rectangle_at_the_top"
         android:layout_width="match_parent"
         android:layout_height="10dp"
         android:layout_alignParentTop="true"
@@ -15,7 +12,7 @@
         android:visibility="visible"/>
 
     <TextView
-        android:text="Welcome Back!"
+        android:text="@string/welcome_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView3"
@@ -25,7 +22,7 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:text="Please Enter Your Username and Password"
+        android:text="@string/please_enter_your_username_and_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView2"
@@ -40,7 +37,7 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/editText"
-        android:hint="Username"
+        android:hint="@string/username"
         android:layout_marginTop="12dp"
         android:layout_below="@+id/textView2"
         android:layout_alignStart="@+id/textView2" />
@@ -51,13 +48,13 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/editText2"
-        android:hint="Password"
+        android:hint="@string/password"
         android:layout_marginTop="30dp"
         android:layout_below="@+id/editText"
         android:layout_alignStart="@+id/editText" />
 
     <Button
-         android:text="Login"
+         android:text="@string/login"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:id="@+id/LOGIN_BUTTON"

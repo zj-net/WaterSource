@@ -3,6 +3,7 @@ package com.tristenallen.watersource.model;
 import android.location.Location;
 
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by Tristen on 2/25/2017.
@@ -11,12 +12,12 @@ import java.util.Date;
  * holds the ID of the user who generated this report.
  */
 public class SourceReport {
-    private WaterType type;
-    private WaterQuality quality;
-    private int userID;
-    private Location location;
-    private Date timestamp;
-    private int reportNumber;
+    private final WaterType type;
+    private final WaterQuality quality;
+    private final int userID;
+    private final Location location;
+    private final Date timestamp;
+    private final int reportNumber;
 
     /**
      * Generates a new SourceReport at the given location
@@ -36,6 +37,15 @@ public class SourceReport {
         this.type = type;
         this.reportNumber = reportNumber;
         this.timestamp = new Date();
+    }
+
+    /**
+     * Returns the user ID that created this report.
+     * @return int ID of the user that created this report.
+     */
+    @SuppressWarnings("unused") // necessary for future use cases
+    public int getUserID() {
+        return userID;
     }
 
     /**
@@ -63,14 +73,6 @@ public class SourceReport {
     }
 
     /**
-     * Returns the time this report was generated.
-     * @return Date representing the time this report was created.
-     */
-    public Date getTimestamp() {
-        return timestamp;
-    }
-
-    /**
      * Returns the ID number of this report.
      * @return int representing the ID of this report.
      */
@@ -78,19 +80,17 @@ public class SourceReport {
         return reportNumber;
     }
 
-    /**
-     * Returns the User who created this report.
-     * @return User object associated with this report.
-     */
-    public User getAuthor() {
-        return UserHelper.getInstance().getUserByID(userID);
+    @Override
+    public String toString() {
+        return "Report Number: " + reportNumber + "\n" + "Location: "
+                + String.format(Locale.US,"%.2f",location.getLatitude()) + ", "
+                + String.format(Locale.US, "%.2f",location.getLongitude()) + "\n"
+                + "Water type: " + type.toString() + "\n" + "Water quality: " + quality.toString()
+                + "\n" + "Created: " + timestamp;
     }
 
     @Override
-    public String toString() {
-        return "Report Number: " + reportNumber + "\n" + "Author: " + getAuthor().toString() + "\n" + "Location: "
-                + location.getLatitude() + ", " + location.getLongitude() + "\n"
-                + "Water type: " + type.toString() + "\n" + "Water quality: " + quality.toString()
-                + "\n" + "Created: " + timestamp;
+    public boolean equals(Object o) {
+        return ((o instanceof SourceReport) && (((SourceReport) o).reportNumber == reportNumber));
     }
 }

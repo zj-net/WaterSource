@@ -10,7 +10,7 @@ public enum WaterPurity {
     TREATABLE("Treatable"),
     UNSAFE("Unsafe");
 
-    String type;
+    final String type;
 
     WaterPurity(String type) {
         this.type = type;

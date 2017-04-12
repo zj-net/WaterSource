@@ -1,8 +1,5 @@
 package com.tristenallen.watersource.model;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Created by tristen on 2/21/17.
  *
@@ -10,19 +7,20 @@ import java.util.Map;
  * Automatically assigns users an ID number and associates their email with that ID number.
  * Also stores a list of passwords for the users.
  */
-public class UserHelper {
-    private static final UserHelper INSTANCE = new UserHelper();
+@SuppressWarnings("FeatureEnvy")
+public final class UserHelper {
     private int currentID;
-    private Map<Integer, User> userIDMap;
-    private Map<String, Integer> emailIDMap;
+    private static final UserHelper INSTANCE = new UserHelper();
 
     private UserHelper() {
-        userIDMap = new HashMap<>();
-        emailIDMap = new HashMap<>();
         currentID = 0;
     }
 
-    protected static UserHelper getInstance() {
+    /**
+     * Returns the singular instance of this class.
+     * @return UserHelper to be used throughout the app.
+     */
+    public static UserHelper getInstance() {
         return INSTANCE;
     }
 
@@ -32,37 +30,17 @@ public class UserHelper {
      * @param user User containing the new user's information.
      * @param email String specifying the new user's login email.
      * @param password String specifying the new user's password.
+     * @param data the DataSource object used to get information from the database.
+     * @return true or false depending on whether the method was successful or not.
      */
-    public boolean addUser(User user, String email, String password) {
-        if (emailIDMap.containsKey(email)) {
+    public boolean addUser(User user, String email, String password, DataSource data) {
+        currentID = data.getUserCount();
+        if (data.checkEmail(email)) {
             return false;
         } else {
-            emailIDMap.put(email, currentID);
-            userIDMap.put(currentID, user);
-            AuthHelper.getInstance().addUser(currentID, password);
-            currentID++;
+            data.createUser(currentID, password, user.getAddress(), user.getTitle(), user);
             return true;
         }
-    }
-
-    /**
-     * Gets a user by their auto-generated ID number.
-     * Returns null if there is no user by that ID.
-     * @param id int specifying the user's ID.
-     * @return User associated with that ID number.
-     */
-    public User getUserByID(int id) {
-        return (userIDMap.containsKey(id)) ? userIDMap.get(id) : null;
-    }
-
-    /**
-     * Gets a user's ID number by their login email address.
-     * Returns -1 if there is no user associated with this ID.
-     * @param email String specifying the login email of this user.
-     * @return int ID associated with this email.
-     */
-    public int getIDbyEmail(String email) {
-        return (emailIDMap.containsKey(email)) ? emailIDMap.get(email) : -1;
     }
 
 }

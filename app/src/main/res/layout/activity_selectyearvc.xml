@@ -1,0 +1,61 @@
+
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="30dp"
+        android:orientation="vertical"
+        tools:context="com.tristenallen.watersource.controller.RegistrationActivity"
+    >
+
+        <Spinner
+                android:layout_width="match_parent"
+                android:id="@+id/year"
+                android:background="#f3f3f3"
+                android:spinnerMode="dropdown"
+                android:layout_height="35dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="182dp" />
+
+        <RadioButton
+                android:text="@string/contaminant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/contaminant"
+                android:layout_marginBottom="20dp"
+                android:layout_above="@+id/year"
+                android:layout_alignParentStart="true" />
+
+        <RadioButton
+                android:text="@string/virus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/virus"
+                android:layout_marginBottom="19dp"
+                android:layout_above="@+id/contaminant"
+                android:layout_alignParentStart="true" />
+
+        <TextView
+                android:text="@string/select_a_year"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:id="@+id/selectyearTXT"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
+        <Button
+                android:text="@string/create_graph"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="59dp" android:id="@+id/submitGraphDetailsButton"/>
+
+    </RelativeLayout>

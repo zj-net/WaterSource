@@ -1,24 +1,30 @@
-package com.tristenallen.watersource.login;
+package com.tristenallen.watersource.controller;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
+import com.tristenallen.watersource.R;
+import com.tristenallen.watersource.database.MyDatabase;
+import com.tristenallen.watersource.model.AuthLevel;
+import com.tristenallen.watersource.model.DataSource;
+import com.tristenallen.watersource.model.User;
+import com.tristenallen.watersource.model.UserHelper;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by jahziel on 2/22/17.
+ * Activity for first time users to register on the app.
  */
 
-import android.content.Context;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.*;
-import com.tristenallen.watersource.R;
-import com.tristenallen.watersource.main.MainActivity;
-import com.tristenallen.watersource.model.AuthLevel;
-import com.tristenallen.watersource.model.Model;
-import com.tristenallen.watersource.model.User;
-import java.util.regex.*;
-
 public class RegistrationActivity extends AppCompatActivity {
-    private Button submitButton;
     private EditText firstNameField;
     private EditText lastNameField;
     private EditText emailField;
@@ -26,13 +32,17 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText confirmPassField;
     private Spinner authSpinner;
     private User user;
-    private Pattern emailPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+    private final Pattern emailPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
+            Pattern.CASE_INSENSITIVE);
 
-
+    private DataSource data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        data = new MyDatabase(this);
+
         setContentView(R.layout.activity_registration);
 
         //-----------------getting text input------------------------
@@ -45,18 +55,20 @@ public class RegistrationActivity extends AppCompatActivity {
         //--------------------------------------------------------------
 
         //populate spinner
-        authSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, AuthLevel.values()));
+        authSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
+                AuthLevel.values()));
 
 
 
         //movement from registration to main screen, text processing
 
-        submitButton = (Button) findViewById(R.id.submitButton);
+        Button submitButton = (Button) findViewById(R.id.submitButton);
         submitButton.setOnClickListener(new View.OnClickListener() {
             /**
              * This method verifies input data once the Submit button is pressed.
              * @param v the View for the activity
              */
+            @SuppressWarnings({"ChainedMethodCall", "OverlyLongMethod"}) // required by android
             @Override
             public void onClick(View v) {
                 //doing stuff with the text
@@ -91,8 +103,10 @@ public class RegistrationActivity extends AppCompatActivity {
                 } else {
 
                     //last part, after checks are passed
-                    user = new User(emailString, (AuthLevel) authSpinner.getSelectedItem(), lastNameString, firstNameString);
-                    if (!Model.getUserHelper().addUser(user, emailString, passwordString)) {
+                    user = new User(emailString, (AuthLevel) authSpinner.getSelectedItem()
+                            ,lastNameString, firstNameString);
+                    UserHelper helper = UserHelper.getInstance();
+                    if (!helper.addUser(user, emailString, passwordString, data)) {
                         Context context = getApplicationContext();
                         CharSequence error = "That email has already been used!";
                         int duration = Toast.LENGTH_LONG;

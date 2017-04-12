@@ -20,10 +20,18 @@ public class AuthPackage {
         this.status = status;
     }
 
+    /**
+     * Method for getting the user associated with this AuthPackage.
+     * @return this AuthPackage's User.
+     */
     public User getUser() {
         return user;
     }
 
+    /**
+     * Method for getting the status of this AuthPackage.
+     * @return the AuthPackage's AuthStatus; useful for checking if there was a login problem.
+     */
     public AuthStatus getStatus() {
         return status;
     }

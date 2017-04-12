@@ -5,45 +5,60 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
-
 import com.tristenallen.watersource.R;
-import com.tristenallen.watersource.model.Model;
+import com.tristenallen.watersource.model.AuthHelper;
 import com.tristenallen.watersource.model.User;
+
+import java.util.Locale;
 
 /**
  * Created by David on 2/22/17.
+ * Activity for user to view their profile information.
  */
 
 public class ViewProfileActivity extends AppCompatActivity {
-    private TextView nameField;
-    private TextView addressField;
-    private TextView emailField;
 
-    private User user;
-
+    @SuppressWarnings({"FeatureEnvy", "LawOfDemeter"})
+    // feature envy smell occurs because User is a data holder class
+    // Law of Demeter inspection error also occurs because of User being a data holder
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewprofile);
 
-        nameField = (TextView) findViewById(R.id.shownameTXT);
-        addressField = (TextView) findViewById(R.id.showaddressTXT);
-        emailField = (TextView) findViewById(R.id.showemailTXT);
+        TextView nameField = (TextView) findViewById(R.id.shownameTXT);
+        TextView addressField = (TextView) findViewById(R.id.showaddressTXT);
+        TextView emailField = (TextView) findViewById(R.id.showemailTXT);
 
+        AuthHelper authHelper = AuthHelper.getInstance();
 
-        user = Model.getCurrentUser();
+        User user = authHelper.getCurrentUser();
 
-        nameField.setText(user.getTitle() +" " + user.getFirstName()+ " " + user.getLastName());
+        nameField.setText(String.format(Locale.US, "%s %s %s",
+                user.getTitle(), user.getFirstName(), user.getLastName()));
         addressField.setText(user.getAddress());
         emailField.setText(user.getEmail());
     }
 
-    protected void onEditPressed(View view) {
-        Intent goToEditProfileActivity = new Intent(getApplicationContext(), EditProfileActivity.class);
+    /**
+     * Method for handling user pressing the "Edit" button.
+     * @param view the View object required by Android for this method to run.
+     */
+    @SuppressWarnings("UnusedParameters")
+    //View view is required by android
+    public void onEditPressed(View view) {
+        Intent goToEditProfileActivity = new Intent(getApplicationContext(),
+                EditProfileActivity.class);
         startActivity(goToEditProfileActivity);
     }
 
-    protected void onBackPressed(View view) {
-        onBackPressed();
+    /**
+     * Method for handling the user pressing the "back" button.
+     * @param view the View object required by Adroid for this method to run.
+     */
+    @SuppressWarnings("UnusedParameters")
+    //View view is required by android
+    public void onBackPressed(View view) {
+        super.onBackPressed();
     }
 }

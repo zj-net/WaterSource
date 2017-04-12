@@ -3,19 +3,20 @@ package com.tristenallen.watersource.model;
 import android.location.Location;
 
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by tristen on 3/10/17.
  * Stores information about a purity report.
  */
 public class PurityReport {
-    private WaterPurity purity;
-    private int userID;
-    private Location location;
-    private Date timestamp;
-    private int reportNumber;
-    private int virusPPM;
-    private int contaminantPPM;
+    private final WaterPurity purity;
+    private final int userID;
+    private final Location location;
+    private final Date timestamp;
+    private final int reportNumber;
+    private final int virusPPM;
+    private final int contaminantPPM;
 
     /**
      * Generates a new SourceReport at the given location
@@ -27,8 +28,9 @@ public class PurityReport {
      *
      * All data in a SourceReport is considered immutable.
      */
-    protected PurityReport(int userID, Location location, WaterPurity purity, int reportNumber,
-                           int virusPPM, int contaminantPPM) {
+    @SuppressWarnings("ConstructorWithTooManyParameters") //this is part of the design...
+    PurityReport(int userID, Location location, WaterPurity purity, int reportNumber,
+                 int virusPPM, int contaminantPPM) {
         this.userID = userID;
         this.location = location;
         this.purity = purity;
@@ -36,6 +38,15 @@ public class PurityReport {
         this.contaminantPPM = contaminantPPM;
         this.reportNumber = reportNumber;
         this.timestamp = new Date();
+    }
+
+    /**
+     * Returns the user ID that created this report.
+     * @return int ID of the user that created this report.
+     */
+    @SuppressWarnings("unused") // necessary for future use cases
+    public int getUserID() {
+        return userID;
     }
 
     /**
@@ -86,18 +97,11 @@ public class PurityReport {
         return reportNumber;
     }
 
-    /**
-     * Returns the User who created this report.
-     * @return User object associated with this report.
-     */
-    public User getAuthor() {
-        return UserHelper.getInstance().getUserByID(userID);
-    }
-
     @Override
     public String toString() {
-        return "Report Number: " + reportNumber + "\n" + "Author: " + getAuthor().toString() + "\n" + "Location: "
-                + location.getLatitude() + ", " + location.getLongitude() + "\n"
+        return "Report Number: " + reportNumber + "\n" + "Location: "
+                + String.format(Locale.US, "%.2f",location.getLatitude()) + ", "
+                + String.format(Locale.US, "%.2f",location.getLongitude()) + "\n"
                 + "Water purity: " + purity.toString() + "\n" + "Virus PPM: " + virusPPM + "\n"
                 + "Contaminant PPM: " + contaminantPPM
                 + "\n" + "Created: " + timestamp;

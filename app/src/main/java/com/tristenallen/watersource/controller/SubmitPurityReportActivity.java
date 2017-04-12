@@ -11,20 +11,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.google.android.gms.maps.model.LatLng;
 import com.tristenallen.watersource.R;
-import com.tristenallen.watersource.main.MainActivity;
-import com.tristenallen.watersource.model.Model;
+import com.tristenallen.watersource.database.MyDatabase;
 import com.tristenallen.watersource.model.ReportHelper;
-import com.tristenallen.watersource.model.User;
+import com.tristenallen.watersource.model.AuthHelper;
+import com.tristenallen.watersource.model.DataSource;
 import com.tristenallen.watersource.model.WaterPurity;
-import com.tristenallen.watersource.reports.submitH20SourceReportActivity;
+
+import java.util.Locale;
 
 /**
  * Created by David on 3/14/17.
+ * Activity for submitting a new purity report.
  */
 
+@SuppressWarnings("ChainedMethodCall") // all chained calls are due to android
 public class SubmitPurityReportActivity extends AppCompatActivity {
     private EditText latField;
     private EditText lngField;
@@ -33,16 +35,14 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
 
     private Spinner waterConditionSpinner;
 
-    private Button submitButton;
-    private Button reportSourceButton;
-
     private double latDouble;
     private double lngDouble;
     private int virusPPMInt;
     private int contaminantPPMInt;
 
-    private Location h20Loc = new Location("Water Purity Report Location");
-    private ReportHelper reportHelper = Model.getReportHelper();
+    private final Location h20Loc = new Location("Water Purity Report Location");
+    private final ReportHelper reportHelper = ReportHelper.getInstance();
+    private final AuthHelper authHelper = AuthHelper.getInstance();
     private LatLng latLng;
 
     private boolean badLat;
@@ -50,9 +50,19 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
     private boolean badVirusPPM;
     private boolean badContaminantPPM;
 
+    private static final double LAT_MAX = 90;
+    private static final double LAT_MIN = -90;
+    private static final double LONG_MAX = 180;
+    private static final double LONG_MIN = -180;
+
+    private DataSource data;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        data = new MyDatabase(this);
+
         setContentView(R.layout.activity_purityreport);
         //init the vars
         latField = (EditText) findViewById(R.id.latitudeTXT);
@@ -62,17 +72,24 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
 
         waterConditionSpinner = (Spinner) findViewById(R.id.waterCondition);
 
-        submitButton = (Button) findViewById(R.id.submitButton);
-        reportSourceButton = (Button) findViewById(R.id.sourceReportButton);
+        Button submitButton = (Button) findViewById(R.id.submitButton);
+        Button reportSourceButton = (Button) findViewById(R.id.sourceReportButton);
 
         //populate spinners
-        waterConditionSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, WaterPurity.values()));
+        waterConditionSpinner.setAdapter(new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, WaterPurity.values()));
 
         // if latLng of a newly added marker is passed in, set latLng to it.
         if (getIntent().hasExtra(MainActivity.ARG_latLng)) {
             latLng = getIntent().getParcelableExtra(MainActivity.ARG_latLng);
-            latField.setText(Double.toString(latLng.latitude));
-            lngField.setText(Double.toString(latLng.longitude));
+            latField.setText(String.format(Locale.US, "%f",latLng.latitude));
+            lngField.setText(String.format(Locale.US, "%f",latLng.longitude));
+        }
+
+        if (getIntent().hasExtra("location")) {
+            double[] arr = getIntent().getDoubleArrayExtra("location");
+            latField.setText(String.format(Locale.US, "%f",arr[0]));
+            lngField.setText(String.format(Locale.US, "%f",arr[1]));
         }
 
 
@@ -80,13 +97,15 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
         reportSourceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToSubmitSourceActivity = new Intent(getApplicationContext(), submitH20SourceReportActivity.class);
+                Intent goToSubmitSourceActivity = new Intent(getApplicationContext()
+                        , SubmitH20SourceReportActivity.class);
                 goToSubmitSourceActivity.putExtra(MainActivity.ARG_latLng,latLng);
                 startActivity(goToSubmitSourceActivity);
             }
         });
 
         submitButton.setOnClickListener(new View.OnClickListener() {
+            @SuppressWarnings({"OverlyLongMethod", "OverlyComplexMethod"})
             @Override
             public void onClick(View v) {
                 //------------------get all the data out------------------------
@@ -131,7 +150,7 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
                     Toast badLng = Toast.makeText(context, error, duration);
                     badLng.show();
 
-                } else if (latDouble > 90.0 || latDouble < -90.0|| badLat) {
+                } else if ((latDouble > LAT_MAX) || (latDouble < LAT_MIN) || badLat) {
                     //throw a fit!
                     Context context = getApplicationContext();
                     CharSequence error = "Please enter a number between +/- 90!";
@@ -139,7 +158,7 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
                     latField.setText("");
                     Toast badLatitude = Toast.makeText(context, error, duration);
                     badLatitude.show();
-                } else if (lngDouble > 180.0 || lngDouble < -180.0 || badLng) {
+                } else if ((lngDouble > LONG_MAX) || (lngDouble < LONG_MIN) || badLng) {
                     //throw a fit!
                     Context context = getApplicationContext();
                     CharSequence error = "Please enter a number between +/- 180!";
@@ -164,7 +183,8 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
                 } else {
                     h20Loc.setLatitude(latDouble);
                     h20Loc.setLongitude(lngDouble);
-                    reportHelper.addPurityReport(Model.getCurrentUserID(), h20Loc, waterPurityData, virusPPMInt,contaminantPPMInt);
+                    reportHelper.addPurityReport(authHelper.getCurrentUserID(), h20Loc, waterPurityData
+                            , virusPPMInt,contaminantPPMInt, data, SubmitPurityReportActivity.this);
                     Context context = getApplicationContext();
                     CharSequence msg = "Report submitted successfully!";
                     int duration = Toast.LENGTH_LONG;

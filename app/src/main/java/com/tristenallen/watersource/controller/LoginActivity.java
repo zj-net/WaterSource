@@ -1,20 +1,24 @@
-package com.tristenallen.watersource.login;
+package com.tristenallen.watersource.controller;
 
+import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.tristenallen.watersource.R;
-import android.widget.Button;
-import com.tristenallen.watersource.main.MainActivity;
-import android.content.Context;
+import com.tristenallen.watersource.database.MyDatabase;
 import com.tristenallen.watersource.model.AuthHelper;
 import com.tristenallen.watersource.model.AuthPackage;
 import com.tristenallen.watersource.model.AuthStatus;
-import com.tristenallen.watersource.model.Model;
+import com.tristenallen.watersource.model.DataSource;
 
+/**
+ * Activity for handling existing users logging in.
+ */
 
 public class LoginActivity extends AppCompatActivity {
     private EditText usrname;
@@ -22,26 +26,31 @@ public class LoginActivity extends AppCompatActivity {
     private AuthHelper verifier;
     private AuthPackage AP;
     private AuthStatus status;
-    private Button loginButton;
+
+    private DataSource data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        data = new MyDatabase(this);
+
         setContentView(R.layout.activity_login);
+
         usrname = (EditText) findViewById(R.id.editText);
         password = (EditText) findViewById(R.id.editText2);
 
-        loginButton = (Button) findViewById(R.id.LOGIN_BUTTON);
 
-
+        Button loginButton = (Button) findViewById(R.id.LOGIN_BUTTON);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
+            @SuppressWarnings("ChainedMethodCall") // required by android
             @Override
             public void onClick(View v) {
                 String usrnameStr = usrname.getText().toString();
                 String passwordStr = password.getText().toString();
-                verifier = Model.getAuthHelper();
-                AP = verifier.login(usrnameStr, passwordStr);
+                verifier = AuthHelper.getInstance();
+                AP = verifier.login(usrnameStr, passwordStr, data);
                 status = AP.getStatus();
 
                 if (status == AuthStatus.INVALID_NAME) {
@@ -61,7 +70,8 @@ public class LoginActivity extends AppCompatActivity {
                     badPass.show();
 
                 } else {
-                    Intent goToMainActivity = new Intent(getApplicationContext(), MainActivity.class);
+                    Intent goToMainActivity = new Intent(getApplicationContext(),
+                            MainActivity.class);
                     startActivity(goToMainActivity);
                 }
             }

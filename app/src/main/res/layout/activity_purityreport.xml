@@ -1,26 +1,21 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="#2055a6"
-    android:orientation="vertical"
-    tools:context="com.tristenallen.watersource.controller.EditProfileActivity"
-    >
 
 
-    <RelativeLayout android:layout_width="fill_parent"
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="30dp"
         android:orientation="vertical"
+        tools:context="com.tristenallen.watersource.controller.EditProfileActivity"
         >
 
         <TextView
-            android:text="Enter your information below"
+            android:text="@string/enter_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -31,7 +26,7 @@
             android:layout_marginTop="11dp" />
 
         <TextView
-            android:text="Water Purity Report Submission"
+            android:text="@string/water_purity_submission"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -43,7 +38,7 @@
 
 
         <TextView
-            android:text="Location"
+            android:text="@string/location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -53,7 +48,7 @@
             android:layout_alignParentStart="true" />
 
         <TextView
-            android:text="Virus PPM"
+            android:text="@string/virus_ppm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Inverse"
@@ -64,9 +59,10 @@
 
         <EditText android:layout_width="fill_parent"
             android:layout_height="40dp"
-            android:hint="Latitude"
+            android:hint="@string/latitude"
             android:background="#f3f3f3"
-            android:paddingLeft="5dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
             android:id="@+id/latitudeTXT"
             android:layout_marginTop="11dp"
             android:layout_below="@+id/locationTXT"
@@ -77,8 +73,9 @@
             android:layout_height="40dp"
             android:background="#f3f3f3"
             android:inputType="textPersonName"
-            android:paddingLeft="5dp"
-            android:hint="Longitude"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:hint="@string/longitude"
             android:id="@+id/longitudeTXT"
             android:layout_marginTop="18dp"
             android:layout_below="@+id/latitudeTXT"
@@ -98,11 +95,10 @@
             android:layout_height="38dp"
             android:layout_gravity="center_horizontal"
             android:background="#f3f3f3"
-            android:text="source"
+            android:text="@string/source"
             android:visibility="visible"
             style="@style/Widget.AppCompat.Light.ActionButton"
             android:id="@+id/sourceReportButton"
-            android:onClick="onSourcePressed"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="12dp" />
@@ -111,16 +107,15 @@
             android:layout_height="38dp"
             android:layout_gravity="center_horizontal"
             android:background="#f3f3f3"
-            android:text="submit"
+            android:text="@string/submit"
             android:visibility="visible"
             style="@style/Widget.AppCompat.Light.ActionButton"
             android:id="@+id/submitButton"
-            android:onClick="onSubmitPressed"
             android:layout_alignParentBottom="true"
             android:layout_alignEnd="@+id/contaminantPPMTXT" />
 
         <TextView
-            android:text="Contaminant PPM"
+            android:text="@string/contaminant_ppm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Inverse"
@@ -134,15 +129,16 @@
             android:layout_height="40dp"
             android:background="#f3f3f3"
             android:inputType="textPersonName"
-            android:paddingLeft="5dp"
-            android:hint="Contaminant PPM"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:hint="@string/contaminant_ppm"
             android:id="@+id/contaminantPPM"
             android:layout_above="@+id/waterConditionTXT"
             android:layout_alignParentStart="true"
             android:layout_marginBottom="12dp" />
 
         <TextView
-            android:text="Water Condition"
+            android:text="@string/waterCon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/waterConditionTXT"
@@ -156,21 +152,14 @@
             android:layout_height="40dp"
             android:background="#f3f3f3"
             android:inputType="textPersonName"
-            android:paddingLeft="5dp"
-            android:hint="Virus PPM"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:hint="@string/virus_ppm"
             android:id="@+id/virusPPM"
             android:layout_marginTop="16dp"
             android:layout_below="@+id/virusPPMTXT"
             android:layout_alignParentStart="true" />
 
     </RelativeLayout>
-    <LinearLayout android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-
-        >
-
-    </LinearLayout>
 
 
-</LinearLayout>

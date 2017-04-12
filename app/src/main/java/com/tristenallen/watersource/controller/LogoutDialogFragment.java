@@ -1,41 +1,59 @@
-package com.tristenallen.watersource.main;
+package com.tristenallen.watersource.controller;
 
 import android.app.Dialog;
-import android.support.v4.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import com.tristenallen.watersource.R;
 
 /**
  * Created by tristen on 2/14/17.
+ * Class that handles the user logging out using a fragment.
  */
 public class LogoutDialogFragment extends DialogFragment {
 
     // create interface to send events back to activity
+    /**
+     * Interface for creating a dialog box for verifying log out.
+     */
     public interface LogoutDialogListener {
-        public void onDialogPositiveClick(DialogFragment dialog);
-        public void onDialogNegativeClick(DialogFragment dialog);
+        /**
+         * Method for handling the user affirming their desire to log out.
+         */
+        void onDialogPositiveClick();
+
+        /**
+         * Method for handling user canceling log out.
+         */
+        @SuppressWarnings("EmptyMethod")
+        // ^^ dialog box has both buttons; in future negative might take action
+        void onDialogNegativeClick();
     }
 
-    LogoutDialogListener mListener;
+    private LogoutDialogListener mListener;
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        //noinspection ChainedMethodCall
         builder.setMessage(R.string.dialog_logout)
                 .setPositiveButton(R.string.logout, new DialogInterface.OnClickListener() {
                     // route positive button to listener
+                    @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        mListener.onDialogPositiveClick(LogoutDialogFragment.this);
+                        mListener.onDialogPositiveClick();
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     // route negative button to listener
+                    @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        mListener.onDialogNegativeClick(LogoutDialogFragment.this);
+                        mListener.onDialogNegativeClick();
                     }
                 });
         // Create the AlertDialog object and return it

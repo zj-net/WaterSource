@@ -2,11 +2,12 @@ package com.tristenallen.watersource.model;
 
 /**
  * Created by tristen on 2/21/17.
+ * AuthLevel custom enum; represents the different authorization levels.
  */
 public enum AuthLevel {
-    USER("User"), WORKER("Worker"), MANAGER("Manager"), ADMINISTRATOR("Admin");
+    USER("User"), WORKER("Worker"), MANAGER("Manager"), ADMIN("Admin");
 
-    private String shortName;
+    private final String shortName;
 
     AuthLevel(String shortName) {
         this.shortName = shortName;
