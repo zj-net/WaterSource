@@ -19,27 +19,26 @@
                 android:background="#f3f3f3"
                 android:spinnerMode="dropdown"
                 android:layout_height="35dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginBottom="182dp" />
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true" />
 
         <RadioButton
                 android:text="@string/contaminant"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/contaminant"
-                android:layout_marginBottom="20dp"
-                android:layout_above="@+id/year"
-                android:layout_alignParentStart="true" />
+            android:layout_below="@+id/virus"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="17dp" />
 
         <RadioButton
                 android:text="@string/virus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/virus"
-                android:layout_marginBottom="19dp"
-                android:layout_above="@+id/contaminant"
-                android:layout_alignParentStart="true" />
+            android:layout_below="@+id/selectyearTXT"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="85dp" />
 
         <TextView
                 android:text="@string/select_a_year"
@@ -54,8 +53,17 @@
                 android:text="@string/create_graph"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="59dp" android:id="@+id/submitGraphDetailsButton"/>
+            android:id="@+id/submitGraphDetailsButton"
+            android:layout_alignTop="@+id/year"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/team"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/imageView" />
 
     </RelativeLayout>

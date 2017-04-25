@@ -43,32 +43,20 @@
             android:text="@string/edit"
             android:visibility="visible"
             style="@style/Widget.AppCompat.Light.ActionButton"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="46dp"
-            android:onClick="onEditPressed" />
-
-        <Button
-            android:text="@string/back"
-            android:layout_width="100dp"
-            android:layout_height="38dp"
-            android:layout_gravity="center_horizontal"
-            android:background="#f3f3f3"
-            android:visibility="visible"
-            style="@style/Widget.AppCompat.Light.ActionButton"
-            android:layout_alignParentBottom="true"
+            android:onClick="onEditPressed"
+            android:layout_below="@+id/showemailTXT"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="46dp"
-            android:onClick="onBackPressed" />
+            android:layout_marginTop="29dp" />
 
-        <TextView
-            android:text="@string/account_information"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/accInfoTXT"
-            android:textAppearance="@style/TextAppearance.AppCompat.Inverse"
-            android:layout_centerVertical="true"
-            android:layout_alignParentStart="true" />
+    <TextView
+        android:id="@+id/accInfoTXT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/shownameTXT"
+        android:layout_marginTop="17dp"
+        android:text="@string/account_information"
+        android:textAppearance="@style/TextAppearance.AppCompat.Notification.Info.Media" />
 
         <TextView
             android:text="@string/addresstxt"
@@ -84,9 +72,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/shownameTXT"
-            android:layout_above="@+id/accInfoTXT"
+            android:layout_alignTop="@+id/nameTXT"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="19dp" />
+            android:layout_marginTop="24dp" />
 
         <TextView
             android:text="@string/name"
@@ -95,19 +83,19 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Inverse"
             android:id="@+id/nameTXT"
             android:textSize="12sp"
-            android:layout_above="@+id/shownameTXT"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="21dp" />
+            android:layout_marginTop="21dp"
+            android:layout_below="@+id/personalTXT"
+            android:layout_alignParentStart="true" />
 
-        <TextView
-            android:text="@string/personal_information"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/personalTXT"
-            android:textAppearance="@style/TextAppearance.AppCompat.Inverse"
-            android:layout_above="@+id/nameTXT"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="11dp" />
+    <TextView
+        android:id="@+id/personalTXT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="@string/personal_information"
+        android:textAppearance="@style/TextAppearance.AppCompat.Notification.Media"
+        android:layout_below="@+id/PleaseTXT"
+        android:layout_alignParentStart="true" />
 
         <TextView
             android:text="@string/address"
@@ -116,9 +104,9 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Inverse"
             android:id="@+id/addressTXT"
             android:textSize="12sp"
+            android:layout_marginTop="11dp"
             android:layout_below="@+id/accInfoTXT"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="17dp" />
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:text="@string/email"
@@ -139,6 +127,14 @@
             android:id="@+id/showemailTXT"
             android:layout_below="@+id/emailTXT"
             android:layout_alignStart="@+id/emailTXT" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/team"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/imageView" />
 
 
     </RelativeLayout>

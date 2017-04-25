@@ -26,4 +26,10 @@
         android:background="#ADD8E6"
         android:layout_weight="1"
         android:drawSelectorOnTop="false"/>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/team"
+        android:id="@+id/imageView" />
 </LinearLayout>
