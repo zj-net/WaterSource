@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="10dp"
         android:layout_alignParentTop="true"
-        android:background="#DDDDDD"
+        android:background="#ADD8E6"
         android:visibility="visible"/>
 
     <TextView
@@ -54,12 +54,20 @@
         android:layout_alignStart="@+id/editText" />
 
     <Button
-         android:text="@string/login"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:id="@+id/LOGIN_BUTTON"
-         android:layout_below="@+id/editText2"
-         android:layout_toEndOf="@+id/editText2"
-         style="@style/Widget.AppCompat.Button.Colored" />
+        android:id="@+id/LOGIN_BUTTON"
+        style="@android:style/Widget.Button.Inset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText2"
+        android:layout_toEndOf="@+id/editText2"
+        android:text="@string/login" />
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/team"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/imageView" />
 
 </RelativeLayout>

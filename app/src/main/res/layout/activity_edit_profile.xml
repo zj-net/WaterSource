@@ -57,18 +57,6 @@
             android:layout_alignParentStart="true" />
 
 
-        <Button
-            android:text="@string/back"
-            android:layout_width="100dp"
-            android:layout_height="38dp"
-            android:layout_gravity="center_horizontal"
-            style="@style/Widget.AppCompat.Light.ActionButton"
-            android:background="#f3f3f3"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="38dp"
-            android:onClick="onBackPressed" />
-
         <Button android:layout_width="100dp"
             android:layout_height="38dp"
             android:layout_gravity="center_horizontal"
@@ -77,10 +65,10 @@
             android:visibility="visible"
             style="@style/Widget.AppCompat.Light.ActionButton"
             android:id="@+id/submitButton"
+            android:onClick="onSubmitPressed"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="51dp"
-            android:onClick="onSubmitPressed" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="33dp" />
 
         <EditText
             android:layout_width="fill_parent"
@@ -128,6 +116,7 @@
             android:layout_below="@+id/addressTXT"
             android:layout_alignParentStart="true"
             android:layout_marginTop="31dp" />
+
 
     </RelativeLayout>
 
